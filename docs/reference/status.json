@@ -24,9 +24,9 @@
     "local_path": "/opt/data/workspace/energy-project-intelligence",
     "remote": "origin",
     "default_branch": "main",
-    "head_commit": null,
+    "head_commit": "757d213275aa487bfed13564804357a549601e91",
     "pushed": false,
-    "note": "Empty public repo cloned 2026-09-06. No gh CLI, no GITHUB_TOKEN, no SSH key. Local files prepared; push blocked."
+    "note": "Local root commit 757d213. Push blocked: no GitHub credentials on this host."
   },
   "local": {
     "docs_path": "/opt/data/docs/energy-project-intelligence/index.html",
