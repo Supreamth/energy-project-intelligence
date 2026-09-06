@@ -74,6 +74,9 @@ th { color: var(--muted); font-weight: 650; }
 .map { width: 100%; height: 280px; border: 0; border-radius: 4px; filter: grayscale(.2) contrast(1.05); }
 .unknown { color: var(--warn); }
 .empty { color: var(--muted); padding: 28px 0; }
+.num { font-variant-numeric: tabular-nums; }
+.bar { height: 8px; background: rgba(244,241,234,.08); border-radius: 99px; overflow: hidden; min-width: 120px; }
+.bar span { display: block; height: 100%; background: var(--accent); }
 form.upload { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:14px; padding-top:14px; border-top:1px solid var(--line); }
 form.upload input[type=file] { color: var(--muted); max-width: 100%; }
 form.upload button {
@@ -94,7 +97,7 @@ def _shell(title: str, body: str) -> bytes:
 </head><body>
 <div class="top"><div class="top-inner">
   <strong>Enerise</strong>
-  <nav><a href="/">เอกสาร</a><a href="/projects">โครงการ</a><a href="/sources">แหล่งข้อมูล</a><a href="/review">Review</a></nav>
+  <nav><a href="/">เอกสาร</a><a href="/projects">โครงการ</a><a href="/coverage">ความพร้อม</a><a href="/sources">แหล่งข้อมูล</a><a href="/review">Review</a></nav>
 </div></div>
 <div class="wrap">{body}</div>
 </body></html>"""

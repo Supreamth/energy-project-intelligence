@@ -1,12 +1,6 @@
 {
   "project": "energy-project-intelligence",
-  "updated_at": "2026-09-06T07:20:00Z",
-  "status": "erc_solar_accepted_canonical",
-  "erc_extract": {
-    "raw_record_id": "4699a474-8b31-483e-a43e-652b9a536e09",
-    "accepted": 1935,
-    "canonical": 1935,
-    "actor": "user",
-    "reason": "ผู้ใช้สั่ง accept จากไฟล์ RadGridExport.csv ของ กกพ."
-  }
+  "updated_at": "2026-09-06T07:35:00Z",
+  "status": "coverage_monitor_live",
+  "urls": {"coverage": "https://enerise.sprees.net/coverage"}
 }

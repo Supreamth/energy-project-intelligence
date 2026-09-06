@@ -17,6 +17,7 @@ import psycopg
 
 from energy_intelligence.catalog import save_manual_upload, upsert_sources
 from energy_intelligence.catalog_html import render_sources
+from energy_intelligence.coverage_html import render_coverage
 from energy_intelligence.product_html import render_detail, render_list
 from energy_intelligence.review import (
     accept_evidence,
@@ -150,6 +151,10 @@ class Handler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/review/api/evidence":
             self._json(200, _list_evidence())
+            return
+        if parsed.path in ("/coverage", "/coverage/"):
+            with psycopg.connect(DSN) as conn:
+                self._html(render_coverage(conn))
             return
         if parsed.path in ("/sources", "/sources/"):
             notice = (parse_qs(parsed.query).get("notice") or [None])[0]
