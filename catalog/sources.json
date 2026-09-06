@@ -117,6 +117,28 @@
     }
   },
   {
+    "code": "eppo_cdf_spp",
+    "name_th": "สนพ. กองทุนชุมชนรอบโรงไฟฟ้า SPP",
+    "name_en": "EPPO CDF SPP plant pages",
+    "base_url": "https://www2.eppo.go.th/cdf/power_plant_SPP.html",
+    "related_urls": [
+      "https://www2.eppo.go.th/cdf/power_plant_VSPP.html",
+      "https://www2.eppo.go.th/"
+    ],
+    "access_method": "web",
+    "rights_status": "unknown",
+    "schedule": "manual",
+    "enabled": false,
+    "goal": "พิกัดโรงไฟฟ้าเมื่อหน้าแผนที่มี lat/lon และชื่อตรงโครงการ",
+    "targets": ["solar_farm"],
+    "connection": {
+      "mode": "manual_first",
+      "auth": "none for public HTML",
+      "how": "snapshot หน้าสารบัญ แล้วเปิดหน้าโรงไฟฟ้าทีละแห่ง ห้าม geocode จากชื่อจังหวัด",
+      "notes": "หน้า SPP/VSPP เป็นโรงโคเจน/ชีวมวล ไม่มีคำว่าแสงอาทิตย์. last-modified 2014. หน้าแผนที่เป็น HTML ยุค Flash ไม่มีตัวเลขพิกัดใน markup."
+    }
+  },
+  {
     "code": "jcm_thailand",
     "name_th": "JCM Thailand–Japan PDD",
     "name_en": "Joint Crediting Mechanism project documents",

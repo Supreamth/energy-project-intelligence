@@ -1,7 +1,10 @@
 {
   "project": "energy-project-intelligence",
-  "updated_at": "2026-09-06T10:10:00Z",
-  "status": "more_jcm_points_unique_hosts",
-  "solar_points_pct": 1.4,
-  "new_jcm": ["TDEM Samut Prakan", "Thai Delmar", "TSB Bangkok Kabinburi"]
+  "updated_at": "2026-09-06T10:20:00Z",
+  "status": "eppo_cdf_spp_snapshotted_no_solar_coords",
+  "eppo": {
+    "spp_raw": "a8cb8641-d38d-4278-b76b-443f19c59c73",
+    "vspp_raw": "9cbcfc0b-a8d2-419c-bf0d-ebea28c40dac",
+    "solar_rows": 0
+  }
 }
