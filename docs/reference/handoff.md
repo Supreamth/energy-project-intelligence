@@ -1,8 +1,9 @@
 # AI Handoff — Energy Project Intelligence
 
-Manual upload lives on https://enerise.sprees.net/sources
-POST /sources/{code}/upload (multipart field `file`, max 32MB)
-Stores raw only. Does not auto-extract assertions.
+Solar licenses from the user ERC CSV are pending review.
 
-Clone: /opt/data/workspace/energy-project-intelligence
-Object store: var/objects (gitignored)
+- Raw: 4699a474-8b31-483e-a43e-652b9a536e09 (RadGridExport.csv)
+- Extractor: erc-csv-solar-0.1
+- Review: https://enerise.sprees.net/review
+- Projects: https://enerise.sprees.net/projects?type=solar_farm
+- Do not auto-accept. No map points were invented.

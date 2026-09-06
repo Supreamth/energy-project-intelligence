@@ -10,6 +10,7 @@ from pathlib import Path
 
 import psycopg
 
+from energy_intelligence.erc_csv import extract_solar_licenses
 from energy_intelligence.ingest import import_contract, import_snapshot, record_fetch_failure
 from energy_intelligence.storage import LocalObjectStore
 
@@ -33,6 +34,8 @@ def main(argv: list[str] | None = None) -> int:
     p_fail.add_argument("--source", required=True)
     p_fail.add_argument("--error-class", required=True)
     p_fail.add_argument("--url", required=True)
+    p_ex = sub.add_parser("extract-erc", help="Extract solar licenses from an ERC CSV raw record")
+    p_ex.add_argument("--raw")
     args = parser.parse_args(argv)
     if args.cmd == "import":
         return _import_path(Path(args.path))
@@ -40,6 +43,8 @@ def main(argv: list[str] | None = None) -> int:
         return _snapshot(args)
     if args.cmd == "fetch-fail":
         return _fetch_fail(args)
+    if args.cmd == "extract-erc":
+        return _extract_erc(args)
     return 2
 
 
@@ -106,6 +111,37 @@ def _fetch_fail(args) -> int:
         )
         conn.commit()
     print(json.dumps({"fetch_event_id": str(event_id), "raw_record_id": None}))
+    return 0
+
+
+def _extract_erc(args) -> int:
+    with psycopg.connect(_dsn()) as conn:
+        raw_id = args.raw
+        if not raw_id:
+            row = conn.execute(
+                """
+                SELECT r.id FROM intelligence.raw_records r
+                JOIN intelligence.sources s ON s.id = r.source_id
+                WHERE s.code = 'erc_licensees' AND r.external_key = 'upload:RadGridExport.csv'
+                ORDER BY r.first_seen_at DESC LIMIT 1
+                """
+            ).fetchone()
+            if not row:
+                raise SystemExit("no RadGridExport.csv raw record")
+            raw_id = row[0]
+        result = extract_solar_licenses(conn, _store(), raw_record_id=raw_id)
+        conn.commit()
+    print(
+        json.dumps(
+            {
+                "raw_record_id": str(raw_id),
+                "projects_created": result.projects_created,
+                "evidence_inserted": result.evidence_inserted,
+                "rows_seen": result.rows_seen,
+                "solar_kept": result.solar_kept,
+            }
+        )
+    )
     return 0
 
 

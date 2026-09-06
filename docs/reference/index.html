@@ -164,7 +164,7 @@
         </div>
       </div>
       <aside class="card hero-side">
-        <div class="status-item"><strong><span class="dot green"></span>สถานะปัจจุบัน</strong><span>แต่ละแหล่งบน /sources มีปุ่มอัปโหลดไฟล์ด้วยมือแล้ว</span></div>
+        <div class="status-item"><strong><span class="dot green"></span>สถานะปัจจุบัน</strong><span>แยกโซลาร์จาก CSV กกพ. เป็น evidence pending แล้ว รอคนตรวจ</span></div>
         <div class="status-item"><strong><span class="dot yellow"></span>ขั้นถัดไป</strong><span>fixture จริง หรือ connector แรก — ยังไม่ทำ collector อัตโนมัติเอง</span></div>
         <div class="status-item"><strong><span class="dot red"></span>ยังไม่พร้อม</strong><span>Docker daemon, fixture ที่ได้รับอนุญาตจากแหล่งจริง</span></div>
         <div class="status-item"><strong>Repo</strong><span><a href="https://github.com/Supreamth/energy-project-intelligence">Supreamth/energy-project-intelligence</a> · clone + pushed · HEAD 0c439df</span></div>
@@ -204,10 +204,10 @@
 Read first:
 1. /opt/data/docs/energy-project-intelligence/handoff.md
 2. /opt/data/docs/energy-project-intelligence/status.json
-3. https://enerise.sprees.net/sources
+3. https://enerise.sprees.net/review
 4. Git clone: /opt/data/workspace/energy-project-intelligence
 
-Each source on /sources has a manual Upload file button. POST /sources/{code}/upload stores raw via import_snapshot. Collectors remain off. Do not invent ERC plants.
+ERC RadGridExport.csv was extracted solar-only into pending evidence. Capacity 0 omitted. No coordinates invented. Capacity operating only when COD present (solar_ac, not DC). Collectors off. Do not auto-accept.
 
 Hard rules: update https://enerise.sprees.net/ and Next prompt on every change; never commit secrets/var/.conda/.venv.</pre>
       </div>

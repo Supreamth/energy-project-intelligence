@@ -257,11 +257,12 @@ def _list_evidence() -> list[dict]:
         rows = conn.execute(
             """
             SELECT ev.id, ev.predicate, ev.value_json, ev.review_status, ev.excerpt,
-                   ev.subject_entity_id, r.external_key
+                   ev.subject_entity_id, r.external_key, p.name_th, p.project_type
             FROM intelligence.evidence ev
             JOIN intelligence.raw_records r ON r.id = ev.raw_record_id
-            ORDER BY ev.recorded_at DESC
-            LIMIT 100
+            LEFT JOIN intelligence.projects p ON p.entity_id = ev.subject_entity_id
+            ORDER BY CASE ev.review_status WHEN 'pending' THEN 0 ELSE 1 END, ev.recorded_at DESC
+            LIMIT 400
             """
         ).fetchall()
     out = []
@@ -275,6 +276,8 @@ def _list_evidence() -> list[dict]:
                 "excerpt": row[4],
                 "subject_entity_id": str(row[5]) if row[5] else None,
                 "external_key": row[6],
+                "project_name": row[7],
+                "project_type": row[8],
             }
         )
     return out

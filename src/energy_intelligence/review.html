@@ -38,11 +38,12 @@
       if (!rows.length) { root.innerHTML = '<div class="card">ยังไม่มี evidence — import fixtures/demo_phase_a.json ก่อน</div>'; return; }
       root.innerHTML = rows.map(r => `
         <div class="card">
-          <div><span class="tag">${r.review_status}</span> <code>${r.predicate}</code></div>
-          <p>${r.excerpt || ''} · ${r.external_key} · ${JSON.stringify(r.value_json)}</p>
-          <p class="muted">subject: ${r.subject_entity_id || 'ยังไม่ผูก'} · id ${r.id}</p>
+          <div><span class="tag">${r.review_status}</span> <code>${r.predicate}</code> ${r.project_type ? `<span class="tag">${r.project_type}</span>` : ''}</div>
+          <p>${r.project_name ? `<strong>${r.project_name}</strong> · ` : ''}${r.excerpt || ''} · ${r.external_key}</p>
+          <p class="muted">${JSON.stringify(r.value_json)} · subject: ${r.subject_entity_id || 'ยังไม่ผูก'} · id ${r.id}</p>
           <div class="row">
-            <button class="ghost" onclick="act('attach', '${r.id}')">ผูกเฟสเดโม</button>
+            ${r.subject_entity_id ? '' : `<button class="ghost" onclick="act('attach', '${r.id}')">ผูกเฟสเดโม</button>`}
+            ${r.subject_entity_id ? `<a class="ghost" href="/projects/${r.subject_entity_id}">เปิดโครงการ</a>` : ''}
             <button class="ok" onclick="act('accept', '${r.id}')">Accept</button>
             <button class="warn" onclick="act('reject', '${r.id}')">Reject</button>
             <button class="pri" onclick="act('canonical', '${r.id}', '${r.predicate}')">เลือก Canonical</button>

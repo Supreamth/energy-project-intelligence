@@ -3,9 +3,9 @@ Continue Energy Project Intelligence on this machine. Chat with the user in Thai
 Read first:
 1. /opt/data/docs/energy-project-intelligence/handoff.md
 2. /opt/data/docs/energy-project-intelligence/status.json
-3. https://enerise.sprees.net/sources
+3. https://enerise.sprees.net/review
 4. Git clone: /opt/data/workspace/energy-project-intelligence
 
-Each source on /sources has a manual Upload file button. POST /sources/{code}/upload stores raw via import_snapshot. Collectors remain off. Do not invent ERC plants.
+ERC RadGridExport.csv was extracted solar-only into pending evidence. Capacity 0 omitted. No coordinates invented. Capacity operating only when COD present (solar_ac, not DC). Collectors off. Do not auto-accept.
 
 Hard rules: update https://enerise.sprees.net/ and Next prompt on every change; never commit secrets/var/.conda/.venv.

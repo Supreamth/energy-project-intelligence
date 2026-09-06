@@ -1,7 +1,14 @@
 {
   "project": "energy-project-intelligence",
-  "updated_at": "2026-09-06T06:45:00Z",
-  "status": "manual_upload_on_sources",
-  "urls": {"sources": "https://enerise.sprees.net/sources"},
-  "upload": {"path": "/sources/{code}/upload", "max_bytes": 33554432, "collectors": false}
+  "updated_at": "2026-09-06T07:10:00Z",
+  "status": "erc_solar_pending_review",
+  "erc_extract": {
+    "raw_record_id": "4699a474-8b31-483e-a43e-652b9a536e09",
+    "extractor": "erc-csv-solar-0.1",
+    "solar_kept": 1257,
+    "evidence_inserted": 1935,
+    "capacity_operating_only_if_cod": true,
+    "zero_mw_omitted": true,
+    "coordinates": false
+  }
 }
