@@ -8,6 +8,7 @@ import pytest
 
 from energy_intelligence.ingest import import_contract
 from energy_intelligence.product import get_project, list_projects
+from energy_intelligence.product_html import render_detail
 from energy_intelligence.review import accept_evidence, select_canonical
 from energy_intelligence.storage import LocalObjectStore
 
@@ -94,3 +95,34 @@ def test_product_lists_only_projects_and_canonical_capacity(tmp_path: Path):
     assert cap["metric"] == "dc_it_load"
     assert cap["evidence_id"] == str(forty)
     assert str(fifty) in {c["evidence_id"] for c in detail["conflicts"]}
+    assert detail["sites"][0]["coordinates"] is None
+    with psycopg.connect(DSN) as conn:
+        html = render_detail(conn, project_id).decode()
+    assert "openstreetmap.org" not in html
+    assert "ไม่ทราบพิกัด" in html
+
+
+def test_site_coordinates_only_when_point_exists(tmp_path: Path):
+    store = LocalObjectStore(tmp_path)
+    key = f"geo-{uuid.uuid4()}"
+    with psycopg.connect(DSN) as conn:
+        project_id, _, _ = _setup(conn, store, key)
+        conn.execute(
+            """
+            UPDATE intelligence.sites
+            SET point = ST_SetSRID(ST_MakePoint(100.5018, 13.7563), 4326),
+                location_method = 'source_excerpt'
+            WHERE project_id = %s
+            """,
+            (project_id,),
+        )
+        conn.commit()
+        detail = get_project(conn, project_id)
+    coords = detail["sites"][0]["coordinates"]
+    assert coords is not None
+    assert round(coords["lon"], 4) == 100.5018
+    assert round(coords["lat"], 4) == 13.7563
+    with psycopg.connect(DSN) as conn:
+        html = render_detail(conn, project_id).decode()
+    assert "openstreetmap.org" in html
+    assert "ไม่ทราบพิกัด" not in html

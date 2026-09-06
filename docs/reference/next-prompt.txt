@@ -3,16 +3,13 @@ Continue Energy Project Intelligence on this machine. Chat with the user in Thai
 Read first:
 1. /opt/data/docs/energy-project-intelligence/handoff.md
 2. /opt/data/docs/energy-project-intelligence/status.json
-3. https://enerise.sprees.net/  /review  /projects
+3. https://enerise.sprees.net/projects
 4. Git clone: /opt/data/workspace/energy-project-intelligence
 
-MVP inner loop is complete: docs, GitHub, schema v0.2 migrated, manual ingest, review/canonical, product pages that read canonical values with evidence links.
+MVP inner loop is complete. Product pages were polished: list is an explore registry, detail is inspect-density, map only when site.point exists, never HQ fallback.
 
-Do not reopen schema v0.2 unless asked. Do not start collectors, imagery, Solar Portfolio, public API, or LLM-approved facts unless the user asks.
+Do not reopen schema v0.2. Do not start collectors unless asked.
 
-Suggested next (pick with the user):
-- Import licensed real fixtures (ERC/BOI/owner) instead of demo JSON
-- First automated connector after mapping a real source
-- Product polish (map only when coordinates exist, never HQ fallback)
+Suggested next: licensed real fixtures, first connector, or more product polish.
 
-Hard rules: update https://enerise.sprees.net/ and this Next prompt on every change; never commit secrets/var/.conda/.venv.
+Hard rules: update https://enerise.sprees.net/ and Next prompt on every change; never commit secrets/var/.conda/.venv.

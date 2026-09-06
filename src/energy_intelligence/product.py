@@ -49,7 +49,10 @@ def get_project(conn, project_id) -> dict:
         raise ValueError("project not found")
     sites = conn.execute(
         """
-        SELECT entity_id, label FROM intelligence.sites
+        SELECT entity_id, label, location_method, location_accuracy_m,
+               CASE WHEN point IS NULL THEN NULL ELSE ST_X(point) END,
+               CASE WHEN point IS NULL THEN NULL ELSE ST_Y(point) END
+        FROM intelligence.sites
         WHERE project_id = %s ORDER BY label
         """,
         (project_id,),
@@ -124,7 +127,18 @@ def get_project(conn, project_id) -> dict:
         "name_en": row[1],
         "name_th": row[2],
         "project_type": row[3],
-        "sites": [{"id": str(s[0]), "label": s[1]} for s in sites],
+        "sites": [
+            {
+                "id": str(s[0]),
+                "label": s[1],
+                "location_method": s[2],
+                "location_accuracy_m": float(s[3]) if s[3] is not None else None,
+                "coordinates": None
+                if s[4] is None or s[5] is None
+                else {"lon": float(s[4]), "lat": float(s[5])},
+            }
+            for s in sites
+        ],
         "phases": [{"id": str(p[0]), "label": p[1], "phase_key": p[2], "site": p[3]} for p in phases],
         "capacity": capacity,
         "conflicts": conflicts,
