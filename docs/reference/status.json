@@ -1,16 +1,13 @@
 {
   "project": "energy-project-intelligence",
-  "updated_at": "2026-09-06T06:20:00Z",
-  "status": "product_pages_polished",
+  "updated_at": "2026-09-06T06:40:00Z",
+  "status": "source_catalog_recorded",
   "urls": {
+    "sources": "https://enerise.sprees.net/sources",
     "projects": "https://enerise.sprees.net/projects",
-    "review": "https://enerise.sprees.net/review",
     "docs": "https://enerise.sprees.net/"
   },
-  "product": {
-    "map": "only when sites.point exists",
-    "hq_fallback": false
-  },
-  "tests": {"pytest": "14 passed"},
-  "next_action": "User chooses real fixtures, first connector, or more polish."
+  "collection_policy": "manual_first",
+  "collectors_enabled": false,
+  "next_action": "Import one licensed public snapshot from a cataloged source. Do not enable collectors."
 }

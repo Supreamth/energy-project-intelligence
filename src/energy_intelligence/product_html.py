@@ -88,7 +88,7 @@ def _shell(title: str, body: str) -> bytes:
 </head><body>
 <div class="top"><div class="top-inner">
   <strong>Enerise</strong>
-  <nav><a href="/">เอกสาร</a><a href="/projects">โครงการ</a><a href="/review">Review</a></nav>
+  <nav><a href="/">เอกสาร</a><a href="/projects">โครงการ</a><a href="/sources">แหล่งข้อมูล</a><a href="/review">Review</a></nav>
 </div></div>
 <div class="wrap">{body}</div>
 </body></html>"""

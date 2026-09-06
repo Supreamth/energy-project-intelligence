@@ -15,6 +15,8 @@ import re
 
 import psycopg
 
+from energy_intelligence.catalog import upsert_sources
+from energy_intelligence.catalog_html import render_sources
 from energy_intelligence.product_html import render_detail, render_list
 from energy_intelligence.review import (
     accept_evidence,
@@ -114,6 +116,9 @@ class Handler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/review/api/evidence":
             self._json(200, _list_evidence())
+            return
+        if parsed.path in ("/sources", "/sources/"):
+            self._html(render_sources())
             return
         if parsed.path in ("/projects", "/projects/"):
             ptype = (parse_qs(parsed.query).get("type") or [None])[0]
@@ -240,8 +245,12 @@ class ReusableServer(ThreadingHTTPServer):
 
 
 def main() -> None:
+    with psycopg.connect(DSN) as conn:
+        n = upsert_sources(conn)
+        conn.commit()
+        print(f"catalog upserted {n} sources", flush=True)
     server = ReusableServer((HOST, PORT), Handler)
-    print(f"docs+review http://{HOST}:{PORT}/ review=/review", flush=True)
+    print(f"docs+review http://{HOST}:{PORT}/ sources=/sources review=/review", flush=True)
     server.serve_forever()
 
 

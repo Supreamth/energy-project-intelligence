@@ -2,13 +2,12 @@
 
 Updated: 2026-09-06 (UTC).
 
-MVP inner loop is complete.
+Source catalog is at https://enerise.sprees.net/sources
+JSON: catalog/sources.json
+DB table intelligence.sources is upserted on server start.
 
-- Docs: https://enerise.sprees.net/
-- Review: https://enerise.sprees.net/review
-- Projects: https://enerise.sprees.net/projects
-- Git: /opt/data/workspace/energy-project-intelligence
-- DB: 127.0.0.1:55432 intelligence (Postgres 18.6 + PostGIS 3.6)
-- Origin: `python -m energy_intelligence.review_http` on :8091
+Real sources are disabled. Only demo_manual is enabled.
+Do not write collectors yet. Manual snapshot + import CLI only.
 
-Product pages read canonical internal values only and link to evidence.
+Projects: /projects  Review: /review
+Git: /opt/data/workspace/energy-project-intelligence

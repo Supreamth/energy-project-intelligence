@@ -1,0 +1,119 @@
+[
+  {
+    "code": "demo_manual",
+    "name_th": "นำเข้าด้วยมือ (เดโม)",
+    "name_en": "Demo manual import",
+    "base_url": "https://example.invalid/demo",
+    "related_urls": [],
+    "access_method": "manual",
+    "rights_status": "internal_only",
+    "schedule": "on_demand",
+    "enabled": true,
+    "goal": "พิสูจน์วง ingest → review → canonical ด้วยไฟล์ที่เราสร้างเอง",
+    "targets": ["solar_farm", "data_center"],
+    "connection": {
+      "mode": "cli_import",
+      "auth": "none",
+      "how": "python -m energy_intelligence import fixtures/demo_phase_a.json",
+      "notes": "ไม่ดึงจากอินเทอร์เน็ต ใช้ทดสอบ idempotency"
+    }
+  },
+  {
+    "code": "erc_licensees",
+    "name_th": "กกพ. ทะเบียนผู้ได้รับใบอนุญาต",
+    "name_en": "ERC licensees",
+    "base_url": "https://www.erc.or.th/th/licensees/",
+    "related_urls": [
+      "https://www.erc.or.th/th/application-forms/",
+      "http://app04.erc.or.th/elicense/index.html"
+    ],
+    "access_method": "web",
+    "rights_status": "unknown",
+    "schedule": "weekly",
+    "enabled": false,
+    "goal": "organization, project, ใบอนุญาต/สถานะ, capacity ของโรงไฟฟ้าในไทย",
+    "targets": ["solar_farm"],
+    "connection": {
+      "mode": "manual_first",
+      "auth": "none for public pages; e-License portal is for licensees and is out of scope",
+      "how": "เปิดหน้าสาธารณะหรือ PDF ที่ได้รับอนุญาต บันทึก snapshot แล้ว import เป็น raw ไม่สมมติว่ามี bulk API",
+      "notes": "rights_status=unknown ห้ามเผยแพร่ภายนอกจนกว่าจะตรวจสิทธิ ระบบ elicense เป็น login ของผู้ประกอบการ ไม่ใช้เป็นแหล่งดึงอัตโนมัติ"
+    }
+  },
+  {
+    "code": "boi_promoted",
+    "name_th": "BOI บริษัทที่ได้รับการส่งเสริม",
+    "name_en": "BOI promoted companies",
+    "base_url": "https://www.boi.go.th/index.php?language=en&page=form_promoted_companies",
+    "related_urls": ["https://www.boi.go.th/"],
+    "access_method": "download",
+    "rights_status": "unknown",
+    "schedule": "weekly",
+    "enabled": false,
+    "goal": "organization, project candidates, หลักฐานการส่งเสริม",
+    "targets": ["solar_farm", "data_center"],
+    "connection": {
+      "mode": "manual_first",
+      "auth": "none if the list/file is public",
+      "how": "ดาวน์โหลดไฟล์หรือตารางที่หน้าอนุญาตให้ใช้ เก็บ bytes + checksum แล้วค่อย mapping ฟิลด์จริงจากตัวอย่าง",
+      "notes": "อย่าเดาชื่อคอลัมน์จากเอกสารนี้ว่าเป็นฟิลด์ของผู้ให้บริการ"
+    }
+  },
+  {
+    "code": "owner_disclosures",
+    "name_th": "ประกาศเจ้าของโครงการ / IR",
+    "name_en": "Owner and IR disclosures",
+    "base_url": "https://example.invalid/owner-disclosures",
+    "related_urls": [],
+    "access_method": "web",
+    "rights_status": "unknown",
+    "schedule": "daily_to_weekly",
+    "enabled": false,
+    "goal": "project, phase, capacity, milestone, parties จากเอกสารที่เจ้าของเผยแพร่",
+    "targets": ["solar_farm", "data_center"],
+    "connection": {
+      "mode": "manual_url_list",
+      "auth": "none for public IR PDFs",
+      "how": "ผู้ใช้ส่ง URL ที่ได้รับอนุญาตทีละโครงการ ระบบเก็บ snapshot ไม่ crawl ทั้งเว็บ",
+      "notes": "แต่ละโดเมนมี terms ของตัวเอง ต้องตั้ง rights_status ต่อแหล่งย่อยก่อน publish"
+    }
+  },
+  {
+    "code": "gem_solar",
+    "name_th": "Global Energy Monitor Solar Power Tracker",
+    "name_en": "GEM Global Solar Power Tracker",
+    "base_url": "https://globalenergymonitor.org/projects/global-solar-power-tracker",
+    "related_urls": [],
+    "access_method": "download",
+    "rights_status": "unknown",
+    "schedule": "on_release",
+    "enabled": false,
+    "goal": "project/site candidates และ capacity evidence สำหรับโรงไฟฟ้าโซลาร์ไทย",
+    "targets": ["solar_farm"],
+    "connection": {
+      "mode": "manual_release",
+      "auth": "follow GEM license/terms for each release file",
+      "how": "เมื่อมี release ใหม่ ดาวน์โหลดไฟล์ที่อนุญาต แล้ว import ไม่ scrape ตารางบนเว็บถ้าเงื่อนไขห้าม",
+      "notes": "ใช้เป็นหลักฐานประกอบ ไม่ auto-merge กับ กกพ. จากชื่ออย่างเดียว"
+    }
+  },
+  {
+    "code": "dc_directory",
+    "name_th": "Data Center Map Thailand",
+    "name_en": "DataCenterMap Thailand",
+    "base_url": "https://www.datacentermap.com/thailand/",
+    "related_urls": [],
+    "access_method": "web",
+    "rights_status": "unknown",
+    "schedule": "manual",
+    "enabled": false,
+    "goal": "data center candidates ในไทย",
+    "targets": ["data_center"],
+    "connection": {
+      "mode": "manual_first",
+      "auth": "none for public pages; bulk/API must be confirmed",
+      "how": "เริ่มคัดลอกหน้าสาธารณะเป็น snapshot ทีละรายการ ห้าม bulk จนกว่าจะยืนยันสิทธิ",
+      "notes": "ไม่ถือว่าหน้าค้นหาเป็น bulk API"
+    }
+  }
+]
