@@ -74,6 +74,12 @@ th { color: var(--muted); font-weight: 650; }
 .map { width: 100%; height: 280px; border: 0; border-radius: 4px; filter: grayscale(.2) contrast(1.05); }
 .unknown { color: var(--warn); }
 .empty { color: var(--muted); padding: 28px 0; }
+form.upload { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:14px; padding-top:14px; border-top:1px solid var(--line); }
+form.upload input[type=file] { color: var(--muted); max-width: 100%; }
+form.upload button {
+  min-height: 44px; padding: 0 16px; border: 0; border-radius: 4px;
+  background: var(--accent); color: #1a1404; font-weight: 750; cursor: pointer;
+}
 @media (max-width: 800px) {
   .hero, .grid2, .row { grid-template-columns: 1fr; }
 }

@@ -6,10 +6,6 @@ Read first:
 3. https://enerise.sprees.net/sources
 4. Git clone: /opt/data/workspace/energy-project-intelligence
 
-ERC public hub snapshot is in raw_records (erc_licensees / public-hub). Detailed licensee table on app04 timed out; no invented plants. Collectors remain off.
-
-Do not reopen schema v0.2.
-
-Next: retry app04 from a host that can reach it, or import a user-supplied ERC file.
+Each source on /sources has a manual Upload file button. POST /sources/{code}/upload stores raw via import_snapshot. Collectors remain off. Do not invent ERC plants.
 
 Hard rules: update https://enerise.sprees.net/ and Next prompt on every change; never commit secrets/var/.conda/.venv.

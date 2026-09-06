@@ -1,13 +1,7 @@
 {
   "project": "energy-project-intelligence",
-  "updated_at": "2026-09-06T06:55:00Z",
-  "status": "erc_hub_snapshot_imported",
-  "erc": {
-    "hub_url": "https://www.erc.or.th/th/licensees/",
-    "http_status": 200,
-    "bytes": 329092,
-    "raw_record_id": "0b2e7952-d66d-4dfa-a094-20f3bba204d9",
-    "generation_table": "app04 LicenseType=1 timeout; no licensee rows invented"
-  },
-  "collectors_enabled": false
+  "updated_at": "2026-09-06T06:45:00Z",
+  "status": "manual_upload_on_sources",
+  "urls": {"sources": "https://enerise.sprees.net/sources"},
+  "upload": {"path": "/sources/{code}/upload", "max_bytes": 33554432, "collectors": false}
 }

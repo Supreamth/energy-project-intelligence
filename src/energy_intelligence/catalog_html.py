@@ -15,7 +15,7 @@ MODE_TH = {
 }
 
 
-def render_sources() -> bytes:
+def render_sources(notice: str | None = None) -> bytes:
     rows = load_sources()
     cards = []
     for row in rows:
@@ -37,13 +37,20 @@ def render_sources() -> bytes:
               <p><strong>วิธีทำ:</strong> {escape(conn.get('how') or '')}</p>
               <p class="meta">{escape(conn.get('notes') or '')}</p>
               {'<ul>'+related+'</ul>' if related else ''}
+              <form class="upload" method="post" enctype="multipart/form-data" action="/sources/{escape(row['code'])}/upload">
+                <label class="meta">อัปโหลดไฟล์ด้วยมือ (ไม่เปิด collector)</label>
+                <input type="file" name="file" required />
+                <button type="submit">อัปโหลดไฟล์</button>
+              </form>
             </article>
             """
         )
+    banner = f'<p class="panel">{escape(notice)}</p>' if notice else ""
     body = f"""
     <p class="kicker">แหล่งข้อมูลรุ่นแรก · ยังไม่เปิด collector</p>
     <h1>เป้าหมายการเก็บข้อมูล</h1>
     <p class="lede">เริ่มจากแหล่งสาธารณะที่ระบุได้ บันทึกวิธีเชื่อมต่อให้ชัด และดึงด้วยมือก่อน สิทธิ unknown ห้ามเผยแพร่ภายนอก</p>
+    {banner}
     {''.join(cards)}
     """
     return _shell("แหล่งข้อมูล", body)

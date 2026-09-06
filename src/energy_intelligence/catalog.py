@@ -59,3 +59,27 @@ def upsert_sources(conn, rows: list[dict] | None = None) -> int:
             )
         n += 1
     return n
+
+
+def known_source_codes() -> set[str]:
+    return {row["code"] for row in load_sources()}
+
+
+def save_manual_upload(conn, store, *, source_code: str, filename: str, payload: bytes, content_type: str):
+    from energy_intelligence.ingest import import_snapshot
+
+    if source_code not in known_source_codes():
+        raise ValueError(f"unknown source: {source_code}")
+    if not payload:
+        raise ValueError("empty file")
+    safe = "".join(ch if ch.isalnum() or ch in "._-" else "_" for ch in (filename or "upload.bin"))[:180]
+    return import_snapshot(
+        conn,
+        store,
+        source_code=source_code,
+        external_key=f"upload:{safe}",
+        payload=payload,
+        content_type=content_type or "application/octet-stream",
+        extractor_version="manual-upload-0.1",
+        source_url=f"upload://{source_code}/{safe}",
+    )

@@ -10,12 +10,12 @@ import os
 import uuid
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs, unquote, urlparse
+from urllib.parse import parse_qs, quote, unquote, urlparse
 import re
 
 import psycopg
 
-from energy_intelligence.catalog import upsert_sources
+from energy_intelligence.catalog import save_manual_upload, upsert_sources
 from energy_intelligence.catalog_html import render_sources
 from energy_intelligence.product_html import render_detail, render_list
 from energy_intelligence.review import (
@@ -24,6 +24,7 @@ from energy_intelligence.review import (
     reject_evidence,
     select_canonical,
 )
+from energy_intelligence.storage import LocalObjectStore
 
 ROOT = Path(os.environ.get("ENERISE_DOCS", "/opt/data/docs/energy-project-intelligence"))
 REVIEW_HTML = Path(__file__).with_name("review.html")
@@ -31,8 +32,41 @@ AUTH_FILE = Path(os.environ.get("ENERISE_AUTH_FILE", "/opt/data/home/.enerise/au
 HOST = os.environ.get("ENERISE_BIND", "127.0.0.1")
 PORT = int(os.environ.get("ENERISE_PORT", "8091"))
 DSN = os.environ.get("EPI_DSN", "postgresql://hermes@127.0.0.1:55432/intelligence")
+OBJECT_STORE_DIR = os.environ.get("OBJECT_STORE_DIR", "/opt/data/workspace/energy-project-intelligence/var/objects")
+MAX_UPLOAD = 32 * 1024 * 1024
 REALM = "Energy Project Intelligence"
 DENIED_NAMES = {"serve.py", "auth.json"}
+
+
+def parse_uploaded_file(content_type: str, body: bytes) -> tuple[str, bytes, str]:
+    match = re.search(r"boundary=([^;]+)", content_type or "")
+    if not match:
+        raise ValueError("multipart boundary missing")
+    boundary = match.group(1).strip().strip('"').encode()
+    for part in body.split(b"--" + boundary):
+        part = part.strip(b"\r\n")
+        if not part or part == b"--":
+            continue
+        header_blob, sep, content = part.partition(b"\r\n\r\n")
+        if not sep:
+            continue
+        headers = header_blob.decode("utf-8", "replace")
+        if 'name="file"' not in headers and "name=file" not in headers:
+            continue
+        filename = "upload.bin"
+        found = re.search(r'filename="([^"]*)"', headers)
+        if found and found.group(1):
+            filename = found.group(1)
+        ctype = "application/octet-stream"
+        found_type = re.search(r"Content-Type:\s*([^\r\n]+)", headers, re.I)
+        if found_type:
+            ctype = found_type.group(1).strip()
+        if content.endswith(b"\r\n"):
+            content = content[:-2]
+        if content.endswith(b"--"):
+            content = content[:-2].rstrip(b"\r\n")
+        return filename, content, ctype
+    raise ValueError("file field missing")
 
 
 def load_auth() -> dict:
@@ -118,7 +152,8 @@ class Handler(SimpleHTTPRequestHandler):
             self._json(200, _list_evidence())
             return
         if parsed.path in ("/sources", "/sources/"):
-            self._html(render_sources())
+            notice = (parse_qs(parsed.query).get("notice") or [None])[0]
+            self._html(render_sources(notice=notice))
             return
         if parsed.path in ("/projects", "/projects/"):
             ptype = (parse_qs(parsed.query).get("type") or [None])[0]
@@ -146,6 +181,10 @@ class Handler(SimpleHTTPRequestHandler):
             self._unauthorized()
             return
         parsed = urlparse(self.path)
+        upload = re.fullmatch(r"/sources/([A-Za-z0-9_]+)/upload", parsed.path)
+        if upload:
+            self._handle_upload(upload.group(1))
+            return
         length = int(self.headers.get("Content-Length", "0") or 0)
         raw = self.rfile.read(length) if length else b"{}"
         try:
@@ -162,6 +201,40 @@ class Handler(SimpleHTTPRequestHandler):
             self._json(500, {"error": str(exc)})
             return
         self._json(200, result)
+
+    def _handle_upload(self, source_code: str) -> None:
+        length = int(self.headers.get("Content-Length", "0") or 0)
+        if length > MAX_UPLOAD:
+            self._redirect_notice("ไฟล์ใหญ่เกิน 32MB", source_code)
+            return
+        body = self.rfile.read(length) if length else b""
+        try:
+            filename, payload, content_type = parse_uploaded_file(self.headers.get("Content-Type", ""), body)
+            store = LocalObjectStore(OBJECT_STORE_DIR)
+            with psycopg.connect(DSN) as conn:
+                result = save_manual_upload(
+                    conn,
+                    store,
+                    source_code=source_code,
+                    filename=filename,
+                    payload=payload,
+                    content_type=content_type,
+                )
+                conn.commit()
+        except ValueError as exc:
+            self._redirect_notice(str(exc), source_code)
+            return
+        notice = (
+            f"อัปโหลด {filename} เข้า {source_code} แล้ว "
+            f"raw={result.raw_record_id} created={result.raw_created}"
+        )
+        self._redirect_notice(notice, source_code)
+
+    def _redirect_notice(self, notice: str, source_code: str) -> None:
+        loc = f"/sources?notice={quote(notice)}#{source_code}"
+        self.send_response(303)
+        self.send_header("Location", loc)
+        self.end_headers()
 
     def _html(self, data: bytes) -> None:
         self.send_response(200)
