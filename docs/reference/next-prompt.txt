@@ -6,6 +6,6 @@ Read first:
 3. https://enerise.sprees.net/coverage
 4. Git clone: /opt/data/workspace/energy-project-intelligence
 
-EPPO CDF SPP/VSPP pages snapshotted. They list biomass/cogen plants (2014 HTML), no solar keyword, map pages have no numeric lat/lon. Do not attach those plants as solar_farm coordinates.
+JustPow xlsx snapshotted. 1042 Solar rows, no lat/lon columns. Do not geocode district/province. Source note points to ERC SPP https://ws.erc.or.th/ERCSPP/
 
 Hard rules: update https://enerise.sprees.net/ and Next prompt on every change; never commit secrets/var/.conda/.venv.

@@ -1,10 +1,11 @@
 {
   "project": "energy-project-intelligence",
-  "updated_at": "2026-09-06T10:20:00Z",
-  "status": "eppo_cdf_spp_snapshotted_no_solar_coords",
-  "eppo": {
-    "spp_raw": "a8cb8641-d38d-4278-b76b-443f19c59c73",
-    "vspp_raw": "9cbcfc0b-a8d2-419c-bf0d-ebea28c40dac",
-    "solar_rows": 0
+  "updated_at": "2026-09-06T10:30:00Z",
+  "status": "justpow_xlsx_no_coordinates",
+  "justpow": {
+    "page_raw": "9233e4fd-8c51-49b3-9d95-f54fc910e93b",
+    "xlsx_raw": "aebd5634-2c87-4c4f-b2a7-12e73c7e8c38",
+    "solar_rows": 1042,
+    "lat_lon_columns": false
   }
 }

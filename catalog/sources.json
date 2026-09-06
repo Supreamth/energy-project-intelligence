@@ -139,6 +139,28 @@
     }
   },
   {
+    "code": "justpow_plants",
+    "name_th": "JustPow ฐานโรงไฟฟ้าไทย ธ.ค. 2567",
+    "name_en": "JustPow Thailand power plants to Dec 2024",
+    "base_url": "https://justpow.co/database-powerplants-thailand/",
+    "related_urls": [
+      "https://justpow.co/wp-content/uploads/2024/04/powerplant-database-uptoDEC2567.xlsx",
+      "https://ws.erc.or.th/ERCSPP/"
+    ],
+    "access_method": "download",
+    "rights_status": "unknown",
+    "schedule": "on_release",
+    "enabled": false,
+    "goal": "รายชื่อ/กำลังผลิตประกอบ ไม่ใช้เป็นพิกัด",
+    "targets": ["solar_farm"],
+    "connection": {
+      "mode": "manual_release",
+      "auth": "none for the public xlsx",
+      "how": "snapshot ไฟล์ xlsx ที่หน้าดาวน์โหลด ห้าม geocode อำเภอ/จังหวัด",
+      "notes": "ไฟล์มี fuel type Solar 1,042 แถว แต่ไม่มีคอลัมน์ lat/lon. หมายเหตุในไฟล์ชี้ฐาน SPP/VSPP ของ กกพ. ws.erc.or.th/ERCSPP/"
+    }
+  },
+  {
     "code": "jcm_thailand",
     "name_th": "JCM Thailand–Japan PDD",
     "name_en": "Joint Crediting Mechanism project documents",
