@@ -6,6 +6,6 @@ Read first:
 3. https://enerise.sprees.net/coverage
 4. Git clone: /opt/data/workspace/energy-project-intelligence
 
-Operator research is in catalog/operators.json. Websites stored as organization aliases language=url. Coordinates only on unique host-name match (JCM PDD or GPPD). Do not geocode HQ.
+BOI live Excel is behind Incapsula. Snapshots are public PDFs on boi.go.th/upload/content/. Evidence is pending regulatory.boi.promotion. Do not geocode contact addresses. Do not auto-accept.
 
 Hard rules: update https://enerise.sprees.net/ and Next prompt on every change; never commit secrets/var/.conda/.venv.

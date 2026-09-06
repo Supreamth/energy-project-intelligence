@@ -10,6 +10,7 @@ from pathlib import Path
 
 import psycopg
 
+from energy_intelligence.boi_pdf import extract_boi_solar
 from energy_intelligence.erc_csv import extract_solar_licenses
 from energy_intelligence.ingest import import_contract, import_snapshot, record_fetch_failure
 from energy_intelligence.storage import LocalObjectStore
@@ -36,6 +37,8 @@ def main(argv: list[str] | None = None) -> int:
     p_fail.add_argument("--url", required=True)
     p_ex = sub.add_parser("extract-erc", help="Extract solar licenses from an ERC CSV raw record")
     p_ex.add_argument("--raw")
+    p_boi = sub.add_parser("extract-boi", help="Extract solar promotions from a BOI snapshot")
+    p_boi.add_argument("--raw")
     args = parser.parse_args(argv)
     if args.cmd == "import":
         return _import_path(Path(args.path))
@@ -45,6 +48,8 @@ def main(argv: list[str] | None = None) -> int:
         return _fetch_fail(args)
     if args.cmd == "extract-erc":
         return _extract_erc(args)
+    if args.cmd == "extract-boi":
+        return _extract_boi(args)
     return 2
 
 
@@ -138,6 +143,25 @@ def _extract_erc(args) -> int:
                 "projects_created": result.projects_created,
                 "evidence_inserted": result.evidence_inserted,
                 "rows_seen": result.rows_seen,
+                "solar_kept": result.solar_kept,
+            }
+        )
+    )
+    return 0
+
+
+def _extract_boi(args) -> int:
+    with psycopg.connect(_dsn()) as conn:
+        raw_id = args.raw
+        if not raw_id:
+            raise SystemExit("pass --raw")
+        result = extract_boi_solar(conn, _store(), raw_record_id=raw_id)
+        conn.commit()
+    print(
+        json.dumps(
+            {
+                "raw_record_id": str(raw_id),
+                "evidence_inserted": result.evidence_inserted,
                 "solar_kept": result.solar_kept,
             }
         )

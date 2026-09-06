@@ -1,7 +1,9 @@
 {
   "project": "energy-project-intelligence",
-  "updated_at": "2026-09-06T09:20:00Z",
-  "status": "operator_websites_and_sparse_points",
-  "coverage": "https://enerise.sprees.net/coverage",
-  "operators": {"catalog": 13, "websites": 13, "points_from_catalog": 9}
+  "updated_at": "2026-09-06T09:45:00Z",
+  "status": "boi_pdf_snapshots_pending",
+  "boi": {
+    "live_excel": "incapsula",
+    "raw": ["a5cdaa10-a08c-4aa0-970b-aefcafe8f550", "7798d073-03cc-46d7-a118-a12aa61b40b9"]
+  }
 }

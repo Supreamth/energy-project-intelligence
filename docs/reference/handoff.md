@@ -1,7 +1,5 @@
 # AI Handoff — Energy Project Intelligence
 
-Operator research: catalog/operators.json
+BOI: live Excel blocked by Incapsula. Public PDFs snapshotted.
+Evidence predicate regulatory.boi.promotion is pending. No auto-accept.
 Coverage: https://enerise.sprees.net/coverage
-
-Websites attached as entity_aliases language=url.
-Points only when a published lat/lon uniquely matches one ERC project (JCM PDD or GPPD). No HQ geocode.
