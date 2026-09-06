@@ -10,6 +10,7 @@ SOLAR_SLOTS = [
     ("site.province_code", "รหัสจังหวัด", "sites.province_code", "desired"),
     ("phase", "เฟส", "phases", "optional"),
     ("project_parties", "บริษัทที่ผูกกับโครงการ", "project_parties", "required"),
+    ("organization.website", "เว็บผู้ประกอบการ", "entity_aliases language=url", "desired"),
     ("alias.license", "เลขใบอนุญาตเป็น alias", "entity_aliases", "required"),
     ("canonical.regulatory.erc.generation", "canonical ใบอนุญาต กกพ.", "canonical_selections", "required"),
     ("canonical.regulatory.boi.promotion", "canonical BOI", "canonical_selections", "desired"),
@@ -121,6 +122,14 @@ def _count_present(conn, project_type: str, key: str) -> int:
         SELECT count(DISTINCT p.entity_id) FROM intelligence.projects p
         JOIN intelligence.project_parties pp ON pp.project_id = p.entity_id
         WHERE p.project_type = %s
+        """
+        return conn.execute(sql, (project_type,)).fetchone()[0]
+    if key == "organization.website":
+        sql = """
+        SELECT count(DISTINCT p.entity_id) FROM intelligence.projects p
+        JOIN intelligence.project_parties pp ON pp.project_id = p.entity_id
+        JOIN intelligence.entity_aliases a ON a.entity_id = pp.organization_id
+        WHERE p.project_type = %s AND a.language = 'url'
         """
         return conn.execute(sql, (project_type,)).fetchone()[0]
     if key == "alias.license":

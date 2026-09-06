@@ -117,6 +117,25 @@
     }
   },
   {
+    "code": "jcm_thailand",
+    "name_th": "JCM Thailand–Japan PDD",
+    "name_en": "Joint Crediting Mechanism project documents",
+    "base_url": "https://www.jcm.go.jp/th-jp",
+    "related_urls": ["https://www.jcm.go.jp/th-jp/projects/138"],
+    "access_method": "web",
+    "rights_status": "unknown",
+    "schedule": "manual",
+    "enabled": false,
+    "goal": "พิกัดโรงไฟฟ้าที่ระบุใน PDD เมื่อชื่อโฮสต์ตรงกับใบ กกพ.",
+    "targets": ["solar_farm"],
+    "connection": {
+      "mode": "manual_first",
+      "auth": "none for public PDD pages",
+      "how": "อ่านพิกัดจาก PDD แล้วผูกเมื่อ name_contains ตรงโครงการเดียว",
+      "notes": "ห้ามใช้พิกัดสำนักงานใหญ่ผู้พัฒนา"
+    }
+  },
+  {
     "code": "wri_gppd",
     "name_th": "WRI Global Power Plant Database",
     "name_en": "WRI Global Power Plant Database",

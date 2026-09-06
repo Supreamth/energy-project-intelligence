@@ -6,6 +6,6 @@ Read first:
 3. https://enerise.sprees.net/coverage
 4. Git clone: /opt/data/workspace/energy-project-intelligence
 
-Done this round: ERC licensee parties + Thai province names, capacity_facts/milestones/status from accepted ERC, GPPD snapshot imported with 0 exact-name coordinate matches. BOI page is a bot wall. Do not geocode. Do not invent points.
+Operator research is in catalog/operators.json. Websites stored as organization aliases language=url. Coordinates only on unique host-name match (JCM PDD or GPPD). Do not geocode HQ.
 
 Hard rules: update https://enerise.sprees.net/ and Next prompt on every change; never commit secrets/var/.conda/.venv.

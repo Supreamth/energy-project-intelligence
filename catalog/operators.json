@@ -1,0 +1,172 @@
+[
+  {
+    "legal_name": "บริษัท ดับบลิวเอชเอ โซล่าร์ จำกัด",
+    "website": "https://www.wha-up.com/en/power/solar-power/wha-solar-power",
+    "notes": "WHA Solar / WHAUP. หน้าบริษัทบอกประเภทโซลาร์ ไม่เผยแพร่พิกัดโรงไฟฟ้า. ไม่ใช้ที่อยู่สำนักงานใหญ่.",
+    "sites": []
+  },
+  {
+    "legal_name": "บริษัท คันไซ เอนเนอร์จี โซลูชั่นส์ (ประเทศไทย) จำกัด",
+    "website": "https://www.kest.co.th/",
+    "notes": "พิกัดจาก JCM PDD ที่ระบุโรงงานโฮสต์ ไม่ใช่ HQ กรุงเทพฯ. Sony Device มี 2 ใบอนุญาตจึงไม่ใส่จุด.",
+    "sites": [
+      {
+        "name_contains": "คาวาซากิ มอเตอร์",
+        "province": "ระยอง",
+        "lat": 12.998333,
+        "lon": 101.178056,
+        "location_method": "jcm_pdd",
+        "accuracy_m": 200,
+        "source_url": "https://www.jcm.go.jp/th-jp/projects/138",
+        "excerpt": "JCM TH028 motorcycle factory Rayong N 12°59'54\" E 101°10'41\""
+      },
+      {
+        "name_contains": "เทยิน โพลีเอสเตอร์",
+        "province": "ปทุมธานี",
+        "lat": 14.021944,
+        "lon": 100.615,
+        "location_method": "jcm_pdd",
+        "accuracy_m": 200,
+        "source_url": "https://www.jcm.go.jp/th-jp/projects/138",
+        "excerpt": "JCM TH028 fiber factory Pathum Thani N 14°01'19\" E 100°36'54\""
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท อิเควเตอร์ โซลาร์ จำกัด",
+    "website": "https://equatorsolar.co.th/",
+    "notes": "เว็บระบุ EQS1 ที่ Cha-am จ.เพชรบุรี แต่ใบ กกพ. เป็นโครงการเขาใหญ่ 16 ใบ — ไม่กระจายพิกัดอำเภอให้ทุกใบ.",
+    "sites": []
+  },
+  {
+    "legal_name": "บริษัท กัลฟ์1 จำกัด",
+    "website": "https://www.gulf.co.th/",
+    "notes": "บริษัทลูกกลุ่ม GULF. ข่าว COD เป็นนิติบุคคลอื่น ไม่ใช่ Gulf1. ใบ กกพ. ของ Gulf1 เป็นหลังคาโรงงาน ไม่มีพิกัดในหน้าบริษัท.",
+    "sites": []
+  },
+  {
+    "legal_name": "บริษัท บางกอกโซลาร์ พาวเวอร์ จำกัด",
+    "website": "https://bangkoksolarpower.com/",
+    "notes": "GPPD อ้าง BSP เป็นแหล่งพิกัด. ใส่เฉพาะจังหวัดที่มีโครงการ BSP ในฐานแค่แห่งเดียว และชื่อ GPPD มีชื่อจังหวัด.",
+    "sites": [
+      {
+        "name_contains": "ฉะเชิงเทรา 1",
+        "province": "ฉะเชิงเทรา",
+        "lat": 13.5758,
+        "lon": 101.003,
+        "location_method": "gppd_wri",
+        "accuracy_m": 500,
+        "source_url": "https://github.com/wri/global-power-plant-database",
+        "excerpt": "GPPD Chachoengsao Solar Power Plant 1.3 MW owner BSP"
+      },
+      {
+        "name_contains": "อ่างทอง 1",
+        "province": "อ่างทอง",
+        "lat": 14.5894,
+        "lon": 100.4761,
+        "location_method": "gppd_wri",
+        "accuracy_m": 500,
+        "source_url": "https://github.com/wri/global-power-plant-database",
+        "excerpt": "GPPD Ang Thong Solar Power Plant 1.2 MW owner BSP"
+      },
+      {
+        "name_contains": "เพชรบุรี 1",
+        "province": "เพชรบุรี",
+        "lat": 12.7251,
+        "lon": 99.9192,
+        "location_method": "gppd_wri",
+        "accuracy_m": 500,
+        "source_url": "https://github.com/wri/global-power-plant-database",
+        "excerpt": "GPPD Phetchaburi Solar Power Plant 2.1 MW owner BSP"
+      },
+      {
+        "name_contains": "นครราชสีมา 2",
+        "province": "นครราชสีมา",
+        "lat": 15.6191,
+        "lon": 102.5633,
+        "location_method": "gppd_wri",
+        "accuracy_m": 500,
+        "source_url": "https://github.com/wri/global-power-plant-database",
+        "excerpt": "GPPD Nakhon Ratchasima - BSP Solar Power Plant 1.0 MW"
+      },
+      {
+        "name_contains": "ลพบุรี 1",
+        "province": "ลพบุรี",
+        "lat": 14.8895,
+        "lon": 100.9104,
+        "location_method": "gppd_wri",
+        "accuracy_m": 500,
+        "source_url": "https://github.com/wri/global-power-plant-database",
+        "excerpt": "GPPD Lopburi - BSP 1 Solar Power Plant 2.0 MW"
+      },
+      {
+        "name_contains": "ลพบุรี 4",
+        "province": "ลพบุรี",
+        "lat": 14.7807,
+        "lon": 100.9102,
+        "location_method": "gppd_wri",
+        "accuracy_m": 500,
+        "source_url": "https://github.com/wri/global-power-plant-database",
+        "excerpt": "GPPD Lopburi - BSP 4 Solar Power Plant 2.0 MW"
+      },
+      {
+        "name_contains": "ลพบุรี 6",
+        "province": "ลพบุรี",
+        "lat": 14.7801,
+        "lon": 100.9044,
+        "location_method": "gppd_wri",
+        "accuracy_m": 500,
+        "source_url": "https://github.com/wri/global-power-plant-database",
+        "excerpt": "GPPD Lopburi - BSP 6 Solar Power Plant 4.0 MW"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โททาลเอนเนอร์ยี่ส์ รีนิวเอเบิลส์ (ประเทศไทย) จำกัด",
+    "website": "https://solar.totalenergies.asia/",
+    "notes": "โครงการที่พบเป็น rooftop ลูกค้า ไม่มี lat/lon ของแต่ละหลังคาในหน้าบริษัท.",
+    "sites": []
+  },
+  {
+    "legal_name": "บริษัท อิมแพคท์ โซล่าร์ กรุ๊ป (ประเทศไทย) จำกัด",
+    "website": "https://www.jcm.go.jp/th-jp/projects/68",
+    "notes": "JCM TH009 มีพิกัด 37 สาขา Big C แต่ในฐานมีใบอนุญาต Big C แค่ 1 แห่งและไม่ได้ระบุสาขา — ไม่เดาสาขา. FUI6 อยู่ในนิคม จุดเดียวของทั้งสวนอุตสาหกรรมจึงไม่ผูกอาคารเดียว.",
+    "sites": []
+  },
+  {
+    "legal_name": "บริษัท อิมแพค โซล่าร์ จำกัด",
+    "website": "https://www.jcm.go.jp/th-jp/projects/137",
+    "notes": "JCM TH / 17.8MW Saha Pathana park centroid ไม่ใช้แทนหลังคา FUI6.",
+    "sites": []
+  },
+  {
+    "legal_name": "บริษัท กรีนเยลโล่ โซล่าร์ 2 (ไทยแลนด์) จำกัด",
+    "website": "https://www.greenyellow.com/",
+    "notes": "หลังคาลูกค้า ไม่พบพิกัดโรงไฟฟ้าในหน้าบริษัท.",
+    "sites": []
+  },
+  {
+    "legal_name": "บริษัท กรีนเยลโล่ โซล่าร์ 3 (ไทยแลนด์) จำกัด",
+    "website": "https://www.greenyellow.com/",
+    "notes": "หลังคาลูกค้า ไม่พบพิกัดโรงไฟฟ้าในหน้าบริษัท.",
+    "sites": []
+  },
+  {
+    "legal_name": "บริษัท เอสซีจี ซิเมนต์ จำกัด",
+    "website": "https://www.scg.com/",
+    "notes": "หน้ากลุ่ม SCG ไม่เผยแพร่พิกัดโซลาร์แต่ละไซต์.",
+    "sites": []
+  },
+  {
+    "legal_name": "บริษัท เอสซีจี คลีนเนอร์ยี่ จำกัด",
+    "website": "https://www.scg.com/",
+    "notes": "หน้ากลุ่ม SCG ไม่เผยแพร่พิกัดโซลาร์แต่ละไซต์.",
+    "sites": []
+  },
+  {
+    "legal_name": "บริษัท สยาม โซล่าร์ เจนเนอเรชั่น จำกัด (มหาชน)",
+    "website": "https://bangkoksolarpower.com/en/reference_project",
+    "notes": "GPPD แถว Bamnet Narong 22.5 MW ไม่ตรงชุดใบอนุญาต 2.52 MW ชัยภูมิ 9 โครงการ — ไม่ผูก.",
+    "sites": []
+  }
+]

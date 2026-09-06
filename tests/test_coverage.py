@@ -15,9 +15,10 @@ def test_coverage_report_has_solar_slots():
     names = {s["key"] for s in solar["slots"]}
     assert "site.point" in names
     assert "canonical.regulatory.erc.generation" in names
+    assert "organization.website" in names
     assert "canonical.capacity.solar_ac.project.operating" in names
     point = next(s for s in solar["slots"] if s["key"] == "site.point")
-    assert point["present"] == 0
+    assert point["present"] <= point["n"]
     erc = next(s for s in solar["slots"] if s["key"] == "canonical.regulatory.erc.generation")
     assert erc["present"] >= 1
     dc = report["types"]["data_center"]

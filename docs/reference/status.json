@@ -1,8 +1,7 @@
 {
   "project": "energy-project-intelligence",
-  "updated_at": "2026-09-06T08:00:00Z",
-  "status": "erc_enriched_gppd_no_name_match",
+  "updated_at": "2026-09-06T09:20:00Z",
+  "status": "operator_websites_and_sparse_points",
   "coverage": "https://enerise.sprees.net/coverage",
-  "gppd": {"thailand_solar_rows": 141, "matched_points": 0},
-  "boi": "bot wall"
+  "operators": {"catalog": 13, "websites": 13, "points_from_catalog": 9}
 }
