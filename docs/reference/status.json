@@ -1,14 +1,12 @@
 {
   "project": "energy-project-intelligence",
-  "updated_at": "2026-09-06T07:10:00Z",
-  "status": "erc_solar_pending_review",
+  "updated_at": "2026-09-06T07:20:00Z",
+  "status": "erc_solar_accepted_canonical",
   "erc_extract": {
     "raw_record_id": "4699a474-8b31-483e-a43e-652b9a536e09",
-    "extractor": "erc-csv-solar-0.1",
-    "solar_kept": 1257,
-    "evidence_inserted": 1935,
-    "capacity_operating_only_if_cod": true,
-    "zero_mw_omitted": true,
-    "coordinates": false
+    "accepted": 1935,
+    "canonical": 1935,
+    "actor": "user",
+    "reason": "ผู้ใช้สั่ง accept จากไฟล์ RadGridExport.csv ของ กกพ."
   }
 }

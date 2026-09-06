@@ -129,6 +129,31 @@ def extract_solar_licenses(conn, store, *, raw_record_id) -> ExtractResult:
     )
 
 
+def accept_extracted_solar(conn, *, raw_record_id, actor: str, reason: str) -> int:
+    from energy_intelligence.review import accept_evidence, select_canonical
+
+    rows = conn.execute(
+        """
+        SELECT id, predicate FROM intelligence.evidence
+        WHERE raw_record_id = %s AND review_status = 'pending' AND subject_entity_id IS NOT NULL
+        ORDER BY extraction_key
+        """,
+        (raw_record_id,),
+    ).fetchall()
+    n = 0
+    for evidence_id, predicate in rows:
+        accept_evidence(conn, evidence_id=evidence_id, actor=actor, reason=reason)
+        select_canonical(
+            conn,
+            evidence_id=evidence_id,
+            field_key=predicate,
+            actor=actor,
+            reason=reason,
+        )
+        n += 1
+    return n
+
+
 def _cell(row: list[str], idx: dict[str, int], name: str) -> str:
     if idx[name] >= len(row):
         return ""

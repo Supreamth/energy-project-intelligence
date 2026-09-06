@@ -164,7 +164,7 @@
         </div>
       </div>
       <aside class="card hero-side">
-        <div class="status-item"><strong><span class="dot green"></span>สถานะปัจจุบัน</strong><span>แยกโซลาร์จาก CSV กกพ. เป็น evidence pending แล้ว รอคนตรวจ</span></div>
+        <div class="status-item"><strong><span class="dot green"></span>สถานะปัจจุบัน</strong><span>Accept + canonical โซลาร์จาก CSV กกพ. แล้ว ดูได้ที่ /projects</span></div>
         <div class="status-item"><strong><span class="dot yellow"></span>ขั้นถัดไป</strong><span>fixture จริง หรือ connector แรก — ยังไม่ทำ collector อัตโนมัติเอง</span></div>
         <div class="status-item"><strong><span class="dot red"></span>ยังไม่พร้อม</strong><span>Docker daemon, fixture ที่ได้รับอนุญาตจากแหล่งจริง</span></div>
         <div class="status-item"><strong>Repo</strong><span><a href="https://github.com/Supreamth/energy-project-intelligence">Supreamth/energy-project-intelligence</a> · clone + pushed · HEAD 0c439df</span></div>
@@ -204,10 +204,10 @@
 Read first:
 1. /opt/data/docs/energy-project-intelligence/handoff.md
 2. /opt/data/docs/energy-project-intelligence/status.json
-3. https://enerise.sprees.net/review
+3. https://enerise.sprees.net/projects?type=solar_farm
 4. Git clone: /opt/data/workspace/energy-project-intelligence
 
-ERC RadGridExport.csv was extracted solar-only into pending evidence. Capacity 0 omitted. No coordinates invented. Capacity operating only when COD present (solar_ac, not DC). Collectors off. Do not auto-accept.
+User bulk-accepted ERC solar evidence from RadGridExport.csv and selected canonical. Demo/test rows were not part of that raw id. Collectors remain off. Do not reopen schema v0.2.
 
 Hard rules: update https://enerise.sprees.net/ and Next prompt on every change; never commit secrets/var/.conda/.venv.</pre>
       </div>

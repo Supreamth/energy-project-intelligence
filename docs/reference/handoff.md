@@ -1,9 +1,8 @@
 # AI Handoff — Energy Project Intelligence
 
-Solar licenses from the user ERC CSV are pending review.
+ERC solar from the user CSV is accepted and canonical (internal).
 
-- Raw: 4699a474-8b31-483e-a43e-652b9a536e09 (RadGridExport.csv)
-- Extractor: erc-csv-solar-0.1
-- Review: https://enerise.sprees.net/review
+- Raw 4699a474-8b31-483e-a43e-652b9a536e09
+- 1935 evidence accepted + canonical
 - Projects: https://enerise.sprees.net/projects?type=solar_farm
-- Do not auto-accept. No map points were invented.
+- Review: https://enerise.sprees.net/review

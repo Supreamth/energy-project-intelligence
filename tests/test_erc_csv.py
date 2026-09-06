@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import uuid
 
 import psycopg
 
@@ -12,7 +13,7 @@ DSN = "postgresql://hermes@127.0.0.1:55432/intelligence"
 
 
 def test_extract_solar_only_skips_zero_and_biomass(tmp_path: Path):
-    key = tmp_path.name
+    key = uuid.uuid4().hex
     csv_text = (
         "\ufeff"
         '"ชื่อผู้รับใบอนุญาต","ชื่อสถานประกอบกิจการ","จังหวัด","สำนักงานประจำเขต","เลขทะเบียนใบอนุญาต","วันที่ออกใบอนุญาต","ชนิดเชื้อเพลิงหลัก/แหล่งพลังงานต้นกำลัง","ชนิดเชื้อเพลิงเสริม","ขนาดกำลังการผลิต (MW)","ขนาดกำลังการผลิต (kVA)","ขนาดพิกัดแรงดัน (kV)","ปริมาณความต้องการพลังไฟฟ้าสูงสุด (MW)","วันที่เริ่มประกอบกิจการ (COD)"\r\n'
