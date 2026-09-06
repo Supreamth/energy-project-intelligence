@@ -115,5 +115,24 @@
       "how": "เริ่มคัดลอกหน้าสาธารณะเป็น snapshot ทีละรายการ ห้าม bulk จนกว่าจะยืนยันสิทธิ",
       "notes": "ไม่ถือว่าหน้าค้นหาเป็น bulk API"
     }
+  },
+  {
+    "code": "wri_gppd",
+    "name_th": "WRI Global Power Plant Database",
+    "name_en": "WRI Global Power Plant Database",
+    "base_url": "https://github.com/wri/global-power-plant-database",
+    "related_urls": ["https://datasets.wri.org/dataset/globalpowerplantdatabase"],
+    "access_method": "download",
+    "rights_status": "unknown",
+    "schedule": "on_release",
+    "enabled": false,
+    "goal": "พิกัดโรงไฟฟ้าโซลาร์เมื่อชื่อตรงกับโครงการที่มีอยู่",
+    "targets": ["solar_farm"],
+    "connection": {
+      "mode": "manual_release",
+      "auth": "none for the public CSV",
+      "how": "snapshot CSV แล้วจับคู่ชื่อแบบ exact หลัง normalize ไม่ geocode จากจังหวัด",
+      "notes": "ไม่ผูกพิกัดถ้าชื่อไม่ตรง ห้ามใช้ที่อยู่สำนักงานใหญ่"
+    }
   }
 ]

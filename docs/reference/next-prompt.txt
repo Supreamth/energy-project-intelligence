@@ -6,13 +6,6 @@ Read first:
 3. https://enerise.sprees.net/coverage
 4. Git clone: /opt/data/workspace/energy-project-intelligence
 
-Coverage monitor compares live DB to schema v0.2 slots. Do not invent missing fields.
-
-Suggested next (user-facing):
-1. Link organizations via project_parties from ERC licensee names
-2. Copy province into sites.province_code (name, not invented codes) if acceptable
-3. Coordinates only from a licensed source
-4. Decide whether to add solar planned predicates (requires user to reopen schema)
-5. Data center sources still empty
+Done this round: ERC licensee parties + Thai province names, capacity_facts/milestones/status from accepted ERC, GPPD snapshot imported with 0 exact-name coordinate matches. BOI page is a bot wall. Do not geocode. Do not invent points.
 
 Hard rules: update https://enerise.sprees.net/ and Next prompt on every change; never commit secrets/var/.conda/.venv.

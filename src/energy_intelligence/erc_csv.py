@@ -5,8 +5,10 @@ from __future__ import annotations
 import csv
 import io
 import json
+import re
 import uuid
 from dataclasses import dataclass
+from datetime import date
 
 EXTRACTOR_VERSION = "erc-csv-solar-0.1"
 
@@ -152,6 +154,162 @@ def accept_extracted_solar(conn, *, raw_record_id, actor: str, reason: str) -> i
         )
         n += 1
     return n
+
+
+def enrich_from_erc_evidence(conn, *, raw_record_id) -> dict:
+    rows = conn.execute(
+        """
+        SELECT ev.id, ev.subject_entity_id, ev.value_json
+        FROM intelligence.evidence ev
+        WHERE ev.raw_record_id = %s
+          AND ev.predicate = 'regulatory.erc.generation'
+          AND ev.subject_entity_id IS NOT NULL
+        """,
+        (raw_record_id,),
+    ).fetchall()
+    parties = 0
+    provinces = 0
+    for evidence_id, project_id, value in rows:
+        licensee = (value or {}).get("licensee") or ""
+        province = (value or {}).get("province") or ""
+        if licensee:
+            org_id = _org(conn, licensee)
+            existing = conn.execute(
+                """
+                SELECT 1 FROM intelligence.project_parties
+                WHERE project_id = %s AND organization_id = %s AND role = 'licensee'
+                """,
+                (project_id, org_id),
+            ).fetchone()
+            if not existing:
+                conn.execute(
+                    """
+                    INSERT INTO intelligence.project_parties(
+                      id, project_id, organization_id, role, evidence_id
+                    ) VALUES (%s, %s, %s, 'licensee', %s)
+                    """,
+                    (uuid.uuid4(), project_id, org_id, evidence_id),
+                )
+                parties += 1
+        if province:
+            cur = conn.execute(
+                """
+                UPDATE intelligence.sites
+                SET province_code = %s
+                WHERE project_id = %s
+                  AND (province_code IS NULL OR btrim(province_code) = '')
+                """,
+                (province, project_id),
+            )
+            if cur.rowcount:
+                provinces += cur.rowcount
+    return {"parties": parties, "provinces": provinces}
+
+
+TH_MONTHS = {
+    "มกราคม": 1,
+    "กุมภาพันธ์": 2,
+    "มีนาคม": 3,
+    "เมษายน": 4,
+    "พฤษภาคม": 5,
+    "มิถุนายน": 6,
+    "กรกฎาคม": 7,
+    "สิงหาคม": 8,
+    "กันยายน": 9,
+    "ตุลาคม": 10,
+    "พฤศจิกายน": 11,
+    "ธันวาคม": 12,
+}
+
+
+def parse_thai_date(raw: str | None) -> date | None:
+    text = (raw or "").strip()
+    if not text:
+        return None
+    match = re.match(r"(\d{1,2})\s+(\S+)\s+(\d{4})$", text)
+    if not match:
+        return None
+    day = int(match.group(1))
+    month = TH_MONTHS.get(match.group(2))
+    year = int(match.group(3))
+    if month is None:
+        return None
+    if year >= 2400:
+        year -= 543
+    try:
+        return date(year, month, day)
+    except ValueError:
+        return None
+
+
+def materialize_schema_facts(conn, *, raw_record_id) -> dict:
+    cap_n = 0
+    mile_n = 0
+    status_n = 0
+    rows = conn.execute(
+        """
+        SELECT cs.evidence_id, cs.subject_entity_id, cs.field_key, ev.value_json
+        FROM intelligence.canonical_selections cs
+        JOIN intelligence.evidence ev ON ev.id = cs.evidence_id
+        WHERE ev.raw_record_id = %s AND cs.superseded_at IS NULL
+        """,
+        (raw_record_id,),
+    ).fetchall()
+    for evidence_id, subject_id, field_key, value in rows:
+        value = value or {}
+        if field_key == "capacity.solar_ac.project.operating":
+            mw = value.get("value")
+            if isinstance(mw, (int, float)) and mw > 0:
+                exists = conn.execute(
+                    "SELECT 1 FROM intelligence.capacity_facts WHERE evidence_id = %s",
+                    (evidence_id,),
+                ).fetchone()
+                if not exists:
+                    conn.execute(
+                        """
+                        INSERT INTO intelligence.capacity_facts(
+                          id, subject_entity_id, metric, value_mw, scope, capacity_status, evidence_id
+                        ) VALUES (%s,%s,'solar_ac',%s,'project','operating',%s)
+                        """,
+                        (uuid.uuid4(), subject_id, mw, evidence_id),
+                    )
+                    cap_n += 1
+        if field_key == "regulatory.erc.generation":
+            exists = conn.execute(
+                "SELECT 1 FROM intelligence.status_observations WHERE evidence_id = %s",
+                (evidence_id,),
+            ).fetchone()
+            if not exists:
+                conn.execute(
+                    """
+                    INSERT INTO intelligence.status_observations(
+                      id, subject_entity_id, dimension, status_code, license_kind,
+                      license_external_key, observed_at, evidence_id
+                    ) VALUES (%s,%s,'regulatory','approved','erc_generation',%s, now(), %s)
+                    """,
+                    (uuid.uuid4(), subject_id, value.get("license_no"), evidence_id),
+                )
+                status_n += 1
+            cod = parse_thai_date(value.get("cod_th"))
+            if cod:
+                exists_m = conn.execute(
+                    """
+                    SELECT 1 FROM intelligence.milestone_facts
+                    WHERE evidence_id = %s AND milestone = 'cod'
+                    """,
+                    (evidence_id,),
+                ).fetchone()
+                if not exists_m:
+                    conn.execute(
+                        """
+                        INSERT INTO intelligence.milestone_facts(
+                          id, subject_entity_id, milestone, date_from, date_precision, certainty, evidence_id
+                        ) VALUES (%s,%s,'cod',%s,'day','reported_actual',%s)
+                        """,
+                        (uuid.uuid4(), subject_id, cod, evidence_id),
+                    )
+                    mile_n += 1
+    return {"capacity_facts": cap_n, "milestones": mile_n, "status_observations": status_n}
 
 
 def _cell(row: list[str], idx: dict[str, int], name: str) -> str:

@@ -165,7 +165,7 @@
         </div>
       </div>
       <aside class="card hero-side">
-        <div class="status-item"><strong><span class="dot green"></span>สถานะปัจจุบัน</strong><span>หน้าความพร้อมข้อมูลที่ /coverage เทียบกับ schema v0.2</span></div>
+        <div class="status-item"><strong><span class="dot green"></span>สถานะปัจจุบัน</strong><span>ผูกบริษัท/จังหวัดจาก กกพ. แล้ว · GPPD ไม่จับคู่ชื่อได้ · ดู /coverage</span></div>
         <div class="status-item"><strong><span class="dot yellow"></span>ขั้นถัดไป</strong><span>ผูกบริษัท, จังหวัด, พิกัดจากแหล่งที่มีสิทธิ — ยังไม่เปิด schema ใหม่เอง</span></div>
         <div class="status-item"><strong><span class="dot red"></span>ยังไม่พร้อม</strong><span>Docker daemon, fixture ที่ได้รับอนุญาตจากแหล่งจริง</span></div>
         <div class="status-item"><strong>Repo</strong><span><a href="https://github.com/Supreamth/energy-project-intelligence">Supreamth/energy-project-intelligence</a> · clone + pushed · HEAD 0c439df</span></div>
@@ -208,14 +208,7 @@ Read first:
 3. https://enerise.sprees.net/coverage
 4. Git clone: /opt/data/workspace/energy-project-intelligence
 
-Coverage monitor compares live DB to schema v0.2 slots. Do not invent missing fields.
-
-Suggested next (user-facing):
-1. Link organizations via project_parties from ERC licensee names
-2. Copy province into sites.province_code (name, not invented codes) if acceptable
-3. Coordinates only from a licensed source
-4. Decide whether to add solar planned predicates (requires user to reopen schema)
-5. Data center sources still empty
+Done this round: ERC licensee parties + Thai province names, capacity_facts/milestones/status from accepted ERC, GPPD snapshot imported with 0 exact-name coordinate matches. BOI page is a bot wall. Do not geocode. Do not invent points.
 
 Hard rules: update https://enerise.sprees.net/ and Next prompt on every change; never commit secrets/var/.conda/.venv.</pre>
       </div>

@@ -1,6 +1,8 @@
 {
   "project": "energy-project-intelligence",
-  "updated_at": "2026-09-06T07:35:00Z",
-  "status": "coverage_monitor_live",
-  "urls": {"coverage": "https://enerise.sprees.net/coverage"}
+  "updated_at": "2026-09-06T08:00:00Z",
+  "status": "erc_enriched_gppd_no_name_match",
+  "coverage": "https://enerise.sprees.net/coverage",
+  "gppd": {"thailand_solar_rows": 141, "matched_points": 0},
+  "boi": "bot wall"
 }
