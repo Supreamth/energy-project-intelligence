@@ -165,7 +165,7 @@
         </div>
       </div>
       <aside class="card hero-side">
-        <div class="status-item"><strong><span class="dot green"></span>สถานะปัจจุบัน</strong><span>snapshot JustPow xlsx แล้ว · มีแถว Solar แต่ไม่มีพิกัด · ดู /sources</span></div>
+        <div class="status-item"><strong><span class="dot green"></span>สถานะปัจจุบัน</strong><span>ผูกพิกัดโรงไฟฟ้า SPCG/กันกุล จากที่ตั้งฟาร์ม ไม่ใช่ HQ · พิกัดโซลาร์ ~4.3% · ดู /coverage</span></div>
         <div class="status-item"><strong><span class="dot yellow"></span>ขั้นถัดไป</strong><span>ผูกบริษัท, จังหวัด, พิกัดจากแหล่งที่มีสิทธิ — ยังไม่เปิด schema ใหม่เอง</span></div>
         <div class="status-item"><strong><span class="dot red"></span>ยังไม่พร้อม</strong><span>Docker daemon, fixture ที่ได้รับอนุญาตจากแหล่งจริง</span></div>
         <div class="status-item"><strong>Repo</strong><span><a href="https://github.com/Supreamth/energy-project-intelligence">Supreamth/energy-project-intelligence</a> · clone + pushed · HEAD 0c439df</span></div>
@@ -208,7 +208,7 @@ Read first:
 3. https://enerise.sprees.net/coverage
 4. Git clone: /opt/data/workspace/energy-project-intelligence
 
-JustPow xlsx snapshotted. 1042 Solar rows, no lat/lon columns. Do not geocode district/province. Source note points to ERC SPP https://ws.erc.or.th/ERCSPP/
+Plant-site mapping: SPCG subsidiary pages list farm addresses (not HQ). House-number Nominatim failed. Attached GPPD plant coordinates only when the subsidiary is unique vs ERC. Gunkul: Sri Chula, Wichian Buri, Noen Po only. Ban Kluai 1 vs 2 skipped. Never geocode Bangkok HQ or BOI contact addresses.
 
 Hard rules: update https://enerise.sprees.net/ and Next prompt on every change; never commit secrets/var/.conda/.venv.</pre>
       </div>

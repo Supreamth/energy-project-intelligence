@@ -219,5 +219,620 @@
         "excerpt": "JCM floating solar Kabinburi Industrial Zone N14°03'35.1\" E101°50'54.6\""
       }
     ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (บุรีรัมย์ 1) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "บุรีรัมย์ 1)",
+        "province": "บุรีรัมย์",
+        "lat": 14.6592,
+        "lon": 102.6147,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Buri Ram 1 Solar Power Plant owner Solar Power (Bureerum 1) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (บุรีรัมย์ 2) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "บุรีรัมย์ 2)",
+        "province": "บุรีรัมย์",
+        "lat": 14.6996,
+        "lon": 102.4787,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Buri Ram 2 Solar Power Plant owner Solar Power (Bureerum 2) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (บุรีรัมย์ 3) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "บุรีรัมย์ 3)",
+        "province": "บุรีรัมย์",
+        "lat": 14.7615,
+        "lon": 103.0633,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Buri Ram 3 Solar Power Plant owner Solar Power (Bureerum 3) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (ขอนแก่น 1) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "ขอนแก่น 1)",
+        "province": "ขอนแก่น",
+        "lat": 16.5117,
+        "lon": 102.7942,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Khon Kaen 1 Solar Power Plant owner Solar Power (Khon Kaen 1) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (ขอนแก่น 10) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "ขอนแก่น 10)",
+        "province": "ขอนแก่น",
+        "lat": 16.5293,
+        "lon": 102.2753,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Khon Kaen 10 Solar Power Plant owner Solar Power (Khon Kaen 10) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (ขอนแก่น 2) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "ขอนแก่น 2)",
+        "province": "ขอนแก่น",
+        "lat": 16.8286,
+        "lon": 102.8352,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Khon Kaen 2 Solar Power Plant owner Solar Power (Khon Kaen 2) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (ขอนแก่น 3) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "ขอนแก่น 3)",
+        "province": "ขอนแก่น",
+        "lat": 16.7595,
+        "lon": 102.8063,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Khon Kaen 3 Solar Power Plant owner Solar Power (Khon Kaen 3) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (ขอนแก่น 4) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "ขอนแก่น 4)",
+        "province": "ขอนแก่น",
+        "lat": 16.6063,
+        "lon": 102.1118,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Khon Kaen 4 Solar Power Plant owner Solar Power (Khon Kaen 4) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (ขอนแก่น 5) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "ขอนแก่น 5)",
+        "province": "ขอนแก่น",
+        "lat": 16.2873,
+        "lon": 102.7906,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Khon Kaen 5 Solar Power Plant owner Solar Power (Khon Kaen 5) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (ขอนแก่น 6) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "ขอนแก่น 6)",
+        "province": "ขอนแก่น",
+        "lat": 16.4802,
+        "lon": 102.507,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Khon Kaen 6 Solar Power Plant owner Solar Power (Khon Kaen 6) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (ขอนแก่น 7) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "ขอนแก่น 7)",
+        "province": "ขอนแก่น",
+        "lat": 16.4999,
+        "lon": 102.3242,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Khon Kaen 7 Solar Power Plant owner Solar Power (Khon Kaen 7) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (ขอนแก่น 8) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "ขอนแก่น 8)",
+        "province": "ขอนแก่น",
+        "lat": 16.114,
+        "lon": 102.7499,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Khon Kaen 8 Solar Power Plant owner Solar Power (Khon Kaen 8) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (ขอนแก่น 9) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "ขอนแก่น 9)",
+        "province": "ขอนแก่น",
+        "lat": 16.5783,
+        "lon": 102.0029,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Khon Kaen 9 Solar Power Plant owner Solar Power (Khon Kaen 9) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (โคราช 1) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "โคราช 1)",
+        "province": "นครราชสีมา",
+        "lat": 15.191,
+        "lon": 102.345,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Korat 1 Solar Power Plant owner Solar Power (Korat 1) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (โคราช 2) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "โคราช 2)",
+        "province": "นครราชสีมา",
+        "lat": 15.1945,
+        "lon": 102.3426,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Korat 2 Solar Power Plant owner Solar Power (Korat 2) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (โคราช 3) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "โคราช 3)",
+        "province": "นครราชสีมา",
+        "lat": 15.6043,
+        "lon": 102.5591,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Korat 3 Solar Power Plant owner Solar Power (Korat 3) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (โคราช 4) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "โคราช 4)",
+        "province": "นครราชสีมา",
+        "lat": 14.8181,
+        "lon": 102.1619,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Korat 4 Solar Power Plant owner Solar Power (Korat 4) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (โคราช 5) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "โคราช 5)",
+        "province": "นครราชสีมา",
+        "lat": 15.554,
+        "lon": 102.5163,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Korat 5 Solar Power Plant owner Solar Power (Korat 5) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (โคราช 6) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "โคราช 6)",
+        "province": "นครราชสีมา",
+        "lat": 14.9991,
+        "lon": 102.495,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Korat 6 Solar Power Plant owner Solar Power (Korat 6) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (โคราช 7) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "โคราช 7)",
+        "province": "นครราชสีมา",
+        "lat": 15.1082,
+        "lon": 101.8871,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Korat 7 Solar Power Plant owner Solar Power (Korat 7) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (โคราช 8) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "โคราช 8)",
+        "province": "นครราชสีมา",
+        "lat": 15.5538,
+        "lon": 102.5198,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Korat 8 Solar Power Plant owner Solar Power (Korat 8) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (โคราช 9) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "โคราช 9)",
+        "province": "นครราชสีมา",
+        "lat": 14.8742,
+        "lon": 101.8093,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Korat 9 Solar Power Plant owner Solar Power (Korat 9) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (เลย 1) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "เลย 1)",
+        "province": "เลย",
+        "lat": 17.304,
+        "lon": 101.8491,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Loei 1 Solar Power Plant owner Solar Power (Loei 1) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (เลย 2) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "เลย 2)",
+        "province": "เลย",
+        "lat": 17.1992,
+        "lon": 101.8184,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Loei 2 Solar Power Plant owner Solar Power (Loei 2) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (นครพนม 1) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "นครพนม 1)",
+        "province": "นครพนม",
+        "lat": 17.2988,
+        "lon": 104.4477,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Nakhon Phanom 1 Solar Power Plant owner Solar Power (Nakhon Phanom 1) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (นครพนม 2) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "นครพนม 2)",
+        "province": "นครพนม",
+        "lat": 17.298,
+        "lon": 104.4499,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Nakhon Phanom 2 Solar Power Plant owner Solar Power (Nakhon Phanom 2) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (นครพนม 3) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "นครพนม 3)",
+        "province": "นครพนม",
+        "lat": 16.8941,
+        "lon": 104.683,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Nakhon Phanom 3 Solar Power Plant owner Solar Power (Nakhon Phanom 3) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท กันกุล ชูบุ พาวเวอร์เจน จำกัด",
+    "website": "https://www.gunkul.com/en/businesses/energy-business/solar-farm",
+    "notes": "พิกัดจาก GPPD ของสาขาที่รายงานประจำปีระบุว่าเป็นที่ดินผลิตไฟฟ้า ไม่ใช่สำนักงาน OCC.",
+    "sites": [
+      {
+        "name_contains": "สาขาเนินปอ",
+        "province": "พิจิตร",
+        "lat": 16.4348,
+        "lon": 100.1423,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Noen Po Solar Power Plant"
+      },
+      {
+        "name_contains": "สาขาศรีจุฬา",
+        "province": "นครนายก",
+        "lat": 14.0278,
+        "lon": 101.1862,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Sri Chula Solar Power Plant"
+      },
+      {
+        "name_contains": "สาขาวิเชียรบุรี",
+        "province": "เพชรบูรณ์",
+        "lat": 15.6799,
+        "lon": 101.0486,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Wichian Buri Solar Power Plant"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (หนองคาย 1) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "หนองคาย 1)",
+        "province": "บึงกาฬ",
+        "lat": 17.9447,
+        "lon": 104.0059,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Nong Khai 1 Solar Power Plant owner Solar Power (Nong Khai 1) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (สกลนคร 1) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "สกลนคร 1)",
+        "province": "สกลนคร",
+        "lat": 17.5326,
+        "lon": 103.4932,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Sakon Nakhon 1 Solar Power Plant owner Solar Power (Sakon Nakhon 1) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (สกลนคร 2) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "สกลนคร 2)",
+        "province": "สกลนคร",
+        "lat": 17.4343,
+        "lon": 103.7255,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Sakon Nakhon 2 Solar Power Plant owner Solar Power (Sakon Nakhon 2) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (สุรินทร์ 1) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "สุรินทร์ 1)",
+        "province": "สุรินทร์",
+        "lat": 15.078,
+        "lon": 103.8864,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Surin 1 Solar Power Plant owner Solar Power (Surin 1) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (สุรินทร์ 2) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "สุรินทร์ 2)",
+        "province": "สุรินทร์",
+        "lat": 14.6283,
+        "lon": 103.8105,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Surin 2 Solar Power Plant owner Solar Power (Surin 2) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (สุรินทร์ 3) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "สุรินทร์ 3)",
+        "province": "สุรินทร์",
+        "lat": 15.3723,
+        "lon": 103.69,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Surin 3 Solar Power Plant owner Solar Power (Surin 3) Company Limited"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท โซล่า เพาเวอร์ (อุดรธานี 1) จำกัด",
+    "website": "https://www.spcg.co.th/th/home",
+    "notes": "พิกัดโรงไฟฟ้าจาก GPPD ของบริษัทย่อย SPCG ที่หน้าบริษัทระบุเป็นที่ตั้งฟาร์ม ไม่ใช่ HQ กรุงเทพฯ.",
+    "sites": [
+      {
+        "name_contains": "อุดรธานี 1)",
+        "province": "อุดรธานี",
+        "lat": 17.6954,
+        "lon": 102.4976,
+        "location_method": "gppd",
+        "accuracy_m": 500,
+        "source_url": "https://datasets.wri.org/dataset/globalpowerplantdatabase",
+        "excerpt": "GPPD Udon Thani - SPCG Solar Power Plant owner Solar Power (Udon Thani 1) Company Limited"
+      }
+    ]
   }
 ]

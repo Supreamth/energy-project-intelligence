@@ -6,6 +6,6 @@ Read first:
 3. https://enerise.sprees.net/coverage
 4. Git clone: /opt/data/workspace/energy-project-intelligence
 
-JustPow xlsx snapshotted. 1042 Solar rows, no lat/lon columns. Do not geocode district/province. Source note points to ERC SPP https://ws.erc.or.th/ERCSPP/
+Plant-site mapping: SPCG subsidiary pages list farm addresses (not HQ). House-number Nominatim failed. Attached GPPD plant coordinates only when the subsidiary is unique vs ERC. Gunkul: Sri Chula, Wichian Buri, Noen Po only. Ban Kluai 1 vs 2 skipped. Never geocode Bangkok HQ or BOI contact addresses.
 
 Hard rules: update https://enerise.sprees.net/ and Next prompt on every change; never commit secrets/var/.conda/.venv.
