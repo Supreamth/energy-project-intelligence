@@ -37,7 +37,7 @@
       "mode": "manual_first",
       "auth": "none for public pages; e-License portal is for licensees and is out of scope",
       "how": "เปิดหน้าสาธารณะ https://www.erc.or.th/th/licensees/ แล้ว snapshot HTML ด้วย python -m energy_intelligence snapshot ไม่สมมติว่ามี bulk API",
-      "notes": "รายชื่อโรงไฟฟ้าจริงอยู่ที่ app04.erc.or.th (LicenseType=1). เครื่องนี้ดึงตารางนั้น timeout จึงยังไม่มีแถวผู้รับใบอนุญาต ไม่สร้างโครงการจากค่าที่เดา. Snapshot ล่าสุด: hub 200, 329092 bytes, sha256 1a101d02d75567f6a48ca890ba7c590172e6f0928b77b373aefc905fa948c71c, raw 0b2e7952-d66d-4dfa-a094-20f3bba204d9"
+      "notes": "รายชื่อโรงไฟฟ้าจริงอยู่ที่ app04.erc.or.th. ลองแล้วจากเครื่องนี้: DNS app04.erc.or.th=61.19.18.9 แต่ TCP 80/443 timeout ทั้ง http LicenseType=1 และ https ...aspx?RowIDMenu=340 จึงยังไม่มีแถวผู้รับใบอนุญาต ไม่สร้างโครงการจากค่าที่เดา. Snapshot ล่าสุด: hub 200, 329092 bytes, sha256 1a101d02d75567f6a48ca890ba7c590172e6f0928b77b373aefc905fa948c71c, raw 0b2e7952-d66d-4dfa-a094-20f3bba204d9. fetch fail RowIDMenu=340 id dbd22628-25e6-40cd-b091-850de91863d4"
     }
   },
   {
