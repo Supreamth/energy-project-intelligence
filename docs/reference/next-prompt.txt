@@ -6,10 +6,10 @@ Read first:
 3. https://enerise.sprees.net/sources
 4. Git clone: /opt/data/workspace/energy-project-intelligence
 
-Source catalog v1 is recorded at /sources. All real sources are enabled=false except demo_manual. Do not start collectors. First collection remains manual snapshot + `python -m energy_intelligence import`.
+ERC public hub snapshot is in raw_records (erc_licensees / public-hub). Detailed licensee table on app04 timed out; no invented plants. Collectors remain off.
 
 Do not reopen schema v0.2.
 
-Suggested next: pick one source (recommend erc_licensees) and import a licensed public snapshot as a fixture.
+Next: retry app04 from a host that can reach it, or import a user-supplied ERC file.
 
 Hard rules: update https://enerise.sprees.net/ and Next prompt on every change; never commit secrets/var/.conda/.venv.

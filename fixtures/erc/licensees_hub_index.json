@@ -1,0 +1,82 @@
+{
+  "source_code": "erc_licensees",
+  "hub_url": "https://www.erc.or.th/th/licensees/",
+  "fetched_http_status": 200,
+  "hub_bytes": 329092,
+  "hub_sha256": "1a101d02d75567f6a48ca890ba7c590172e6f0928b77b373aefc905fa948c71c",
+  "generation_registries": [
+    {
+      "license_type": "1",
+      "label_th": "ทะเบียนผู้ได้รับใบอนุญาตประกอบกิจการผลิตไฟฟ้า",
+      "url": "http://app04.erc.or.th/ELicense/Licenser/05_Reporting/504_ListLicensing_Columns_New.aspx?LicenseType=1",
+      "reachable_from_this_host": false
+    },
+    {
+      "license_type": "2",
+      "label_th": "ทะเบียนผู้ได้รับใบอนุญาตประกอบกิจการระบบส่งไฟฟ้า",
+      "url": "http://app04.erc.or.th/ELicense/Licenser/05_Reporting/504_ListLicensing_Columns_New.aspx?LicenseType=2",
+      "reachable_from_this_host": false
+    },
+    {
+      "license_type": "3",
+      "label_th": "ทะเบียนผู้ได้รับใบอนุญาตประกอบกิจการระบบจำหน่ายไฟฟ้า",
+      "url": "http://app04.erc.or.th/ELicense/Licenser/05_Reporting/504_ListLicensing_Columns_New.aspx?LicenseType=3",
+      "reachable_from_this_host": false
+    },
+    {
+      "license_type": "4",
+      "label_th": "ทะเบียนผู้ได้รับใบอนุญาตประกอบกิจการจำหน่ายไฟฟ้า",
+      "url": "http://app04.erc.or.th/ELicense/Licenser/05_Reporting/504_ListLicensing_Columns_New.aspx?LicenseType=4",
+      "reachable_from_this_host": false
+    },
+    {
+      "license_type": "5",
+      "label_th": "ทะเบียนผู้ได้รับใบอนุญาตประกอบกิจการควบคุมระบบไฟฟ้า",
+      "url": "http://app04.erc.or.th/ELicense/Licenser/05_Reporting/504_ListLicensing_Columns_New.aspx?LicenseType=5",
+      "reachable_from_this_host": false
+    },
+    {
+      "license_type": "6",
+      "label_th": "ทะเบียนผู้ได้รับใบอนุญาตประกอบกิจการขนส่งก๊าซธรรมชาติทางท่อผ่านระบบส่งก๊าซธรรมชาติ",
+      "url": "http://app04.erc.or.th/ELicense/Licenser/05_Reporting/504_ListLicensing_Columns_New.aspx?LicenseType=6",
+      "reachable_from_this_host": false
+    },
+    {
+      "license_type": "7",
+      "label_th": "ทะเบียนผู้ได้รับใบอนุญาตประกอบกิจการจัดหาและค้าส่งก๊าซธรรมชาติ",
+      "url": "http://app04.erc.or.th/ELicense/Licenser/05_Reporting/504_ListLicensing_Columns_New.aspx?LicenseType=7",
+      "reachable_from_this_host": false
+    },
+    {
+      "license_type": "8",
+      "label_th": "ทะเบียนผู้ได้รับใบอนุญาตประกอบกิจการค้าปลีกก๊าซธรรมชาติผ่านระบบจำหน่ายก๊าซธรรมชาติ",
+      "url": "http://app04.erc.or.th/ELicense/Licenser/05_Reporting/504_ListLicensing_Columns_New.aspx?LicenseType=8",
+      "reachable_from_this_host": false
+    },
+    {
+      "license_type": "9",
+      "label_th": "ทะเบียนผู้ได้รับใบอนุญาตประกอบกิจการเก็บรักษาและแปรสภาพก๊าซธรรมชาติจากของเหลวเป็นก๊าซ",
+      "url": "http://app04.erc.or.th/ELicense/Licenser/05_Reporting/504_ListLicensing_Columns_New.aspx?LicenseType=9",
+      "reachable_from_this_host": false
+    }
+  ],
+  "other_public_lists": [
+    {
+      "code": "exemption_general",
+      "url": "http://app04.erc.or.th/Elicense/Front/StaticPage/StaticPage.aspx?p=3"
+    },
+    {
+      "code": "rooftop_pv",
+      "url": "http://app04.erc.or.th/ElicenseRooftop/PV/Public/?p=3"
+    },
+    {
+      "code": "factory_rg4",
+      "url": "http://app04.erc.or.th/ELicense/Licenser/09_Diw/906_DiwPlantLicenseList_outside.aspx"
+    },
+    {
+      "code": "controlled_energy_pk2",
+      "url": "http://app04.erc.or.th/ElicensePhaseIII/EC/Public/112_LicensingListPublic.aspx"
+    }
+  ],
+  "note": "Hub page is public. Detailed tables live on app04.erc.or.th and timed out from this host. No licensee names or MW were invented."
+}

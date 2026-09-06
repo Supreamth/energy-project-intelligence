@@ -164,18 +164,18 @@ def _ensure_source(conn, source_code: str) -> uuid.UUID:
     return source_id
 
 
-def _upsert_raw(conn, *, source_id, external_key, sha256, uri, content_type):
+def _upsert_raw(conn, *, source_id, external_key, sha256, uri, content_type, source_url=None):
     raw_id = uuid.uuid4()
     row = conn.execute(
         """
         INSERT INTO intelligence.raw_records(
-          id, source_id, external_key, payload_sha256, payload_uri, content_type
-        ) VALUES (%s, %s, %s, %s, %s, %s)
+          id, source_id, external_key, payload_sha256, payload_uri, content_type, source_url
+        ) VALUES (%s, %s, %s, %s, %s, %s, %s)
         ON CONFLICT (source_id, external_key, payload_sha256)
         DO NOTHING
         RETURNING id
         """,
-        (raw_id, source_id, external_key, sha256, uri, content_type),
+        (raw_id, source_id, external_key, sha256, uri, content_type, source_url),
     ).fetchone()
     if row:
         return row[0], True
@@ -187,3 +187,89 @@ def _upsert_raw(conn, *, source_id, external_key, sha256, uri, content_type):
         (source_id, external_key, sha256),
     ).fetchone()
     return existing[0], False
+
+
+def import_snapshot(
+    conn,
+    store: LocalObjectStore,
+    *,
+    source_code: str,
+    external_key: str,
+    payload: bytes,
+    content_type: str,
+    extractor_version: str,
+    source_url: str | None = None,
+) -> ImportResult:
+    stored = store.put(source_code, payload, content_type)
+    source_id = _ensure_source(conn, source_code)
+    run_id = uuid.uuid4()
+    conn.execute(
+        """
+        INSERT INTO intelligence.ingestion_runs(
+          id, source_id, idempotency_key, connector_version, status
+        ) VALUES (%s, %s, %s, %s, 'running')
+        """,
+        (run_id, source_id, str(run_id), extractor_version),
+    )
+    raw_id, created = _upsert_raw(
+        conn,
+        source_id=source_id,
+        external_key=external_key,
+        sha256=stored["sha256"],
+        uri=stored["uri"],
+        content_type=content_type,
+        source_url=source_url,
+    )
+    conn.execute(
+        """
+        INSERT INTO intelligence.fetch_events(
+          id, source_id, run_id, raw_record_id, http_status
+        ) VALUES (%s, %s, %s, %s, 200)
+        """,
+        (uuid.uuid4(), source_id, run_id, raw_id),
+    )
+    conn.execute(
+        """
+        UPDATE intelligence.ingestion_runs
+        SET status = 'succeeded', ended_at = now(), fetched_count = 1
+        WHERE id = %s
+        """,
+        (run_id,),
+    )
+    return ImportResult(
+        raw_record_id=raw_id,
+        run_id=run_id,
+        raw_created=created,
+        evidence_inserted=0,
+    )
+
+
+def record_fetch_failure(
+    conn,
+    *,
+    source_code: str,
+    error_class: str,
+    error_summary: dict | None = None,
+    extractor_version: str = "erc-hub-html-0.1",
+) -> uuid.UUID:
+    source_id = _ensure_source(conn, source_code)
+    run_id = uuid.uuid4()
+    event_id = uuid.uuid4()
+    conn.execute(
+        """
+        INSERT INTO intelligence.ingestion_runs(
+          id, source_id, idempotency_key, connector_version, status,
+          fetched_count, error_count, error_summary, ended_at
+        ) VALUES (%s, %s, %s, %s, 'failed', 0, 1, %s::jsonb, now())
+        """,
+        (run_id, source_id, str(run_id), extractor_version, json.dumps(error_summary or {})),
+    )
+    conn.execute(
+        """
+        INSERT INTO intelligence.fetch_events(
+          id, source_id, run_id, raw_record_id, error_class, error_summary
+        ) VALUES (%s, %s, %s, NULL, %s, %s::jsonb)
+        """,
+        (event_id, source_id, run_id, error_class, json.dumps(error_summary or {})),
+    )
+    return event_id
