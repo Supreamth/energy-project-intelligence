@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Schema v0.2 — Energy Project Intelligence</title>
+  <style>
+    :root {
+      --bg: #0b1020; --text: #eef4ff; --muted: #aebbd3; --line: rgba(255,255,255,.12);
+      --accent: #7dd3fc; --ok: #86efac; --warn: #fde68a; --danger: #fca5a5;
+      --shadow: 0 24px 80px rgba(0,0,0,.35); --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(125,211,252,.18), transparent 34rem),
+        linear-gradient(180deg, #0b1020 0%, #070b16 100%);
+      line-height: 1.65;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    code { background: rgba(255,255,255,.08); border: 1px solid var(--line); border-radius: .4rem; padding: .08rem .35rem; color: #fff5cd; }
+    pre { background: #050814; border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; overflow-x: auto; color: #d7e7ff; white-space: pre-wrap; }
+    .wrap { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 48px 0 20px; }
+    .card { background: linear-gradient(180deg, rgba(17,26,50,.92), rgba(13,20,39,.92)); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .hero { padding: 32px; }
+    .eyebrow { display: inline-flex; padding: 7px 12px; border-radius: 999px; background: rgba(134,239,172,.12); border: 1px solid rgba(134,239,172,.35); color: #dcfce7; font-size: 13px; font-weight: 700; }
+    h1 { margin: 16px 0 10px; font-size: clamp(28px, 5vw, 48px); letter-spacing: -.04em; }
+    h2 { margin: 0 0 12px; font-size: 28px; letter-spacing: -.03em; }
+    h3 { margin: 20px 0 8px; font-size: 18px; }
+    p, li { color: var(--muted); }
+    nav { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(16px); background: rgba(7,11,22,.72); border: 1px solid var(--line); }
+    nav .wrap { display: flex; gap: 8px; overflow-x: auto; padding: 10px 0; }
+    nav a { white-space: nowrap; color: var(--muted); padding: 8px 12px; border-radius: 999px; font-weight: 700; font-size: 14px; }
+    nav a:hover { color: var(--text); background: rgba(255,255,255,.06); text-decoration: none; }
+    main { padding: 24px 0 72px; }
+    section { margin-top: 22px; }
+    .section-card { padding: 28px; }
+    table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 16px; border: 1px solid var(--line); }
+    th, td { padding: .78rem .9rem; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { background: rgba(255,255,255,.08); color: var(--text); font-size: 14px; }
+    td { color: var(--muted); font-size: 14px; }
+    .callout { border-left: 4px solid var(--ok); background: rgba(134,239,172,.08); border-radius: 12px; padding: 12px 14px; color: var(--muted); }
+    .callout.warn { border-left-color: var(--warn); background: rgba(253,230,138,.08); }
+    footer { color: var(--muted); padding: 8px 0 40px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="card hero">
+        <div class="eyebrow">สัญญาข้อมูลปิดแล้ว · ยังไม่รัน migration</div>
+        <h1>Schema v0.2</h1>
+        <p>ปิดช่องว่างจาก v0.1 แล้ว ใช้เป็นสัญญาสำหรับ Foundation ห้ามเปิดตัดสินใจใหม่ถ้าผู้ใช้ไม่ได้สั่ง ห้ามรัน DDL จนกว่าจะมี PostgreSQL + PostGIS จริง</p>
+        <p><a href="/">กลับเอกสารหลัก</a> · <a href="/schema-v0.2.md">Markdown</a> · <a href="/#next-prompt">Next prompt</a></p>
+      </div>
+    </div>
+  </header>
+  <nav><div class="wrap">
+    <a href="#decisions">8 ตัดสินใจ</a>
+    <a href="#capacity">Capacity</a>
+    <a href="#license">ใบอนุญาต</a>
+    <a href="#review">Review</a>
+    <a href="#publish">Publication</a>
+    <a href="#invalidation">Invalidation</a>
+    <a href="#fetch">Fetch failure</a>
+    <a href="#registry">Registry</a>
+    <a href="#contract">Ingestion</a>
+    <a href="#examples">ตัวอย่าง</a>
+  </div></nav>
+  <main class="wrap">
+    <section id="decisions">
+      <div class="card section-card">
+        <h2>สิ่งที่ปิดแล้ว</h2>
+        <div class="callout">schema_version = 0.2 · registry_version = 0.2.0 · วันที่ปิด 6 ก.ย. 2026 · ยังไม่มีตารางในฐานข้อมูลจริง</div>
+        <ol>
+          <li>แยก capacity <code>scope</code> กับ <code>capacity_status</code></li>
+          <li>ใบอนุญาตมี <code>license_kind</code> + <code>license_external_key</code></li>
+          <li>ประวัติ review แบบเพิ่มแถว</li>
+          <li>แยก internal / external โดย MVP เป็น internal-only</li>
+          <li>canonical ที่หลักฐานถูกถอนต้อง invalidate ไม่เลือกค่าใหม่เอง</li>
+          <li>fetch ล้มเหลวได้โดยไม่มี raw_record</li>
+          <li>มี predicate registry บังคับ</li>
+          <li>ingestion contract ระบุ extractor_version และการ resolve subject</li>
+        </ol>
+      </div>
+    </section>
+    <section id="capacity">
+      <div class="card section-card">
+        <h2>Capacity</h2>
+        <table>
+          <thead><tr><th>แกน</th><th>ฟิลด์</th><th>ค่าที่รับ</th></tr></thead>
+          <tbody>
+            <tr><td>ขอบเขตการนับ</td><td><code>scope</code></td><td>project / phase / unknown</td></tr>
+            <tr><td>สถานะของตัวเลข</td><td><code>capacity_status</code></td><td>planned / operating / unknown</td></tr>
+            <tr><td>ชนิดกำลัง</td><td><code>metric</code></td><td>solar_dc, solar_ac, export_limit, dc_it_load, dc_facility_power, contracted_power</td></tr>
+            <tr><td>หน่วย</td><td>MW</td><td>BESS แยก metric ภายหลัง ห้ามยัดเข้า value_mw</td></tr>
+          </tbody>
+        </table>
+        <p>predicate: <code>capacity.{metric}.{scope}.{capacity_status}</code> เช่น <code>capacity.dc_it_load.phase.planned</code></p>
+        <p>ห้ามรวม MWp กับ MWac, IT load กับ facility power, project total กับ phase total และห้ามสร้างเฟสจากยอดรวม</p>
+      </div>
+    </section>
+    <section id="license">
+      <div class="card section-card">
+        <h2>ใบอนุญาต</h2>
+        <p>สถานะ regulatory ต้องมี <code>license_kind</code> = erc_generation | boi_promotion | other และ <code>license_external_key</code> ได้</p>
+        <p>field key: <code>regulatory.erc.generation</code> และ <code>regulatory.boi.promotion</code> ห้ามทับกัน</p>
+      </div>
+    </section>
+    <section id="review">
+      <div class="card section-card">
+        <h2>Review history</h2>
+        <p><code>evidence.review_status</code> เป็นค่าปัจจุบัน ทุกการเปลี่ยนสถานะต้องแทรกแถวใน <code>evidence_review_events</code> ใน transaction เดียว ห้ามแก้ประวัติย้อนหลัง</p>
+      </div>
+    </section>
+    <section id="publish">
+      <div class="card section-card">
+        <h2>Publication</h2>
+        <p>canonical มี <code>publication_class</code> = internal | external · MVP อ่านเฉพาะ internal · rights unknown/internal_only ห้ามเป็น external · ยังไม่เปิด public API</p>
+      </div>
+    </section>
+    <section id="invalidation">
+      <div class="card section-card">
+        <h2>Canonical invalidation</h2>
+        <p>ถ้า evidence ถูก reject/superseded หรือสิทธิแหล่งข้อมูลเปลี่ยน ให้ปิดแถว canonical เดิมด้วย superseded_at + invalidation_reason ห้ามระบบเลือกค่าใหม่เอง คนหรือกฎที่อนุมัติแล้วต้องเลือกใหม่</p>
+      </div>
+    </section>
+    <section id="fetch">
+      <div class="card section-card">
+        <h2>Fetch failure</h2>
+        <p><code>fetch_events.raw_record_id</code> เป็น NULL ได้เมื่อดึงไม่สำเร็จ เก็บ http_status และ error_class ห้ามตีความ HTTP 404 ว่าโครงการยกเลิก</p>
+      </div>
+    </section>
+    <section id="registry">
+      <div class="card section-card">
+        <h2>Predicate registry</h2>
+        <p>ingestion ปฏิเสธ predicate ที่ไม่อยู่ใน registry 0.2.0 canonical ปฏิเสธถ้า field_key ไม่ตรง registry</p>
+      </div>
+    </section>
+    <section id="contract">
+      <div class="card section-card">
+        <h2>Ingestion contract 0.2</h2>
+        <p>ต้องมี schema_version=0.2, source_code, external_key, extractor_version, fetched_at, payload sha256/uri</p>
+        <p>subject_external_key หาจาก source_entity_links ถ้าไม่เจอ เก็บ evidence ที่ subject เป็น NULL ได้ แต่ accept/canonical ไม่ได้จนกว่าจะจับคู่</p>
+      </div>
+    </section>
+    <section id="examples">
+      <div class="card section-card">
+        <h2>ตัวอย่างผ่าน</h2>
+<pre>{
+  "schema_version": "0.2",
+  "source_code": "demo_manual",
+  "external_key": "demo-project-001",
+  "extractor_version": "manual-0.2.0",
+  "fetched_at": "2026-09-06T09:00:00Z",
+  "payload": {
+    "uri": "object://raw/demo/record.json",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "content_type": "application/json"
+  },
+  "assertions": [{
+    "extraction_key": "phase-a-it-load",
+    "subject_external_key": "demo-project-001:phase-a",
+    "predicate": "capacity.dc_it_load.phase.planned",
+    "value": {"value": 40, "unit": "MW", "scope": "phase", "capacity_status": "planned"},
+    "excerpt": "Phase A planned IT load 40 MW",
+    "locator": {"json_path": "$.phase_a.it_load"},
+    "review_status": "pending"
+  }]
+}</pre>
+        <h3>ตัวอย่างไม่ผ่าน</h3>
+        <ul>
+          <li>ใช้ basis แบบ v0.1 โดยไม่มี scope / capacity_status</li>
+          <li>เก็บ 0 แทนค่าไม่ทราบ</li>
+          <li>predicate ระดับ phase แต่ subject เป็น project</li>
+          <li>เลือก evidence ที่ pending เป็น canonical</li>
+          <li>rights unknown แล้ว publish external</li>
+          <li>HTTP 404 = โครงการยกเลิก</li>
+        </ul>
+        <div class="callout warn">ตารางที่จะสร้างใน Foundation: ของ v0.1 บวก sites/phases, capacity_facts แบบใหม่, status_observations พร้อม license, predicate_registry, evidence_review_events, fetch_events แบบ raw ว่างได้, canonical publication_class ยังไม่ทำ imagery และ portfolio</div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap">Schema v0.2 closed 6 Sep 2026 · not migrated · <a href="/">enerise.sprees.net</a></footer>
+</body>
+</html>

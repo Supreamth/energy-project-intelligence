@@ -141,6 +141,8 @@
       border-radius: 12px; padding: 12px 14px; color: var(--muted);
     }
     .callout.warn { border-left-color: var(--warn); background: rgba(253,230,138,.08); }
+    .prompt-head { display: flex; justify-content: space-between; gap: 12px; align-items: center; flex-wrap: wrap; }
+    #next-prompt-text { max-height: 420px; overflow: auto; }
     footer { color: var(--muted); padding: 8px 0 40px; font-size: 13px; }
     @media (max-width: 900px) {
       .hero, .grid.two, .grid.three, .flow { grid-template-columns: 1fr; }
@@ -153,31 +155,32 @@
       <div class="card hero-main">
         <div class="eyebrow">Thailand Energy &amp; Digital Infrastructure · 6 ก.ย. 2026</div>
         <h1>Project Intelligence Reference</h1>
-        <p class="lead">เอกสารกลางของโครงการติดตาม solar farm และ data center ในไทย จากหลักฐานจริง ไม่ใช่ค่าที่เดา จากสัญญาข้อมูล schema v0.1 สู่ระบบที่ตรวจย้อนหลังได้</p>
+        <p class="lead">เอกสารกลางของโครงการติดตาม solar farm และ data center ในไทย จากหลักฐานจริง ไม่ใช่ค่าที่เดา Schema v0.2 ปิดแล้ว ยังไม่รัน migration</p>
         <div class="hero-actions">
-          <a class="button primary" href="#handoff">AI Handoff</a>
-          <a class="button" href="#plan">แผนงาน</a>
-          <a class="button" href="#access">วิธีเปิดเอกสารนี้</a>
+          <a class="button primary" href="#next-prompt">Next prompt</a>
+          <a class="button" href="schema-v0.2.html">Schema v0.2</a>
+          <a class="button" href="#handoff">AI Handoff</a>
         </div>
       </div>
       <aside class="card hero-side">
-        <div class="status-item"><strong><span class="dot green"></span>สถานะปัจจุบัน</strong><span>ช่วง 0 — เอกสารสดที่ enerise.sprees.net · GitHub main มี commit แล้ว · ยังไม่มีโค้ดระบบ/ฐานข้อมูล</span></div>
-        <div class="status-item"><strong><span class="dot yellow"></span>ขั้นถัดไป</strong><span>ปิด schema v0.2 ก่อนเขียน migration</span></div>
+        <div class="status-item"><strong><span class="dot green"></span>สถานะปัจจุบัน</strong><span>ช่วง 0/1 — เอกสารสด · GitHub connected · schema v0.2 ปิดแล้ว · ยังไม่มีฐานข้อมูล</span></div>
+        <div class="status-item"><strong><span class="dot yellow"></span>ขั้นถัดไป</strong><span>Foundation: Docker Postgres+PostGIS + Alembic ตามสัญญา v0.2</span></div>
         <div class="status-item"><strong><span class="dot red"></span>ยังไม่พร้อม</strong><span>Docker daemon, Postgres/PostGIS, fixture ที่ได้รับอนุญาต</span></div>
-        <div class="status-item"><strong>Repo</strong><span><a href="https://github.com/Supreamth/energy-project-intelligence">Supreamth/energy-project-intelligence</a> · clone + pushed · HEAD 653b4e2</span></div>
+        <div class="status-item"><strong>Repo</strong><span><a href="https://github.com/Supreamth/energy-project-intelligence">Supreamth/energy-project-intelligence</a> · clone + pushed · HEAD 466b19f</span></div>
       </aside>
     </div>
   </header>
 
   <nav>
     <div class="wrap">
+      <a href="#next-prompt">Next prompt</a>
       <a href="#goal">เป้าหมาย</a>
       <a href="#architecture">สถาปัตยกรรม</a>
       <a href="#process">กระบวนการ</a>
       <a href="#pm">Project management</a>
       <a href="#milestones">Milestone</a>
       <a href="#plan">แผน</a>
-      <a href="#schema">Schema</a>
+      <a href="schema-v0.2.html">Schema v0.2</a>
       <a href="#stack">Stack</a>
       <a href="#tests">Acceptance</a>
       <a href="#handoff">AI Handoff</a>
@@ -187,6 +190,50 @@
   </nav>
 
   <main class="wrap">
+    <section id="next-prompt">
+      <div class="card section-card">
+        <div class="prompt-head">
+          <h2 style="margin:0">Next prompt</h2>
+          <button class="button primary" type="button" id="copy-next-prompt">คัดลอก</button>
+        </div>
+        <p>ใช้เมื่อหยุดงาน หรือเปลี่ยนโมเดล Hermes วางทั้งก้อนนี้เป็นข้อความแรกของเซสชันใหม่ ไฟล์ต้นทาง: <code>next-prompt.txt</code> ต้องอัปเดตทุกครั้งที่สถานะเปลี่ยน</p>
+        <pre id="next-prompt-text">Continue Energy Project Intelligence on this machine. Chat with the user in Thai.
+
+Read first, in this order, and treat them as source of truth:
+1. /opt/data/docs/energy-project-intelligence/handoff.md
+2. /opt/data/docs/energy-project-intelligence/status.json
+3. https://enerise.sprees.net/ and https://enerise.sprees.net/schema-v0.2.html
+4. Git working copy: /opt/data/workspace/energy-project-intelligence
+
+Do not re-litigate MVP scope. Do not reopen schema v0.2 decisions unless the user explicitly asks.
+
+Done:
+- Live docs at https://enerise.sprees.net/ with HTTP Basic Auth
+- GitHub repo https://github.com/Supreamth/energy-project-intelligence is cloned and origin/main is pushed
+- Schema v0.2 contract is closed (not yet migrated/run)
+
+Next task: Foundation on THIS host.
+- Keep using the existing git clone
+- Add Docker Compose for PostgreSQL + PostGIS and private S3-compatible object storage
+- Implement Alembic migrations that match schema v0.2 exactly
+- Create DB roles: migration, ingestion, review, product_read
+- Ingestion must not be able to write canonical_selections
+- Do not start collectors, satellite imagery, Solar Portfolio, public API, or LLM-approved facts
+- Docker daemon is currently not running and docker compose is missing; fix or document the real blocker, do not fake Postgres with SQLite
+
+Hard rules:
+- After EVERY status change, update the live site files in /opt/data/docs/energy-project-intelligence/ so https://enerise.sprees.net/ stays current. Always refresh the Next prompt section so a later model can continue. Then sync docs/reference/ (and schema-v0.2 files) into the git repo and push.
+- Never commit secrets, auth.json, GitHub tokens, passwords, or .env
+- NULL means unknown; never store 0 for missing
+- Timestamps UTC, display Asia/Bangkok
+- Do not invent phases from a total MW figure
+- Do not mix MWp, MWac, IT load, facility power
+- Do not add project total to phase total
+- HTTP 404 / missing source is not a cancelled project
+- Ambiguous identity match goes to human review; no auto-merge</pre>
+      </div>
+    </section>
+
     <section id="goal">
       <div class="card section-card">
         <h2>เป้าหมาย</h2>
@@ -263,7 +310,7 @@
           <tbody>
             <tr><td>0 เอกสาร</td><td>มีเว็บอ้างอิง, handoff, status.json และเปิดผ่าน HTTP ได้</td></tr>
             <tr><td>GitHub</td><td>clone ได้, remote ถูกต้อง, เอกสารอยู่ใน repo (หลังผู้ใช้อนุญาตให้ push)</td></tr>
-            <tr><td>Schema v0.2</td><td>ปิดช่องว่างด้านล่าง มีตัวอย่าง assertion ผ่าน/ไม่ผ่าน</td></tr>
+            <tr><td>Schema v0.2</td><td>สัญญาปิด 8 ช่องว่าง มีตัวอย่างผ่าน/ไม่ผ่าน ยังไม่รัน DDL</td></tr>
             <tr><td>Foundation</td><td>สร้างฐานจาก migration ได้, FK ผิดถูกปฏิเสธ, ingestion แก้ canonical ไม่ได้</td></tr>
             <tr><td>Ingestion</td><td>snapshot ซ้ำไม่เพิ่ม raw, ไฟล์เปลี่ยนได้เวอร์ชันใหม่, retry ไม่พังข้อมูล</td></tr>
             <tr><td>Review</td><td>40 กับ 50 MW อยู่ร่วมกัน, เลือก canonical ได้, pending เลือกไม่ได้</td></tr>
@@ -286,9 +333,9 @@
           <thead><tr><th>ID</th><th>งาน</th><th>สถานะ</th></tr></thead>
           <tbody>
             <tr><td>0</td><td>Reference website + HTTP + public login</td><td>เสร็จ — https://enerise.sprees.net/</td></tr>
-            <tr><td>1</td><td>Clone/เชื่อม GitHub</td><td>เสร็จ — pushed main 653b4e2</td></tr>
-            <tr><td>2</td><td>Schema v0.2</td><td>คิวถัดไป</td></tr>
-            <tr><td>3</td><td>Foundation (Postgres/PostGIS/migration/roles)</td><td>รอ Docker daemon + schema</td></tr>
+            <tr><td>1</td><td>Clone/เชื่อม GitHub</td><td>เสร็จ — pushed main 466b19f</td></tr>
+            <tr><td>2</td><td>Schema v0.2</td><td>เสร็จ — สัญญาปิดที่ schema-v0.2.html ยังไม่ migrate</td></tr>
+            <tr><td>3</td><td>Foundation (Postgres/PostGIS/migration/roles)</td><td>คิวถัดไป · Docker daemon ยังไม่รัน</td></tr>
             <tr><td>4</td><td>Manual ingestion</td><td>รอ fixture ที่ได้รับอนุญาต</td></tr>
             <tr><td>5</td><td>Review UI + canonical</td><td>ยังไม่เริ่ม</td></tr>
             <tr><td>6</td><td>หน้า Project Intelligence</td><td>ยังไม่เริ่ม</td></tr>
@@ -308,8 +355,8 @@
         <div class="grid two">
           <div class="card mini"><span class="tag now">M0 เอกสารมือถือต่อได้</span><p>เว็บนี้ + handoff.md + status.json เป็นแหล่งความจริงของสถานะงาน</p></div>
           <div class="card mini"><span class="tag now">M1 Repo มีชีวิต</span><p>clone บนเครื่องนี้ remote ถูกต้อง และ push ขึ้น GitHub แล้ว</p></div>
-          <div class="card mini"><span class="tag next">M2 สัญญาข้อมูลนิ่ง</span><p>schema v0.2 ปิดช่องว่าง capacity, license, review history, publication, invalidation</p></div>
-          <div class="card mini"><span class="tag later">M3 ฐานหมุนได้</span><p>Postgres+PostGIS จาก migration, role แยก, object storage ส่วนตัว</p></div>
+          <div class="card mini"><span class="tag now">M2 สัญญาข้อมูลนิ่ง</span><p>schema v0.2 ปิดแล้ว ดู <a href="schema-v0.2.html">schema-v0.2.html</a> ยังไม่รัน migration</p></div>
+          <div class="card mini"><span class="tag next">M3 ฐานหมุนได้</span><p>Postgres+PostGIS จาก migration, role แยก, object storage ส่วนตัว</p></div>
           <div class="card mini"><span class="tag later">M4 หลักฐานเดินครบวง</span><p>import ไฟล์จริงอย่างน้อยหนึ่งชุด ซ้ำได้ ไม่สร้าง raw ซ้ำ</p></div>
           <div class="card mini"><span class="tag later">M5 คนเลือกค่าได้</span><p>คิว review + canonical ขัดแย้ง 40 vs 50 MW</p></div>
           <div class="card mini"><span class="tag later">M6 หน้าโครงการใช้ได้</span><p>ค้นหา รายละเอียด ที่มา capacity แยก metric/scope</p></div>
@@ -329,9 +376,9 @@
         </ol>
         <h3>ช่วงถัดไปทันที</h3>
         <ol>
-          <li>เชื่อม GitHub repo ที่ยังว่าง</li>
-          <li>อย่าเขียนแอปจนกว่า schema v0.2 จะปิดช่องว่างด้านล่าง</li>
-          <li>Foundation บนเครื่องนี้ด้วย Docker เมื่อ daemon พร้อม ไม่ใช้ SQLite แทน PostGIS</li>
+          <li>Foundation บนเครื่องนี้: Docker Compose Postgres+PostGIS + object storage</li>
+          <li>Alembic ตามสัญญา v0.2 พร้อมแยก DB role</li>
+          <li>อย่าเริ่ม collector จนกว่า manual import จะผ่าน</li>
         </ol>
         <h3>ลำดับห้ามสลับ</h3>
         <p>เอกสาร → GitHub → schema v0.2 → migration → manual import → review → หน้าโครงการ → collector อัตโนมัติ</p>
@@ -340,19 +387,19 @@
 
     <section id="schema">
       <div class="card section-card">
-        <h2>Schema v0.1 และช่องว่าง v0.2</h2>
-        <p>v0.1 เป็นสัญญาข้อมูลสำหรับ review ไม่ใช่ DDL ที่รันแล้ว ตาราง starter มี sources, ingestion_runs, raw_records, fetch_events, entities, organizations, projects, evidence, source_entity_links, canonical_selections ตารางธุรกิจอื่นอยู่ในหัวข้อ 3 ของเอกสารต้นฉบับ ยังไม่มี migration</p>
+        <h2>Schema v0.2 ปิดแล้ว</h2>
+        <p>v0.1 เป็นร่าง ช่องว่าง 8 ข้อถูกปิดเป็นสัญญาใน <a href="schema-v0.2.html">schema-v0.2.html</a> และ <a href="schema-v0.2.md">schema-v0.2.md</a> ยังไม่รัน DDL</p>
         <table>
-          <thead><tr><th>เรื่อง</th><th>ข้อเสนอรุ่นแรก</th></tr></thead>
+          <thead><tr><th>เรื่อง</th><th>ตัดสินใจที่ล็อก</th></tr></thead>
           <tbody>
-            <tr><td>Capacity</td><td>แยกขอบเขต project/phase ออกจากสถานะ planned/operating</td></tr>
-            <tr><td>Predicate registry</td><td>กำหนด predicate, รูปแบบ value, หน่วย, subject kind, canonical field_key</td></tr>
-            <tr><td>ใบอนุญาต</td><td>ระบุชนิด/ตัวตนใบอนุญาต ไม่ให้ BOI ทับ กกพ.</td></tr>
-            <tr><td>Review history</td><td>เก็บเหตุการณ์แบบเพิ่มแถว ไม่พึ่ง reviewed_by ล่าสุดอย่างเดียว</td></tr>
-            <tr><td>Publication</td><td>แยกใช้ภายใน กับเผยแพร่ภายนอก; unknown ห้าม publish อัตโนมัติ</td></tr>
-            <tr><td>Canonical invalidation</td><td>ถ้าหลักฐานถูกถอนหรือสิทธิเปลี่ยน ต้องระงับ/ทบทวนค่าที่เลือกอยู่</td></tr>
-            <tr><td>Fetch failure</td><td>เก็บเหตุการณ์ดึงไม่สำเร็จได้แม้ยังไม่มี raw_record</td></tr>
-            <tr><td>Ingestion contract</td><td>extractor_version และวิธี resolve subject_external_key ให้แน่นอน</td></tr>
+            <tr><td>Capacity</td><td>แยก <code>scope</code> (project/phase) กับ <code>capacity_status</code> (planned/operating) เลิกใช้ basis ปนแกน</td></tr>
+            <tr><td>Predicate registry</td><td>registry 0.2.0 บังคับ predicate, หน่วย, subject kind, field_key</td></tr>
+            <tr><td>ใบอนุญาต</td><td><code>license_kind</code> + <code>license_external_key</code> แยก ERC กับ BOI</td></tr>
+            <tr><td>Review history</td><td><code>evidence_review_events</code> เพิ่มแถวเท่านั้น</td></tr>
+            <tr><td>Publication</td><td>MVP internal-only; unknown/internal_only ห้าม external</td></tr>
+            <tr><td>Canonical invalidation</td><td>ถอนหลักฐานแล้วปิด selection ห้ามเลือกค่าใหม่เอง</td></tr>
+            <tr><td>Fetch failure</td><td>raw_record_id เป็น NULL ได้; 404 ≠ ยกเลิกโครงการ</td></tr>
+            <tr><td>Ingestion contract</td><td>schema_version 0.2 + extractor_version + resolve subject_external_key</td></tr>
           </tbody>
         </table>
         <h3>กฎเวลาและภาษา</h3>
@@ -376,7 +423,7 @@
             <tr><td>Raw storage</td><td>S3-compatible ส่วนตัว</td><td>ยังไม่ติดตั้ง</td></tr>
             <tr><td>Review UI</td><td>HTML + HTMX server-rendered</td><td>ยังไม่เริ่ม</td></tr>
             <tr><td>Local env</td><td>Docker Compose</td><td>docker CLI มี, daemon ไม่รัน, compose ไม่มี</td></tr>
-            <tr><td>GitHub</td><td>repo ด้านบน</td><td>clone + push แล้วที่ /opt/data/workspace/energy-project-intelligence · origin/main 653b4e2</td></tr>
+            <tr><td>GitHub</td><td>repo ด้านบน</td><td>clone + push แล้วที่ /opt/data/workspace/energy-project-intelligence · origin/main 466b19f</td></tr>
             <tr><td>Tests</td><td>pytest กับ Postgres จริง</td><td>ยังไม่มีโปรเจกต์</td></tr>
           </tbody>
         </table>
@@ -413,11 +460,7 @@
           <li>หน้าเว็บนี้</li>
         </ol>
         <h3>Prompt ต่อเซสชัน</h3>
-<pre>Continue Energy Project Intelligence from /opt/data/docs/energy-project-intelligence/.
-Read handoff.md and status.json first. Do not re-litigate MVP scope.
-Current next step: close schema v0.2 before any migration.
-Do not implement collectors, imagery, portfolio, or public API.
-Every status change MUST update https://enerise.sprees.net/ (files in /opt/data/docs/energy-project-intelligence/) then sync the same docs into the git repo. Never commit secrets or auth.json.</pre>
+        <p>ใช้ส่วน <a href="#next-prompt">Next prompt</a> ด้านบนเป็นต้นฉบับเดียว อย่าให้ข้อความนี้ค้างกับสถานะเก่า</p>
         <h3>เซสชันต้นทาง</h3>
         <ul>
           <li>อ่าน schema และวางแผนติดตั้ง: เซสชัน 20260906_025242_b8fba1</li>
@@ -457,7 +500,19 @@ Every status change MUST update https://enerise.sprees.net/ (files in /opt/data/
     </section>
   </main>
   <footer class="wrap">
-    Energy Project Intelligence reference · อัปเดต 6 กันยายน 2026 · schema v0.1 ยังไม่รัน · ช่วง 0 เอกสาร
+    Energy Project Intelligence reference · อัปเดต 6 กันยายน 2026 · schema v0.2 ปิดแล้ว ยังไม่รัน · ขั้นถัดไป Foundation
   </footer>
+  <script>
+    document.getElementById('copy-next-prompt').addEventListener('click', async function () {
+      const text = document.getElementById('next-prompt-text').innerText;
+      try {
+        await navigator.clipboard.writeText(text);
+        this.textContent = 'คัดลอกแล้ว';
+        setTimeout(() => { this.textContent = 'คัดลอก'; }, 1600);
+      } catch (err) {
+        this.textContent = 'คัดลอกไม่สำเร็จ';
+      }
+    });
+  </script>
 </body>
 </html>

@@ -9,7 +9,8 @@
    - then copy those three files into `docs/reference/`
 3. Do not commit `/opt/data/home/.enerise/auth.json`, passwords, tokens, or `.env`.
 4. Do not start collectors, satellite imagery, Solar Portfolio, Kubernetes, or LLM auto-approval.
-5. Do not write migrations until schema v0.2 gaps are closed.
+5. Do not write migrations until schema v0.2 is closed. It is now closed; Foundation may implement it. Do not reopen v0.2 unless the user asks.
+6. Keep https://enerise.sprees.net/#next-prompt and `next-prompt.txt` accurate whenever work stops or the next task changes.
 
 ## Layout
 
@@ -19,4 +20,4 @@
 
 ## Next work
 
-Close schema v0.2 before any migration.
+Close schema v0.2 is done. Next is Foundation (Postgres+PostGIS + Alembic) without reopening v0.2.

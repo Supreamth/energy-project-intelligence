@@ -1,0 +1,34 @@
+Continue Energy Project Intelligence on this machine. Chat with the user in Thai.
+
+Read first, in this order, and treat them as source of truth:
+1. /opt/data/docs/energy-project-intelligence/handoff.md
+2. /opt/data/docs/energy-project-intelligence/status.json
+3. https://enerise.sprees.net/ and https://enerise.sprees.net/schema-v0.2.html
+4. Git working copy: /opt/data/workspace/energy-project-intelligence
+
+Do not re-litigate MVP scope. Do not reopen schema v0.2 decisions unless the user explicitly asks.
+
+Done:
+- Live docs at https://enerise.sprees.net/ with HTTP Basic Auth
+- GitHub repo https://github.com/Supreamth/energy-project-intelligence is cloned and origin/main is pushed
+- Schema v0.2 contract is closed (not yet migrated/run)
+
+Next task: Foundation on THIS host.
+- Keep using the existing git clone
+- Add Docker Compose for PostgreSQL + PostGIS and private S3-compatible object storage
+- Implement Alembic migrations that match schema v0.2 exactly
+- Create DB roles: migration, ingestion, review, product_read
+- Ingestion must not be able to write canonical_selections
+- Do not start collectors, satellite imagery, Solar Portfolio, public API, or LLM-approved facts
+- Docker daemon is currently not running and docker compose is missing; fix or document the real blocker, do not fake Postgres with SQLite
+
+Hard rules:
+- After EVERY status change, update the live site files in /opt/data/docs/energy-project-intelligence/ so https://enerise.sprees.net/ stays current. Always refresh the Next prompt section so a later model can continue. Then sync docs/reference/ (and schema-v0.2 files) into the git repo and push.
+- Never commit secrets, auth.json, GitHub tokens, passwords, or .env
+- NULL means unknown; never store 0 for missing
+- Timestamps UTC, display Asia/Bangkok
+- Do not invent phases from a total MW figure
+- Do not mix MWp, MWac, IT load, facility power
+- Do not add project total to phase total
+- HTTP 404 / missing source is not a cancelled project
+- Ambiguous identity match goes to human review; no auto-merge

@@ -19,7 +19,7 @@ Read `AGENTS.md` and `docs/reference/handoff.md` before continuing work.
 
 ## Current phase
 
-0 — Reference docs live. GitHub origin/main is connected. Next: schema v0.2.
+0 — Docs live, GitHub connected, schema v0.2 closed. Next: Foundation.
 
 ## MVP
 

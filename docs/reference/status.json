@@ -1,13 +1,17 @@
 {
   "project": "energy-project-intelligence",
   "title": "Thailand Energy & Digital Infrastructure Intelligence",
-  "updated_at": "2026-09-06T03:45:00Z",
+  "updated_at": "2026-09-06T04:10:00Z",
   "updated_timezone": "Asia/Bangkok",
-  "status": "github_connected",
-  "next_action": "Close schema v0.2 before any migration. Update https://enerise.sprees.net/ on every change.",
-  "phase": "0-reference-docs",
+  "status": "schema_v0.2_closed",
+  "schema_version": "0.2",
+  "schema_migrated": false,
+  "next_action": "Foundation: Docker Postgres+PostGIS + Alembic matching schema v0.2. Refresh Next prompt on every change.",
+  "phase": "foundation-ready",
   "local_url": "http://127.0.0.1:8091/",
   "public_url": "https://enerise.sprees.net/",
+  "schema_url": "https://enerise.sprees.net/schema-v0.2.html",
+  "next_prompt_url": "https://enerise.sprees.net/#next-prompt",
   "auth": {
     "type": "http_basic",
     "password_file": "/opt/data/home/.enerise/auth.json",
@@ -24,14 +28,14 @@
     "local_path": "/opt/data/workspace/energy-project-intelligence",
     "remote": "origin",
     "default_branch": "main",
-    "head_commit": "653b4e2",
     "pushed": true,
-    "note": "origin/main pushed 2026-09-06 as user Supreamth. Token stored only in /opt/data/home/.enerise/github-token (not in git)."
+    "note": "Token stored only in /opt/data/home/.enerise/github-token (not in git)."
   },
   "local": {
     "docs_path": "/opt/data/docs/energy-project-intelligence/index.html",
     "handoff_path": "/opt/data/docs/energy-project-intelligence/handoff.md",
     "status_path": "/opt/data/docs/energy-project-intelligence/status.json",
+    "next_prompt_path": "/opt/data/docs/energy-project-intelligence/next-prompt.txt",
     "code_repo_exists": true,
     "postgres": false,
     "postgis": false,
