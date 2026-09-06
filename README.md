@@ -17,7 +17,7 @@ uv run python -m energy_intelligence import fixtures/demo_phase_a.json
 uv run pytest -v
 ```
 
-Same file twice: one raw row, two fetch events, evidence stays pending. Next: review UI.
+Review queue: run `PYTHONPATH=src python -m energy_intelligence.review_http` then open /review. Next: product page.
 
 DB: `127.0.0.1:55432` database `intelligence`. Data dir `var/` and `.conda/` are gitignored.
 

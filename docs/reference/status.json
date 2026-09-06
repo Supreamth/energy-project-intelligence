@@ -1,13 +1,12 @@
 {
   "project": "energy-project-intelligence",
-  "updated_at": "2026-09-06T06:20:00Z",
-  "status": "manual_ingestion_ready",
+  "updated_at": "2026-09-06T06:05:00Z",
+  "status": "review_ui_ready",
   "schema_version": "0.2",
   "schema_migrated": true,
-  "postgres": {"host": "127.0.0.1", "port": 55432, "database": "intelligence"},
-  "ingest_cli": "python -m energy_intelligence import fixtures/demo_phase_a.json",
-  "tests": {"pytest": "10 passed"},
-  "next_action": "Review UI + canonical selection. Refresh Next prompt on every change.",
+  "review_url": "https://enerise.sprees.net/review",
+  "tests": {"pytest": "12 passed"},
+  "next_action": "Project Intelligence product page. Refresh Next prompt on every change.",
   "public_url": "https://enerise.sprees.net/",
   "github": {
     "url": "https://github.com/Supreamth/energy-project-intelligence",

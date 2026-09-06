@@ -158,13 +158,13 @@
         <p class="lead">เอกสารกลางของโครงการติดตาม solar farm และ data center ในไทย จากหลักฐานจริง ไม่ใช่ค่าที่เดา Schema v0.2 ปิดแล้ว ยังไม่รัน migration</p>
         <div class="hero-actions">
           <a class="button primary" href="#next-prompt">Next prompt</a>
+          <a class="button" href="/review">Review queue</a>
           <a class="button" href="schema-v0.2.html">Schema v0.2</a>
-          <a class="button" href="#handoff">AI Handoff</a>
         </div>
       </div>
       <aside class="card hero-side">
-        <div class="status-item"><strong><span class="dot green"></span>สถานะปัจจุบัน</strong><span>Manual ingestion CLI พร้อม · pytest 10 passed · demo fixture import ซ้ำได้</span></div>
-        <div class="status-item"><strong><span class="dot yellow"></span>ขั้นถัดไป</strong><span>Review UI + canonical selection (40 vs 50 MW)</span></div>
+        <div class="status-item"><strong><span class="dot green"></span>สถานะปัจจุบัน</strong><span>Review queue พร้อมที่ /review · pytest 12 passed · 40 vs 50 อยู่ร่วมกันได้</span></div>
+        <div class="status-item"><strong><span class="dot yellow"></span>ขั้นถัดไป</strong><span>หน้า Project Intelligence (ค้นหา รายละเอียด หลักฐานย้อนกลับ)</span></div>
         <div class="status-item"><strong><span class="dot red"></span>ยังไม่พร้อม</strong><span>Docker daemon, fixture ที่ได้รับอนุญาตจากแหล่งจริง</span></div>
         <div class="status-item"><strong>Repo</strong><span><a href="https://github.com/Supreamth/energy-project-intelligence">Supreamth/energy-project-intelligence</a> · clone + pushed · HEAD 0c439df</span></div>
       </aside>
@@ -202,31 +202,28 @@
 Read first, in this order, and treat them as source of truth:
 1. /opt/data/docs/energy-project-intelligence/handoff.md
 2. /opt/data/docs/energy-project-intelligence/status.json
-3. https://enerise.sprees.net/ and https://enerise.sprees.net/schema-v0.2.html
+3. https://enerise.sprees.net/ and https://enerise.sprees.net/review
 4. Git working copy: /opt/data/workspace/energy-project-intelligence
 
-Do not re-litigate MVP scope. Do not reopen schema v0.2 decisions unless the user explicitly asks.
+Do not re-litigate MVP scope. Do not reopen schema v0.2 unless the user asks.
 
 Done:
-- Live docs at https://enerise.sprees.net/ with HTTP Basic Auth
-- GitHub origin/main connected
-- Schema v0.2 closed and migrated on PostgreSQL 18.6 + PostGIS 3.6 (127.0.0.1:55432)
-- Manual ingestion CLI: `python -m energy_intelligence import fixtures/demo_phase_a.json`
-- Proven: same snapshot does not add raw (adds fetch event); file/value change creates new raw and keeps old evidence; unknown predicate rejected; evidence stays pending
-- pytest 10 passed
+- Docs, GitHub, schema v0.2 migrated, manual ingest CLI
+- Review queue at https://enerise.sprees.net/review
+- Pending evidence cannot become canonical
+- 40 MW and 50 MW evidence can coexist; one canonical selection
+- pytest includes review tests
 
-Next task: Review UI + canonical selection.
-- Queue of pending evidence
-- Accept/reject with append-only review events
-- Select canonical with reason; 40 vs 50 MW can coexist
-- Pending/rejected cannot become canonical
-- Do not start collectors, satellite imagery, Solar Portfolio, public API, or LLM-approved facts
+Next task: Project Intelligence product page.
+- Search/filter projects
+- Detail page: company, site, capacity by metric/scope, dates as ranges
+- Every displayed value links back to evidence
+- Do not start collectors, imagery, portfolio, public API, or LLM-approved facts
 
 Hard rules:
-- After EVERY status change, update https://enerise.sprees.net/ including the Next prompt, then sync docs into git and push
-- Never commit secrets, auth.json, tokens, .env, var/, .conda/, .venv/
-- Ingestion must not write canonical_selections
-- Follow schema v0.2 exactly</pre>
+- Update https://enerise.sprees.net/ and the Next prompt on every change, then git push
+- Never commit secrets, var/, .conda/, .venv/
+- Follow schema v0.2</pre>
       </div>
     </section>
 
@@ -333,8 +330,8 @@ Hard rules:
             <tr><td>2</td><td>Schema v0.2</td><td>เสร็จ — สัญญาปิด และ migrate แล้วบนฐานจริง</td></tr>
             <tr><td>3</td><td>Foundation (Postgres/PostGIS/migration/roles)</td><td>เสร็จ — PG 18.6+PostGIS 3.6 พอร์ต 55432, roles, object store ท้องถิ่น</td></tr>
             <tr><td>4</td><td>Manual ingestion</td><td>เสร็จ — CLI import, idempotent raw, evidence pending</td></tr>
-            <tr><td>5</td><td>Review UI + canonical</td><td>คิวถัดไป</td></tr>
-            <tr><td>6</td><td>หน้า Project Intelligence</td><td>ยังไม่เริ่ม</td></tr>
+            <tr><td>5</td><td>Review UI + canonical</td><td>เสร็จ — /review, pending เลือกไม่ได้, 40 vs 50 อยู่ร่วมกัน</td></tr>
+            <tr><td>6</td><td>หน้า Project Intelligence</td><td>คิวถัดไป</td></tr>
           </tbody>
         </table>
         <h3>สิ่งที่ต้องได้จากผู้ใช้</h3>
@@ -354,8 +351,8 @@ Hard rules:
           <div class="card mini"><span class="tag now">M2 สัญญาข้อมูลนิ่ง</span><p>schema v0.2 ปิดแล้ว และ migrate บนฐานจริงแล้ว ดู <a href="schema-v0.2.html">schema-v0.2.html</a></p></div>
           <div class="card mini"><span class="tag now">M3 ฐานหมุนได้</span><p>Postgres+PostGIS จาก migration, role แยก, object storage ท้องถิ่น (Docker compose มีไฟล์แต่ daemon ยังไม่รัน)</p></div>
           <div class="card mini"><span class="tag now">M4 หลักฐานเดินครบวง</span><p>import ไฟล์ demo ได้ ซ้ำไม่สร้าง raw ใหม่ แต่มี fetch event; ไฟล์เปลี่ยนได้ snapshot ใหม่</p></div>
-          <div class="card mini"><span class="tag next">M5 คนเลือกค่าได้</span><p>คิว review + canonical ขัดแย้ง 40 vs 50 MW</p></div>
-          <div class="card mini"><span class="tag later">M6 หน้าโครงการใช้ได้</span><p>ค้นหา รายละเอียด ที่มา capacity แยก metric/scope</p></div>
+          <div class="card mini"><span class="tag now">M5 คนเลือกค่าได้</span><p>คิว review ที่ <a href="/review">/review</a> · canonical ขัดแย้ง 40 vs 50 MW</p></div>
+          <div class="card mini"><span class="tag next">M6 หน้าโครงการใช้ได้</span><p>ค้นหา รายละเอียด ที่มา capacity แยก metric/scope</p></div>
           <div class="card mini"><span class="tag later">M7 Connector แรก</span><p>หลัง manual ผ่านแล้ว เลือกหนึ่งแหล่งที่สิทธิและ mapping นิ่งที่สุด</p></div>
         </div>
       </div>
@@ -417,7 +414,7 @@ Hard rules:
             <tr><td>ฐานข้อมูล</td><td>PostgreSQL + PostGIS</td><td>PG 18.6 + PostGIS 3.6 ที่ 127.0.0.1:55432 (user-space conda) schema intelligence migrated</td></tr>
             <tr><td>Backend</td><td>Python + SQLAlchemy + Alembic + Pydantic</td><td>uv .venv พร้อม alembic upgrade head แล้ว</td></tr>
             <tr><td>Raw storage</td><td>local object store + MinIO ใน compose</td><td>โมดูล LocalObjectStore พร้อม; MinIO รอ Docker</td></tr>
-            <tr><td>Review UI</td><td>HTML + HTMX server-rendered</td><td>ยังไม่เริ่ม</td></tr>
+            <tr><td>Review UI</td><td>HTML + HTMX server-rendered</td><td>มีคิวที่ /review แล้ว</td></tr>
             <tr><td>Local env</td><td>Docker Compose ไฟล์มี</td><td>docker CLI มี, daemon ไม่รัน — ใช้ Postgres user-space แทน</td></tr>
             <tr><td>GitHub</td><td>repo ด้านบน</td><td>clone + push ที่ /opt/data/workspace/energy-project-intelligence</td></tr>
             <tr><td>Tests</td><td>pytest กับ Postgres จริง</td><td>10 passed รวม ingest idempotency และ CLI</td></tr>

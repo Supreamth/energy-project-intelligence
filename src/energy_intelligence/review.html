@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Review queue — Energy Project Intelligence</title>
+  <style>
+    :root { --bg:#0b1020; --text:#eef4ff; --muted:#aebbd3; --line:rgba(255,255,255,.12); --accent:#7dd3fc; --ok:#86efac; --warn:#fde68a; --danger:#fca5a5; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: ui-sans-serif, system-ui, sans-serif; background: linear-gradient(180deg,#0b1020,#070b16); color: var(--text); line-height:1.55; }
+    a { color: var(--accent); }
+    .wrap { width: min(1100px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 64px; }
+    h1 { font-size: 32px; letter-spacing: -.03em; }
+    .card { background: rgba(17,26,50,.92); border: 1px solid var(--line); border-radius: 18px; padding: 16px 18px; margin: 12px 0; }
+    .muted { color: var(--muted); font-size: 14px; }
+    .row { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    button { border:0; border-radius: 12px; padding: 8px 12px; font-weight: 800; cursor: pointer; }
+    .ok { background: #166534; color: white; }
+    .warn { background: #854d0e; color: white; }
+    .pri { background: linear-gradient(135deg,#38bdf8,#8b5cf6); color: white; }
+    .ghost { background: rgba(255,255,255,.08); color: var(--text); }
+    code { color: #fff5cd; }
+    .tag { display:inline-block; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="muted"><a href="/">เอกสารหลัก</a> · คิวตรวจหลักฐาน</p>
+    <h1>Review + Canonical</h1>
+    <p class="muted">Accept/reject บันทึกประวัติแบบเพิ่มแถว pending เลือกเป็น canonical ไม่ได้ ค่า 40 กับ 50 อยู่ร่วมกันได้</p>
+    <div id="list">กำลังโหลด…</div>
+  </div>
+  <script>
+    async function load() {
+      const res = await fetch('/review/api/evidence', { credentials: 'same-origin' });
+      const rows = await res.json();
+      const root = document.getElementById('list');
+      if (!rows.length) { root.innerHTML = '<div class="card">ยังไม่มี evidence — import fixtures/demo_phase_a.json ก่อน</div>'; return; }
+      root.innerHTML = rows.map(r => `
+        <div class="card">
+          <div><span class="tag">${r.review_status}</span> <code>${r.predicate}</code></div>
+          <p>${r.excerpt || ''} · ${r.external_key} · ${JSON.stringify(r.value_json)}</p>
+          <p class="muted">subject: ${r.subject_entity_id || 'ยังไม่ผูก'} · id ${r.id}</p>
+          <div class="row">
+            <button class="ghost" onclick="act('attach', '${r.id}')">ผูกเฟสเดโม</button>
+            <button class="ok" onclick="act('accept', '${r.id}')">Accept</button>
+            <button class="warn" onclick="act('reject', '${r.id}')">Reject</button>
+            <button class="pri" onclick="act('canonical', '${r.id}', '${r.predicate}')">เลือก Canonical</button>
+          </div>
+        </div>`).join('');
+    }
+    async function act(kind, id, fieldKey) {
+      const reason = prompt('เหตุผล', kind) || kind;
+      const res = await fetch('/review/api/' + kind, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, reason, field_key: fieldKey })
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) { alert(body.error || res.status); return; }
+      load();
+    }
+    load();
+  </script>
+</body>
+</html>

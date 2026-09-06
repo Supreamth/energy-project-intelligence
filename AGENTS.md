@@ -20,4 +20,4 @@
 
 ## Next work
 
-Close schema v0.2 is done and migrated. Manual ingestion CLI is done. Next is review UI + canonical selection.
+Close schema v0.2 is done and migrated. Manual ingestion CLI is done. Review UI is done. Next is the Project Intelligence product page.
