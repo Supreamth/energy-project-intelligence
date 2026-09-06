@@ -1,69 +1,31 @@
 {
   "project": "energy-project-intelligence",
   "title": "Thailand Energy & Digital Infrastructure Intelligence",
-  "updated_at": "2026-09-06T04:10:00Z",
-  "updated_timezone": "Asia/Bangkok",
-  "status": "schema_v0.2_closed",
+  "updated_at": "2026-09-06T05:50:00Z",
+  "status": "foundation_ready",
   "schema_version": "0.2",
-  "schema_migrated": false,
-  "next_action": "Foundation: Docker Postgres+PostGIS + Alembic matching schema v0.2. Refresh Next prompt on every change.",
-  "phase": "foundation-ready",
-  "local_url": "http://127.0.0.1:8091/",
+  "schema_migrated": true,
+  "postgres": {
+    "engine": "PostgreSQL 18.6",
+    "postgis": "3.6",
+    "host": "127.0.0.1",
+    "port": 55432,
+    "database": "intelligence",
+    "how": "user-space conda-forge via micromamba; not Docker"
+  },
+  "next_action": "Manual ingestion end-to-end. Refresh Next prompt on every change.",
   "public_url": "https://enerise.sprees.net/",
-  "schema_url": "https://enerise.sprees.net/schema-v0.2.html",
   "next_prompt_url": "https://enerise.sprees.net/#next-prompt",
-  "auth": {
-    "type": "http_basic",
-    "password_file": "/opt/data/home/.enerise/auth.json",
-    "note": "Password hash only; plaintext is not stored in this file or the served HTML."
-  },
-  "http_server": {
-    "bind": "127.0.0.1",
-    "port": 8091,
-    "command": "python3 /opt/data/docs/energy-project-intelligence/serve.py"
-  },
   "github": {
     "url": "https://github.com/Supreamth/energy-project-intelligence",
-    "cloned_locally": true,
     "local_path": "/opt/data/workspace/energy-project-intelligence",
-    "remote": "origin",
-    "default_branch": "main",
-    "pushed": true,
-    "note": "Token stored only in /opt/data/home/.enerise/github-token (not in git)."
+    "pushed": true
   },
-  "local": {
-    "docs_path": "/opt/data/docs/energy-project-intelligence/index.html",
-    "handoff_path": "/opt/data/docs/energy-project-intelligence/handoff.md",
-    "status_path": "/opt/data/docs/energy-project-intelligence/status.json",
-    "next_prompt_path": "/opt/data/docs/energy-project-intelligence/next-prompt.txt",
-    "code_repo_exists": true,
-    "postgres": false,
-    "postgis": false,
-    "docker_cli": true,
-    "docker_daemon": false,
-    "docker_compose": false,
-    "gh_cli": false
+  "tests": {
+    "pytest_schema_constraints": "6 passed"
   },
-  "source_sessions": [
-    "default/20260906_025242_b8fba1",
-    "default/20260906_030903_baf0e5"
-  ],
-  "mvp_in_scope": [
-    "solar_farm and data_center in Thailand",
-    "manual import of licensed fixtures",
-    "internal review UI",
-    "canonical selection with evidence"
-  ],
-  "mvp_out_of_scope": [
-    "satellite imagery analysis",
-    "Solar Portfolio / meter data",
-    "auto-merge of ambiguous identities",
-    "LLM-approved facts",
-    "Kubernetes / distributed queues",
-    "public API / export"
-  ],
   "blocked_on": [
-    "Licensed fixture documents (ERC, BOI, owner disclosures)",
-    "Docker daemon if Foundation is started on this host"
+    "Docker daemon (compose/minio unused for now)",
+    "Licensed fixture documents for real-source ingestion"
   ]
 }

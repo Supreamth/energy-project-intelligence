@@ -1,28 +1,28 @@
 # Energy Project Intelligence
 
-Thailand Energy & Digital Infrastructure Intelligence — track solar farms and data centers in Thailand with evidence-backed facts.
+Thailand Energy & Digital Infrastructure Intelligence — evidence-backed solar farms and data centers in Thailand.
 
 **Live reference (login required):** https://enerise.sprees.net/
 
-Local clone: `/opt/data/workspace/energy-project-intelligence`  
-Live docs origin: `/opt/data/docs/energy-project-intelligence/` (served with HTTP Basic Auth)
-
-This repository is the code and documentation source. Schema v0.1 is a design contract only. Application code, migrations, and collectors are not in yet.
-
-## Rule for every change
-
-1. Update the live site files under `/opt/data/docs/energy-project-intelligence/` so https://enerise.sprees.net/ stays current.
-2. Copy the same public docs into `docs/reference/`.
-3. Never commit secrets, `auth.json`, passwords, or `.env`.
-
-Read `AGENTS.md` and `docs/reference/handoff.md` before continuing work.
+Local clone: `/opt/data/workspace/energy-project-intelligence`
 
 ## Current phase
 
-0 — Docs live, GitHub connected, schema v0.2 closed. Next: Foundation.
+Foundation is up on this machine: PostgreSQL 18.6 + PostGIS 3.6, schema v0.2 migrated, DB roles, local object store. Next: manual ingestion.
 
-## MVP
+Docker is not available here; `docker-compose.yml` is for a later host. Postgres runs user-space:
 
-Open one project → company, site, capacity/load, status, dates → original evidence for each value → conflicting values and why one was chosen.
+```bash
+./scripts/start_postgres.sh
+uv sync --extra dev
+uv run alembic upgrade head
+uv run pytest -v
+```
 
-Out of scope for now: satellite imagery, Solar Portfolio, auto-merge, LLM-approved facts, Kubernetes, public API.
+DB: `127.0.0.1:55432` database `intelligence`. Data dir `var/` and `.conda/` are gitignored.
+
+## Rule for every change
+
+1. Update `/opt/data/docs/energy-project-intelligence/` so https://enerise.sprees.net/ stays current, including the Next prompt.
+2. Copy public docs into `docs/reference/`.
+3. Never commit secrets, `auth.json`, `.env`, `var/`, `.conda/`, `.venv/`.

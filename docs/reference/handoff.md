@@ -1,52 +1,23 @@
 # AI Handoff — Energy Project Intelligence
 
-Updated: 2026-09-06 (UTC). Read this file first, then `status.json`, then `index.html` and `schema-v0.2.md`.
+Updated: 2026-09-06 (UTC). Read this file first, then `status.json`, then the live site.
 
-## What this is
+## Current truth
 
-Thailand Energy & Digital Infrastructure Intelligence. Track solar farms and data centers in Thailand with evidence-backed facts. Schema v0.2 is a **closed contract**. It has not been migrated or run.
-
-GitHub: https://github.com/Supreamth/energy-project-intelligence
-Docs: `/opt/data/docs/energy-project-intelligence/`
-Public: `https://enerise.sprees.net/`
-Schema: `https://enerise.sprees.net/schema-v0.2.html`
-Next prompt: `https://enerise.sprees.net/#next-prompt` and `next-prompt.txt`
-
-## Current truth (do not assume otherwise)
-
-- Local clone: `/opt/data/workspace/energy-project-intelligence`
-- GitHub origin/main is pushed
-- Live docs with HTTP Basic Auth
-- Schema v0.2 closed; no application code, no migrations, no fixtures
-- Docker CLI exists; Docker daemon is not running; `docker compose` is missing
-- PostgreSQL/PostGIS not installed
-- Update https://enerise.sprees.net/ and the Next prompt on every change
-- Never commit secrets
-- Do not reopen schema v0.2 unless the user asks
+- Live docs: https://enerise.sprees.net/
+- Git clone: `/opt/data/workspace/energy-project-intelligence`
+- Schema v0.2 is closed AND migrated on real PostgreSQL 18.6 + PostGIS 3.6 at `127.0.0.1:55432`
+- Start DB: `scripts/start_postgres.sh` (user-space conda prefix `.conda/`, data in `var/pgdata`, not in git)
+- Roles: `epi_migration`, `epi_ingestion`, `epi_review`, `epi_product_read`
+- `epi_ingestion` cannot INSERT canonical_selections (pytest)
+- Local object store: `src/energy_intelligence/storage.py`
+- Docker daemon is unavailable; `docker-compose.yml` is present for later
+- Next: manual ingestion end-to-end
+- Update https://enerise.sprees.net/ and Next prompt on every change
+- Never commit secrets, `var/`, `.conda/`, `.venv/`
 
 ## Ordered work
 
-0. Reference website + login (done)
-1. GitHub connected (done)
-2. Schema v0.2 contract (done — not migrated)
-3. Foundation: repo layout, Postgres+PostGIS, Alembic, roles, private object storage
-4. Manual ingestion end-to-end
-5. Review UI + canonical selection
-6. Project Intelligence product page
+0–3 done. 4 Manual ingestion. 5 Review UI. 6 Product page.
 
-## Schema v0.2 (locked)
-
-See `schema-v0.2.md`. Short form:
-
-- Capacity: `scope` + `capacity_status`, never mixed `basis`
-- License: `license_kind` + `license_external_key`
-- Append-only `evidence_review_events`
-- MVP publication_class=internal only
-- Canonical invalidation does not auto-select
-- Fetch failures allow null raw_record_id; 404 ≠ cancelled
-- Predicate registry 0.2.0
-- Ingestion contract schema_version 0.2 + extractor_version
-
-## Continue
-
-Copy the live Next prompt from https://enerise.sprees.net/#next-prompt or `/opt/data/docs/energy-project-intelligence/next-prompt.txt`.
+Copy Next prompt from https://enerise.sprees.net/#next-prompt

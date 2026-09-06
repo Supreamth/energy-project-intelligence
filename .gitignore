@@ -10,3 +10,7 @@ auth.json
 .DS_Store
 .idea/
 .vscode/
+.conda/
+var/
+*.egg-info/
+

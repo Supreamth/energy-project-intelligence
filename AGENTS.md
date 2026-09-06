@@ -20,4 +20,4 @@
 
 ## Next work
 
-Close schema v0.2 is done. Next is Foundation (Postgres+PostGIS + Alembic) without reopening v0.2.
+Close schema v0.2 is done and migrated. Next is manual ingestion end-to-end.
