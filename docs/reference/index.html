@@ -165,7 +165,7 @@
         </div>
       </div>
       <aside class="card hero-side">
-        <div class="status-item"><strong><span class="dot green"></span>สถานะปัจจุบัน</strong><span>แยก CSV BOI เป็น evidence pending แล้ว รอคนตรวจ · ยังไม่ใช้ที่อยู่เป็นพิกัด</span></div>
+        <div class="status-item"><strong><span class="dot green"></span>สถานะปัจจุบัน</strong><span>Accept + canonical BOI จาก CSV แล้ว · ดู /coverage</span></div>
         <div class="status-item"><strong><span class="dot yellow"></span>ขั้นถัดไป</strong><span>ผูกบริษัท, จังหวัด, พิกัดจากแหล่งที่มีสิทธิ — ยังไม่เปิด schema ใหม่เอง</span></div>
         <div class="status-item"><strong><span class="dot red"></span>ยังไม่พร้อม</strong><span>Docker daemon, fixture ที่ได้รับอนุญาตจากแหล่งจริง</span></div>
         <div class="status-item"><strong>Repo</strong><span><a href="https://github.com/Supreamth/energy-project-intelligence">Supreamth/energy-project-intelligence</a> · clone + pushed · HEAD 0c439df</span></div>
@@ -208,7 +208,7 @@ Read first:
 3. https://enerise.sprees.net/coverage
 4. Git clone: /opt/data/workspace/energy-project-intelligence
 
-BOI CSV upload raw 9a6d3d11-4f1a-4c21-8ce7-01fae1b10f5f extracted 1166 pending regulatory.boi.promotion. 743 linked to existing orgs. Do not treat contact address as site.point. Do not auto-accept unless the user asks.
+BOI CSV raw 9a6d3d11-4f1a-4c21-8ce7-01fae1b10f5f is accepted (1166) with canonical on 743 org-linked rows. Coverage counts BOI via licensee org. Contact addresses are not site points.
 
 Hard rules: update https://enerise.sprees.net/ and Next prompt on every change; never commit secrets/var/.conda/.venv.</pre>
       </div>

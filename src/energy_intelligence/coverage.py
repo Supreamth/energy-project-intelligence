@@ -141,6 +141,27 @@ def _count_present(conn, project_type: str, key: str) -> int:
         return conn.execute(sql, (project_type,)).fetchone()[0]
     if key.startswith("canonical."):
         field = key[len("canonical.") :]
+        if field == "regulatory.boi.promotion":
+            sql = """
+            SELECT count(DISTINCT p.entity_id) FROM intelligence.projects p
+            WHERE p.project_type = %s AND (
+              EXISTS (
+                SELECT 1 FROM intelligence.canonical_selections cs
+                WHERE cs.subject_entity_id = p.entity_id
+                  AND cs.field_key = %s AND cs.superseded_at IS NULL
+                  AND cs.publication_class = 'internal'
+              )
+              OR EXISTS (
+                SELECT 1 FROM intelligence.project_parties pp
+                JOIN intelligence.canonical_selections cs
+                  ON cs.subject_entity_id = pp.organization_id
+                 AND cs.field_key = %s AND cs.superseded_at IS NULL
+                 AND cs.publication_class = 'internal'
+                WHERE pp.project_id = p.entity_id
+              )
+            )
+            """
+            return conn.execute(sql, (project_type, field, field)).fetchone()[0]
         sql = """
         SELECT count(DISTINCT p.entity_id) FROM intelligence.projects p
         JOIN intelligence.canonical_selections cs

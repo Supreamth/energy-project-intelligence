@@ -1,11 +1,11 @@
 {
   "project": "energy-project-intelligence",
-  "updated_at": "2026-09-06T09:05:00Z",
-  "status": "boi_csv_pending_review",
+  "updated_at": "2026-09-06T09:15:00Z",
+  "status": "boi_csv_accepted_canonical",
   "boi_csv": {
     "raw_record_id": "9a6d3d11-4f1a-4c21-8ce7-01fae1b10f5f",
-    "rows": 1166,
-    "evidence_pending": 1166,
-    "orgs_linked": 743
+    "accepted": 1166,
+    "canonical": 743,
+    "coverage_pct": 45.7
   }
 }

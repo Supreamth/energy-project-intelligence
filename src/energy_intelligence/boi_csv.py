@@ -80,6 +80,36 @@ def extract_boi_csv(conn, store, *, raw_record_id) -> ExtractResult:
     )
 
 
+def accept_boi_csv(conn, *, raw_record_id, actor: str, reason: str) -> dict:
+    from energy_intelligence.review import accept_evidence, select_canonical
+
+    rows = conn.execute(
+        """
+        SELECT id, subject_entity_id, predicate
+        FROM intelligence.evidence
+        WHERE raw_record_id = %s AND review_status = 'pending'
+        ORDER BY extraction_key
+        """,
+        (raw_record_id,),
+    ).fetchall()
+    accepted = 0
+    canonical = 0
+    for evidence_id, subject_id, predicate in rows:
+        accept_evidence(conn, evidence_id=evidence_id, actor=actor, reason=reason)
+        accepted += 1
+        if subject_id is None:
+            continue
+        select_canonical(
+            conn,
+            evidence_id=evidence_id,
+            field_key=predicate,
+            actor=actor,
+            reason=reason,
+        )
+        canonical += 1
+    return {"accepted": accepted, "canonical": canonical}
+
+
 def _org_exact(conn, legal_name: str):
     row = conn.execute(
         "SELECT entity_id FROM intelligence.organizations WHERE legal_name = %s",
