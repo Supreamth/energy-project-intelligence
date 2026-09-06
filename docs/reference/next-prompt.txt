@@ -6,6 +6,6 @@ Read first:
 3. https://enerise.sprees.net/coverage
 4. Git clone: /opt/data/workspace/energy-project-intelligence
 
-BOI live Excel is behind Incapsula. Snapshots are public PDFs on boi.go.th/upload/content/. Evidence is pending regulatory.boi.promotion. Do not geocode contact addresses. Do not auto-accept.
+BOI CSV upload raw 9a6d3d11-4f1a-4c21-8ce7-01fae1b10f5f extracted 1166 pending regulatory.boi.promotion. 743 linked to existing orgs. Do not treat contact address as site.point. Do not auto-accept unless the user asks.
 
 Hard rules: update https://enerise.sprees.net/ and Next prompt on every change; never commit secrets/var/.conda/.venv.

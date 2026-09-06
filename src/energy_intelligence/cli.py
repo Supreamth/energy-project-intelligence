@@ -10,6 +10,7 @@ from pathlib import Path
 
 import psycopg
 
+from energy_intelligence.boi_csv import extract_boi_csv
 from energy_intelligence.boi_pdf import extract_boi_solar
 from energy_intelligence.erc_csv import extract_solar_licenses
 from energy_intelligence.ingest import import_contract, import_snapshot, record_fetch_failure
@@ -155,17 +156,31 @@ def _extract_boi(args) -> int:
         raw_id = args.raw
         if not raw_id:
             raise SystemExit("pass --raw")
-        result = extract_boi_solar(conn, _store(), raw_record_id=raw_id)
-        conn.commit()
-    print(
-        json.dumps(
-            {
+        kind = conn.execute(
+            "SELECT content_type FROM intelligence.raw_records WHERE id = %s",
+            (raw_id,),
+        ).fetchone()
+        if not kind:
+            raise SystemExit("raw not found")
+        ctype = kind[0] or ""
+        if "csv" in ctype or "excel" in ctype:
+            result = extract_boi_csv(conn, _store(), raw_record_id=raw_id)
+            payload = {
+                "raw_record_id": str(raw_id),
+                "evidence_inserted": result.evidence_inserted,
+                "solar_kept": result.solar_kept,
+                "orgs_linked": result.orgs_linked,
+                "rows_seen": result.rows_seen,
+            }
+        else:
+            result = extract_boi_solar(conn, _store(), raw_record_id=raw_id)
+            payload = {
                 "raw_record_id": str(raw_id),
                 "evidence_inserted": result.evidence_inserted,
                 "solar_kept": result.solar_kept,
             }
-        )
-    )
+        conn.commit()
+    print(json.dumps(payload))
     return 0
 
 
