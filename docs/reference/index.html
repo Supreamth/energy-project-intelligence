@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Energy Project Intelligence — Reference</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #111a32;
+      --text: #eef4ff;
+      --muted: #aebbd3;
+      --line: rgba(255,255,255,.12);
+      --accent: #7dd3fc;
+      --accent-2: #a78bfa;
+      --ok: #86efac;
+      --warn: #fde68a;
+      --danger: #fca5a5;
+      --shadow: 0 24px 80px rgba(0,0,0,.35);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(125,211,252,.18), transparent 34rem),
+        radial-gradient(circle at top right, rgba(167,139,250,.18), transparent 28rem),
+        linear-gradient(180deg, #0b1020 0%, #0a0f1e 45%, #070b16 100%);
+      line-height: 1.65;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    code {
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--line);
+      border-radius: .4rem;
+      padding: .08rem .35rem;
+      color: #fff5cd;
+      white-space: nowrap;
+    }
+    pre {
+      background: #050814;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 16px;
+      overflow-x: auto;
+      color: #d7e7ff;
+      white-space: pre-wrap;
+    }
+    .wrap { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 64px 0 28px; }
+    .hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: 28px; align-items: stretch; }
+    .card {
+      background: linear-gradient(180deg, rgba(17,26,50,.92), rgba(13,20,39,.92));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-main { padding: 38px; position: relative; overflow: hidden; }
+    .eyebrow {
+      display: inline-flex; gap: 8px; align-items: center;
+      padding: 7px 12px; border-radius: 999px;
+      background: rgba(125,211,252,.12);
+      border: 1px solid rgba(125,211,252,.25);
+      color: #dff6ff; font-size: 13px; font-weight: 700;
+    }
+    h1 { margin: 22px 0 14px; font-size: clamp(32px, 5.4vw, 58px); line-height: 1.05; letter-spacing: -.05em; }
+    .lead { margin: 0; color: var(--muted); font-size: 18px; max-width: 760px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 16px; border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.07);
+      color: var(--text); font-weight: 800; text-decoration: none;
+    }
+    .button.primary { background: linear-gradient(135deg, #38bdf8, #8b5cf6); border: 0; color: white; }
+    .button:hover { transform: translateY(-1px); text-decoration: none; }
+    .hero-side { padding: 22px; display: grid; gap: 12px; }
+    .status-item {
+      padding: 14px 16px; border-radius: 16px;
+      background: rgba(255,255,255,.055); border: 1px solid var(--line);
+    }
+    .status-item strong { display: block; margin-bottom: 4px; }
+    .status-item span { color: var(--muted); font-size: 14px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 8px; }
+    .green { background: var(--ok); }
+    .yellow { background: var(--warn); }
+    .red { background: var(--danger); }
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(16px);
+      background: rgba(7,11,22,.72);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap { display: flex; gap: 8px; overflow-x: auto; padding: 10px 0; }
+    nav a {
+      white-space: nowrap; color: var(--muted);
+      padding: 8px 12px; border-radius: 999px; font-weight: 700; font-size: 14px;
+    }
+    nav a:hover { color: var(--text); background: rgba(255,255,255,.06); text-decoration: none; }
+    main { padding: 34px 0 80px; }
+    section { margin-top: 28px; }
+    .section-card { padding: 30px; }
+    h2 { margin: 0 0 14px; font-size: clamp(24px, 3.6vw, 36px); letter-spacing: -.03em; }
+    h3 { margin: 22px 0 8px; font-size: 18px; }
+    p, li { color: var(--muted); }
+    ul, ol { padding-left: 1.2rem; }
+    .grid { display: grid; gap: 14px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .mini { padding: 18px; }
+    .tag {
+      display: inline-flex; border-radius: 999px; padding: .18rem .55rem;
+      font-size: 12px; font-weight: 800; border: 1px solid var(--line);
+      background: rgba(255,255,255,.06); color: var(--text); margin-bottom: 8px;
+    }
+    .tag.now { color: #86efac; border-color: rgba(134,239,172,.35); }
+    .tag.next { color: #fde68a; border-color: rgba(253,230,138,.35); }
+    .tag.later { color: #c4b5fd; border-color: rgba(167,139,250,.35); }
+    .tag.no { color: #fca5a5; border-color: rgba(252,165,165,.35); }
+    table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 16px; border: 1px solid var(--line); }
+    th, td { padding: .78rem .9rem; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { background: rgba(255,255,255,.08); color: var(--text); font-size: 14px; }
+    td { color: var(--muted); font-size: 14px; }
+    tr:last-child td { border-bottom: 0; }
+    .flow { display: grid; grid-template-columns: repeat(5, minmax(120px, 1fr)); gap: 10px; }
+    .step {
+      background: rgba(255,255,255,.05); border: 1px solid var(--line);
+      border-radius: 16px; padding: 14px; position: relative;
+    }
+    .step strong { display: block; margin-bottom: 6px; color: var(--text); }
+    .callout {
+      border-left: 4px solid var(--accent);
+      background: rgba(125,211,252,.08);
+      border-radius: 12px; padding: 12px 14px; color: var(--muted);
+    }
+    .callout.warn { border-left-color: var(--warn); background: rgba(253,230,138,.08); }
+    footer { color: var(--muted); padding: 8px 0 40px; font-size: 13px; }
+    @media (max-width: 900px) {
+      .hero, .grid.two, .grid.three, .flow { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap hero">
+      <div class="card hero-main">
+        <div class="eyebrow">Thailand Energy &amp; Digital Infrastructure · 6 ก.ย. 2026</div>
+        <h1>Project Intelligence Reference</h1>
+        <p class="lead">เอกสารกลางของโครงการติดตาม solar farm และ data center ในไทย จากหลักฐานจริง ไม่ใช่ค่าที่เดา จากสัญญาข้อมูล schema v0.1 สู่ระบบที่ตรวจย้อนหลังได้</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#handoff">AI Handoff</a>
+          <a class="button" href="#plan">แผนงาน</a>
+          <a class="button" href="#access">วิธีเปิดเอกสารนี้</a>
+        </div>
+      </div>
+      <aside class="card hero-side">
+        <div class="status-item"><strong><span class="dot yellow"></span>สถานะปัจจุบัน</strong><span>ช่วง 0 — เอกสารสดที่ enerise.sprees.net · clone ท้องถิ่นแล้ว · ยังไม่มีโค้ดระบบ/ฐานข้อมูล</span></div>
+        <div class="status-item"><strong><span class="dot yellow"></span>ขั้นถัดไป</strong><span>push commit แรกขึ้น GitHub (รอ token บนเครื่องนี้) แล้วปิด schema v0.2</span></div>
+        <div class="status-item"><strong><span class="dot red"></span>ยังไม่พร้อม</strong><span>GitHub push token, Docker daemon, Postgres/PostGIS, fixture ที่ได้รับอนุญาต</span></div>
+        <div class="status-item"><strong>Repo</strong><span><a href="https://github.com/Supreamth/energy-project-intelligence">Supreamth/energy-project-intelligence</a> · clone ที่ <code>/opt/data/workspace/energy-project-intelligence</code></span></div>
+      </aside>
+    </div>
+  </header>
+
+  <nav>
+    <div class="wrap">
+      <a href="#goal">เป้าหมาย</a>
+      <a href="#architecture">สถาปัตยกรรม</a>
+      <a href="#process">กระบวนการ</a>
+      <a href="#pm">Project management</a>
+      <a href="#milestones">Milestone</a>
+      <a href="#plan">แผน</a>
+      <a href="#schema">Schema</a>
+      <a href="#stack">Stack</a>
+      <a href="#tests">Acceptance</a>
+      <a href="#handoff">AI Handoff</a>
+      <a href="#guardrails">Guardrails</a>
+      <a href="#access">เข้าถึง</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="goal">
+      <div class="card section-card">
+        <h2>เป้าหมาย</h2>
+        <p>พิสูจน์ว่าระบบรับหลักฐาน → ให้คนตรวจ → แสดงทะเบียนโครงการพร้อมที่มา ได้กับข้อมูลจริง ไม่ใช่แค่สร้างตารางสำเร็จ</p>
+        <div class="callout">MVP ที่วัดได้: เปิดโครงการหนึ่ง → เห็นบริษัท ไซต์ กำลังผลิต/โหลด สถานะ และวันที่สำคัญ → กดดูหลักฐานต้นฉบับของแต่ละค่า → เห็นค่าขัดแย้งและเหตุผลที่เลือก</div>
+        <div class="grid two" style="margin-top:18px">
+          <div class="card mini">
+            <span class="tag now">ในขอบเขต MVP</span>
+            <ul>
+              <li>solar_farm และ data_center ในประเทศไทย</li>
+              <li>ตัวอย่างจริงที่ได้รับอนุญาต 5–10 โครงการ ทั้งสองประเภท</li>
+              <li>หลักฐานจาก กกพ., BOI, ประกาศเจ้าของ ตามสิทธิ</li>
+              <li>manual upload/import ก่อน collector อัตโนมัติ</li>
+              <li>หน้าเว็บภายในสำหรับตรวจหลักฐานและเลือก canonical</li>
+              <li>internal-only ไม่เปิด public API/export</li>
+            </ul>
+          </div>
+          <div class="card mini">
+            <span class="tag no">ยังไม่ทำ</span>
+            <ul>
+              <li>วิเคราะห์ภาพดาวเทียม</li>
+              <li>Solar Portfolio และข้อมูลมิเตอร์</li>
+              <li>auto-merge ตัวตนที่คลุมเครือ</li>
+              <li>LLM อนุมัติข้อมูลเอง</li>
+              <li>Kubernetes หรือคิวกระจายหลายเครื่อง</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture">
+      <div class="card section-card">
+        <h2>สถาปัตยกรรมข้อมูล</h2>
+        <p>สามชั้นห้ามปนกัน ผลิตภัณฑ์อ่านเฉพาะค่าที่เลือกแล้ว</p>
+        <div class="flow">
+          <div class="step"><strong>1. แหล่งที่ได้รับอนุญาต</strong>ไฟล์/หน้าเว็บ กกพ. BOI ประกาศเจ้าของ</div>
+          <div class="step"><strong>2. Raw</strong>bytes ต้นฉบับ + checksum + เวลาที่ดึง ไม่แก้ย้อนหลัง</div>
+          <div class="step"><strong>3. Evidence</strong>ข้อกล่าวอ้างพร้อม excerpt, locator, สถานะตรวจ</div>
+          <div class="step"><strong>4. Review</strong>คนจับคู่ตัวตน accept/reject เลือก canonical</div>
+          <div class="step"><strong>5. Product</strong>หน้าโครงการอ่าน canonical เท่านั้น</div>
+        </div>
+        <h3>ตัวตน</h3>
+        <p>organization → project → site → phase → asset (asset ใช้เมื่อมี Portfolio ภายหลัง) โครงการไม่ใช่บริษัท และไม่ใช่หนึ่งเฟสเสมอไป ห้ามสร้างเฟสสมมติจากยอด MW รวม</p>
+        <h3>ความหมายที่ห้ามปน</h3>
+        <ul>
+          <li>MWp, MWac, IT load, facility power คนละ metric</li>
+          <li>project total กับ phase total คนละขอบเขต</li>
+          <li>วันที่คาดการณ์ไม่กลายเป็นวันที่เกิดขึ้นจริง</li>
+          <li>สำนักงานใหญ่ไม่ใช่พิกัดไซต์</li>
+          <li>ก่อสร้างเสร็จภายนอกไม่เท่ากับเปิดดำเนินงาน</li>
+          <li>แหล่งหายหรือ HTTP 404 ไม่เท่ากับโครงการยกเลิก</li>
+          <li>NULL = ไม่ทราบ ห้ามใส่ 0 แทนข้อมูลหาย</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="card section-card">
+        <h2>Development process</h2>
+        <p>ทำทีละช่วง แต่ละช่วงต้องมีผลที่ทดสอบได้ อย่าข้ามไป collector จนกว่า manual workflow จะผ่าน</p>
+        <ol>
+          <li><strong style="color:var(--text)">Observe</strong> — อ่านสถานะจริงจากเครื่อง, git, ฐานข้อมูล, เอกสารนี้ และ <code>status.json</code></li>
+          <li><strong style="color:var(--text)">Plan</strong> — เลือกงานที่เล็กที่สุดที่ขยับ milestone ปัจจุบัน</li>
+          <li><strong style="color:var(--text)">Act</strong> — แก้เฉพาะที่จำเป็น ไม่ขยายขอบเขต</li>
+          <li><strong style="color:var(--text)">Verify</strong> — รันคำสั่งจริง เก็บหลักฐาน ไม่เชื่อคำอ้างของเอเจนต์</li>
+          <li><strong style="color:var(--text)">Decide</strong> — ผ่าน / ทำต่อ / บล็อก แล้วอัปเดตเอกสารนี้กับ <code>status.json</code></li>
+          <li><strong style="color:var(--text)">Publish docs</strong> — ทุกครั้งที่สถานะเปลี่ยน ต้องอัปเดตเว็บสด <a href="https://enerise.sprees.net/">https://enerise.sprees.net/</a> ก่อน แล้วค่อย sync เข้า git</li>
+        </ol>
+        <div class="callout warn">อย่า commit, push, deploy, ลบข้อมูล หรือแตะ secret ถ้าผู้ใช้ไม่ได้สั่ง ยกเว้นเมื่อผู้ใช้สั่งเชื่อม GitHub แล้ว ห้ามใส่รหัสผ่านใน git</div>
+        <h3>Definition of done ต่อช่วง</h3>
+        <table>
+          <thead><tr><th>ช่วง</th><th>ผ่านเมื่อ</th></tr></thead>
+          <tbody>
+            <tr><td>0 เอกสาร</td><td>มีเว็บอ้างอิง, handoff, status.json และเปิดผ่าน HTTP ได้</td></tr>
+            <tr><td>GitHub</td><td>clone ได้, remote ถูกต้อง, เอกสารอยู่ใน repo (หลังผู้ใช้อนุญาตให้ push)</td></tr>
+            <tr><td>Schema v0.2</td><td>ปิดช่องว่างด้านล่าง มีตัวอย่าง assertion ผ่าน/ไม่ผ่าน</td></tr>
+            <tr><td>Foundation</td><td>สร้างฐานจาก migration ได้, FK ผิดถูกปฏิเสธ, ingestion แก้ canonical ไม่ได้</td></tr>
+            <tr><td>Ingestion</td><td>snapshot ซ้ำไม่เพิ่ม raw, ไฟล์เปลี่ยนได้เวอร์ชันใหม่, retry ไม่พังข้อมูล</td></tr>
+            <tr><td>Review</td><td>40 กับ 50 MW อยู่ร่วมกัน, เลือก canonical ได้, pending เลือกไม่ได้</td></tr>
+            <tr><td>Product</td><td>เปิดโครงการหนึ่งครบตาม MVP พร้อมหลักฐานย้อนกลับ</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="pm">
+      <div class="card section-card">
+        <h2>Project management</h2>
+        <div class="grid three">
+          <div class="card mini"><span class="tag">บทบาท</span><h3>เจ้าของโครงการ</h3><p>ตัดสินขอบเขต สิทธิแหล่งข้อมูล และว่าจะเผยแพร่เมื่อไร ตอนนี้คือผู้ใช้ Hermes บนเครื่องนี้</p></div>
+          <div class="card mini"><span class="tag">บทบาท</span><h3>ผู้ตรวจหลักฐาน</h3><p>accept/reject evidence จับคู่ตัวตน เลือก canonical พร้อมเหตุผล รุ่นแรกอาจเป็นคนเดียวกับเจ้าของ</p></div>
+          <div class="card mini"><span class="tag">บทบาท</span><h3>เอเจนต์พัฒนา</h3><p>อ่าน handoff ก่อนลงมือ อัปเดตเอกสารหลังเปลี่ยนสถานะ ไม่ขยายไป imagery/portfolio</p></div>
+        </div>
+        <h3>บอร์ดงานปัจจุบัน</h3>
+        <table>
+          <thead><tr><th>ID</th><th>งาน</th><th>สถานะ</th></tr></thead>
+          <tbody>
+            <tr><td>0</td><td>Reference website + HTTP + public login</td><td>เสร็จ — https://enerise.sprees.net/</td></tr>
+            <tr><td>1</td><td>Clone/เชื่อม GitHub</td><td>clone แล้ว · รอ push token</td></tr>
+            <tr><td>2</td><td>Schema v0.2</td><td>รอ หลัง GitHub</td></tr>
+            <tr><td>3</td><td>Foundation (Postgres/PostGIS/migration/roles)</td><td>รอ Docker daemon + schema</td></tr>
+            <tr><td>4</td><td>Manual ingestion</td><td>รอ fixture ที่ได้รับอนุญาต</td></tr>
+            <tr><td>5</td><td>Review UI + canonical</td><td>ยังไม่เริ่ม</td></tr>
+            <tr><td>6</td><td>หน้า Project Intelligence</td><td>ยังไม่เริ่ม</td></tr>
+          </tbody>
+        </table>
+        <h3>สิ่งที่ต้องได้จากผู้ใช้</h3>
+        <ul>
+          <li>GitHub personal access token (repo) บนเครื่องนี้ เพื่อ push — clone ทำแล้ว</li>
+          <li>ตัวอย่างเอกสารที่มีสิทธิใช้ (กกพ. / BOI / ประกาศเจ้าของ)</li>
+          <li>ยืนยัน internal-only สำหรับ MVP</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="milestones">
+      <div class="card section-card">
+        <h2>Milestone</h2>
+        <div class="grid two">
+          <div class="card mini"><span class="tag now">M0 เอกสารมือถือต่อได้</span><p>เว็บนี้ + handoff.md + status.json เป็นแหล่งความจริงของสถานะงาน</p></div>
+          <div class="card mini"><span class="tag now">M1 Repo มีชีวิต (บางส่วน)</span><p>clone บนเครื่องนี้ remote ถูกต้อง ยังรอ push commit แรก</p></div>
+          <div class="card mini"><span class="tag next">M2 สัญญาข้อมูลนิ่ง</span><p>schema v0.2 ปิดช่องว่าง capacity, license, review history, publication, invalidation</p></div>
+          <div class="card mini"><span class="tag later">M3 ฐานหมุนได้</span><p>Postgres+PostGIS จาก migration, role แยก, object storage ส่วนตัว</p></div>
+          <div class="card mini"><span class="tag later">M4 หลักฐานเดินครบวง</span><p>import ไฟล์จริงอย่างน้อยหนึ่งชุด ซ้ำได้ ไม่สร้าง raw ซ้ำ</p></div>
+          <div class="card mini"><span class="tag later">M5 คนเลือกค่าได้</span><p>คิว review + canonical ขัดแย้ง 40 vs 50 MW</p></div>
+          <div class="card mini"><span class="tag later">M6 หน้าโครงการใช้ได้</span><p>ค้นหา รายละเอียด ที่มา capacity แยก metric/scope</p></div>
+          <div class="card mini"><span class="tag later">M7 Connector แรก</span><p>หลัง manual ผ่านแล้ว เลือกหนึ่งแหล่งที่สิทธิและ mapping นิ่งที่สุด</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="plan">
+      <div class="card section-card">
+        <h2>แผนแบบเป็นช่วง</h2>
+        <h3>ช่วง 0 — ตอนนี้</h3>
+        <ol>
+          <li>สร้างเอกสารอ้างอิงเป็นเว็บ (ไฟล์นี้)</li>
+          <li>เปิด HTTP ให้เปิดจากเบราว์เซอร์</li>
+          <li>เก็บ handoff ให้เอเจนต์เซสชันถัดไปอ่านต่อได้</li>
+        </ol>
+        <h3>ช่วงถัดไปทันที</h3>
+        <ol>
+          <li>เชื่อม GitHub repo ที่ยังว่าง</li>
+          <li>อย่าเขียนแอปจนกว่า schema v0.2 จะปิดช่องว่างด้านล่าง</li>
+          <li>Foundation บนเครื่องนี้ด้วย Docker เมื่อ daemon พร้อม ไม่ใช้ SQLite แทน PostGIS</li>
+        </ol>
+        <h3>ลำดับห้ามสลับ</h3>
+        <p>เอกสาร → GitHub → schema v0.2 → migration → manual import → review → หน้าโครงการ → collector อัตโนมัติ</p>
+      </div>
+    </section>
+
+    <section id="schema">
+      <div class="card section-card">
+        <h2>Schema v0.1 และช่องว่าง v0.2</h2>
+        <p>v0.1 เป็นสัญญาข้อมูลสำหรับ review ไม่ใช่ DDL ที่รันแล้ว ตาราง starter มี sources, ingestion_runs, raw_records, fetch_events, entities, organizations, projects, evidence, source_entity_links, canonical_selections ตารางธุรกิจอื่นอยู่ในหัวข้อ 3 ของเอกสารต้นฉบับ ยังไม่มี migration</p>
+        <table>
+          <thead><tr><th>เรื่อง</th><th>ข้อเสนอรุ่นแรก</th></tr></thead>
+          <tbody>
+            <tr><td>Capacity</td><td>แยกขอบเขต project/phase ออกจากสถานะ planned/operating</td></tr>
+            <tr><td>Predicate registry</td><td>กำหนด predicate, รูปแบบ value, หน่วย, subject kind, canonical field_key</td></tr>
+            <tr><td>ใบอนุญาต</td><td>ระบุชนิด/ตัวตนใบอนุญาต ไม่ให้ BOI ทับ กกพ.</td></tr>
+            <tr><td>Review history</td><td>เก็บเหตุการณ์แบบเพิ่มแถว ไม่พึ่ง reviewed_by ล่าสุดอย่างเดียว</td></tr>
+            <tr><td>Publication</td><td>แยกใช้ภายใน กับเผยแพร่ภายนอก; unknown ห้าม publish อัตโนมัติ</td></tr>
+            <tr><td>Canonical invalidation</td><td>ถ้าหลักฐานถูกถอนหรือสิทธิเปลี่ยน ต้องระงับ/ทบทวนค่าที่เลือกอยู่</td></tr>
+            <tr><td>Fetch failure</td><td>เก็บเหตุการณ์ดึงไม่สำเร็จได้แม้ยังไม่มี raw_record</td></tr>
+            <tr><td>Ingestion contract</td><td>extractor_version และวิธี resolve subject_external_key ให้แน่นอน</td></tr>
+          </tbody>
+        </table>
+        <h3>กฎเวลาและภาษา</h3>
+        <ul>
+          <li>timestamp เก็บ UTC แสดง Asia/Bangkok</li>
+          <li>วันที่ พ.ศ. เก็บต้นฉบับและแปลง ค.ศ. พร้อม validation</li>
+          <li>ภาษาไทยเก็บ Unicode</li>
+          <li>Q4/2027 เก็บเป็นช่วง 2027-10-01 ถึง 2027-12-31 precision=range ไม่แปลงเป็นวันเปิดจริง</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="stack">
+      <div class="card section-card">
+        <h2>Stack ที่เสนอ และสถานะเครื่องนี้</h2>
+        <table>
+          <thead><tr><th>ส่วน</th><th>ตัวเลือก</th><th>สถานะ 6 ก.ย. 2026</th></tr></thead>
+          <tbody>
+            <tr><td>ฐานข้อมูล</td><td>PostgreSQL + PostGIS</td><td>ยังไม่มี psql / extension</td></tr>
+            <tr><td>Backend</td><td>Python + FastAPI, SQLAlchemy + Alembic, Pydantic</td><td>Python 3.13.5, uv มี, alembic ไม่มี</td></tr>
+            <tr><td>Raw storage</td><td>S3-compatible ส่วนตัว</td><td>ยังไม่ติดตั้ง</td></tr>
+            <tr><td>Review UI</td><td>HTML + HTMX server-rendered</td><td>ยังไม่เริ่ม</td></tr>
+            <tr><td>Local env</td><td>Docker Compose</td><td>docker CLI มี, daemon ไม่รัน, compose ไม่มี</td></tr>
+            <tr><td>GitHub</td><td>repo ด้านบน</td><td>clone ที่ /opt/data/workspace/energy-project-intelligence · remote origin ถูก · ยังไม่มี commit บน GitHub · ไม่มี gh CLI / token</td></tr>
+            <tr><td>Tests</td><td>pytest กับ Postgres จริง</td><td>ยังไม่มีโปรเจกต์</td></tr>
+          </tbody>
+        </table>
+        <p>ไม่ใช้ SQLite แทนของจริงในส่วนที่พึ่ง PostGIS, constraint หรือสิทธิฐานข้อมูล ไม่เพิ่ม Redis/Celery ใน MVP</p>
+      </div>
+    </section>
+
+    <section id="tests">
+      <div class="card section-card">
+        <h2>Acceptance checks</h2>
+        <p>อย่าอ้างว่าผ่านทั้งเอกสารใน MVP ที่ยังไม่มี imagery หรือ Portfolio</p>
+        <ol>
+          <li>ดึง snapshot เดิมซ้ำ: raw ไม่เพิ่ม, มี fetch event ใหม่</li>
+          <li>record เดิมเปลี่ยน: snapshot ใหม่, evidence เก่ายังอยู่</li>
+          <li>สองแหล่งบอก 40 กับ 50 MW: เก็บสอง evidence, เลือก canonical พร้อมเหตุผล</li>
+          <li>50 MWp ไม่ทับ 40 MWac และไม่รวมกับ 20 MW IT load</li>
+          <li>project total ไม่ถูกนับซ้ำกับ phase total</li>
+          <li>ชื่อเหมือนกันต่างจังหวัดไม่ merge; ใกล้กันต่างเฟสไม่ merge</li>
+          <li>วันที่ Q4 คงเป็นช่วง</li>
+          <li>ไม่พบภาพใหม่ไม่ทำให้สถานะถอยหลัง (เมื่อมี imagery)</li>
+          <li>rights unknown/internal-only ไม่หลุด public</li>
+          <li>Tenant isolation ทั้ง DB และ object storage (เมื่อมี Portfolio)</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="handoff">
+      <div class="card section-card">
+        <h2>AI Handoff / Continue</h2>
+        <p>เอเจนต์เซสชันใหม่ต้องอ่านไฟล์เหล่านี้ก่อนลงมือ ห้ามเดาสถานะจากบทสนทนาเก่าอย่างเดียว</p>
+        <ol>
+          <li><code>/opt/data/docs/energy-project-intelligence/handoff.md</code></li>
+          <li><code>/opt/data/docs/energy-project-intelligence/status.json</code></li>
+          <li>หน้าเว็บนี้</li>
+        </ol>
+        <h3>Prompt ต่อเซสชัน</h3>
+<pre>Continue Energy Project Intelligence from /opt/data/docs/energy-project-intelligence/.
+Read handoff.md and status.json first. Do not re-litigate MVP scope.
+Current next step: push the local clone at /opt/data/workspace/energy-project-intelligence (needs GitHub token), then close schema v0.2.
+Do not implement collectors, imagery, portfolio, or public API.
+Every status change MUST update https://enerise.sprees.net/ (files in /opt/data/docs/energy-project-intelligence/) then sync the same docs into the git repo. Never commit secrets or auth.json.</pre>
+        <h3>เซสชันต้นทาง</h3>
+        <ul>
+          <li>อ่าน schema และวางแผนติดตั้ง: เซสชัน 20260906_025242_b8fba1</li>
+          <li>ขอลิสต์แล้วเริ่มเอกสาร: เซสชันนี้</li>
+        </ul>
+        <p>หลังทำงานเสร็จทุกครั้ง ให้อัปเดตตารางสถานะในหน้านี้, <code>status.json</code>, และ <code>handoff.md</code> ใน commit เดียวกับงาน (เมื่อได้รับอนุญาตให้ commit)</p>
+      </div>
+    </section>
+
+    <section id="guardrails">
+      <div class="card section-card">
+        <h2>Guardrails</h2>
+        <ul>
+          <li>ห้าม LLM เติมค่าที่ไม่มีหลักฐาน</li>
+          <li>กรณี match คลุมเครือเข้าคิวคน ห้าม merge อัตโนมัติด้วยระยะทางอย่างเดียว</li>
+          <li>ingestion role ห้ามแก้ canonical โดยตรง</li>
+          <li>เปลี่ยน canonical โดยปิดแถวเดิมและเพิ่มแถวใหม่ใน transaction เดียว</li>
+          <li>เลื่อน cursor หลัง durable commit เท่านั้น</li>
+          <li>credential ไม่อยู่ในตาราง sources และไม่อยู่ใน git</li>
+          <li>object storage ของ raw เป็น private</li>
+          <li>อย่าเริ่มสาม connector พร้อมกัน</li>
+          <li>อย่า encode ความล้มเหลวชั่วคราวของเครื่องเป็นกติกาถาวรในเอกสาร</li>
+          <li>ทุกครั้งที่งานเดินหน้า ต้องอัปเดต https://enerise.sprees.net/ ในรอบเดียวกัน</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="access">
+      <div class="card section-card">
+        <h2>เข้าถึงเอกสาร</h2>
+        <p>สาธารณะ (ต้องล็อกอิน HTTP Basic Auth ก่อน รหัสไม่เก็บในหน้านี้): <a href="https://enerise.sprees.net/">https://enerise.sprees.net/</a></p>
+        <p>ไฟล์หลักอยู่ที่ <code>/opt/data/docs/energy-project-intelligence/index.html</code></p>
+        <p>origin ในเครื่อง: <code>http://127.0.0.1:8091/</code> รันด้วย <code>python3 serve.py</code> ไม่ใช้ <code>http.server</code> เปล่า เพราะต้องมี login</p>
+        <p>ไฟล์ประกอบ: <code>handoff.md</code> สำหรับเอเจนต์, <code>status.json</code> สำหรับสถานะเครื่องที่ตรวจได้</p>
+        <p>Git clone ท้องถิ่น: <code>/opt/data/workspace/energy-project-intelligence</code> · เอกสารชุดเดียวกันอยู่ใน <code>docs/reference/</code> ของ repo · ยังไม่ได้ push เพราะเครื่องนี้ยังไม่มี GitHub token</p>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap">
+    Energy Project Intelligence reference · อัปเดต 6 กันยายน 2026 · schema v0.1 ยังไม่รัน · ช่วง 0 เอกสาร
+  </footer>
+</body>
+</html>

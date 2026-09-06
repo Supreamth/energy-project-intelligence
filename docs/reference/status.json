@@ -1,0 +1,66 @@
+{
+  "project": "energy-project-intelligence",
+  "title": "Thailand Energy & Digital Infrastructure Intelligence",
+  "updated_at": "2026-09-06T03:45:00Z",
+  "updated_timezone": "Asia/Bangkok",
+  "status": "github_cloned_push_blocked",
+  "phase": "0-reference-docs",
+  "local_url": "http://127.0.0.1:8091/",
+  "public_url": "https://enerise.sprees.net/",
+  "auth": {
+    "type": "http_basic",
+    "password_file": "/opt/data/home/.enerise/auth.json",
+    "note": "Password hash only; plaintext is not stored in this file or the served HTML."
+  },
+  "http_server": {
+    "bind": "127.0.0.1",
+    "port": 8091,
+    "command": "python3 /opt/data/docs/energy-project-intelligence/serve.py"
+  },
+  "next_action": "Need GitHub token on this machine to push the local clone, then close schema v0.2. Update https://enerise.sprees.net/ on every change.",
+  "github": {
+    "url": "https://github.com/Supreamth/energy-project-intelligence",
+    "cloned_locally": true,
+    "local_path": "/opt/data/workspace/energy-project-intelligence",
+    "remote": "origin",
+    "default_branch": "main",
+    "head_commit": null,
+    "pushed": false,
+    "note": "Empty public repo cloned 2026-09-06. No gh CLI, no GITHUB_TOKEN, no SSH key. Local files prepared; push blocked."
+  },
+  "local": {
+    "docs_path": "/opt/data/docs/energy-project-intelligence/index.html",
+    "handoff_path": "/opt/data/docs/energy-project-intelligence/handoff.md",
+    "status_path": "/opt/data/docs/energy-project-intelligence/status.json",
+    "code_repo_exists": true,
+    "postgres": false,
+    "postgis": false,
+    "docker_cli": true,
+    "docker_daemon": false,
+    "docker_compose": false,
+    "gh_cli": false
+  },
+  "source_sessions": [
+    "default/20260906_025242_b8fba1",
+    "default/20260906_030903_baf0e5"
+  ],
+  "mvp_in_scope": [
+    "solar_farm and data_center in Thailand",
+    "manual import of licensed fixtures",
+    "internal review UI",
+    "canonical selection with evidence"
+  ],
+  "mvp_out_of_scope": [
+    "satellite imagery analysis",
+    "Solar Portfolio / meter data",
+    "auto-merge of ambiguous identities",
+    "LLM-approved facts",
+    "Kubernetes / distributed queues",
+    "public API / export"
+  ],
+  "blocked_on": [
+    "GitHub push token on this machine",
+    "Licensed fixture documents (ERC, BOI, owner disclosures)",
+    "Docker daemon if Foundation is started on this host"
+  ]
+}
