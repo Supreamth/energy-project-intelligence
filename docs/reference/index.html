@@ -163,8 +163,8 @@
         </div>
       </div>
       <aside class="card hero-side">
-        <div class="status-item"><strong><span class="dot green"></span>สถานะปัจจุบัน</strong><span>Foundation ผ่านบน Postgres 18.6 + PostGIS 3.6 · schema v0.2 migrated · pytest 6 passed</span></div>
-        <div class="status-item"><strong><span class="dot yellow"></span>ขั้นถัดไป</strong><span>Manual ingestion end-to-end (import ไฟล์ → raw/evidence pending)</span></div>
+        <div class="status-item"><strong><span class="dot green"></span>สถานะปัจจุบัน</strong><span>Manual ingestion CLI พร้อม · pytest 10 passed · demo fixture import ซ้ำได้</span></div>
+        <div class="status-item"><strong><span class="dot yellow"></span>ขั้นถัดไป</strong><span>Review UI + canonical selection (40 vs 50 MW)</span></div>
         <div class="status-item"><strong><span class="dot red"></span>ยังไม่พร้อม</strong><span>Docker daemon, fixture ที่ได้รับอนุญาตจากแหล่งจริง</span></div>
         <div class="status-item"><strong>Repo</strong><span><a href="https://github.com/Supreamth/energy-project-intelligence">Supreamth/energy-project-intelligence</a> · clone + pushed · HEAD 0c439df</span></div>
       </aside>
@@ -210,21 +210,23 @@ Do not re-litigate MVP scope. Do not reopen schema v0.2 decisions unless the use
 Done:
 - Live docs at https://enerise.sprees.net/ with HTTP Basic Auth
 - GitHub origin/main connected
-- Schema v0.2 contract closed
-- Foundation: Alembic migration applied on real PostgreSQL 18.6 + PostGIS 3.6 (user-space, port 55432). Roles epi_migration / epi_ingestion / epi_review / epi_product_read exist. Local object store module exists. pytest schema constraints 6 passed. Docker daemon is still unavailable; docker-compose.yml is for later.
+- Schema v0.2 closed and migrated on PostgreSQL 18.6 + PostGIS 3.6 (127.0.0.1:55432)
+- Manual ingestion CLI: `python -m energy_intelligence import fixtures/demo_phase_a.json`
+- Proven: same snapshot does not add raw (adds fetch event); file/value change creates new raw and keeps old evidence; unknown predicate rejected; evidence stays pending
+- pytest 10 passed
 
-Next task: Manual ingestion end-to-end on THIS host.
-- CLI import of a licensed or demo fixture into raw object store + raw_records + fetch_events + pending evidence
-- Prove idempotency: same snapshot does not insert a new raw row but does insert a fetch event
-- Prove file change creates a new snapshot and keeps old evidence
+Next task: Review UI + canonical selection.
+- Queue of pending evidence
+- Accept/reject with append-only review events
+- Select canonical with reason; 40 vs 50 MW can coexist
+- Pending/rejected cannot become canonical
 - Do not start collectors, satellite imagery, Solar Portfolio, public API, or LLM-approved facts
 
 Hard rules:
-- After EVERY status change, update https://enerise.sprees.net/ including the Next prompt section, then sync docs into the git repo and push.
-- Never commit secrets, auth.json, GitHub tokens, passwords, .env, var/, or .conda/
-- NULL means unknown; never store 0 for missing
-- Follow schema v0.2 exactly
-- Ingestion role must not write canonical_selections</pre>
+- After EVERY status change, update https://enerise.sprees.net/ including the Next prompt, then sync docs into git and push
+- Never commit secrets, auth.json, tokens, .env, var/, .conda/, .venv/
+- Ingestion must not write canonical_selections
+- Follow schema v0.2 exactly</pre>
       </div>
     </section>
 
@@ -330,8 +332,8 @@ Hard rules:
             <tr><td>1</td><td>Clone/เชื่อม GitHub</td><td>เสร็จ — origin/main</td></tr>
             <tr><td>2</td><td>Schema v0.2</td><td>เสร็จ — สัญญาปิด และ migrate แล้วบนฐานจริง</td></tr>
             <tr><td>3</td><td>Foundation (Postgres/PostGIS/migration/roles)</td><td>เสร็จ — PG 18.6+PostGIS 3.6 พอร์ต 55432, roles, object store ท้องถิ่น</td></tr>
-            <tr><td>4</td><td>Manual ingestion</td><td>คิวถัดไป</td></tr>
-            <tr><td>5</td><td>Review UI + canonical</td><td>ยังไม่เริ่ม</td></tr>
+            <tr><td>4</td><td>Manual ingestion</td><td>เสร็จ — CLI import, idempotent raw, evidence pending</td></tr>
+            <tr><td>5</td><td>Review UI + canonical</td><td>คิวถัดไป</td></tr>
             <tr><td>6</td><td>หน้า Project Intelligence</td><td>ยังไม่เริ่ม</td></tr>
           </tbody>
         </table>
@@ -351,8 +353,8 @@ Hard rules:
           <div class="card mini"><span class="tag now">M1 Repo มีชีวิต</span><p>clone บนเครื่องนี้ remote ถูกต้อง และ push ขึ้น GitHub แล้ว</p></div>
           <div class="card mini"><span class="tag now">M2 สัญญาข้อมูลนิ่ง</span><p>schema v0.2 ปิดแล้ว และ migrate บนฐานจริงแล้ว ดู <a href="schema-v0.2.html">schema-v0.2.html</a></p></div>
           <div class="card mini"><span class="tag now">M3 ฐานหมุนได้</span><p>Postgres+PostGIS จาก migration, role แยก, object storage ท้องถิ่น (Docker compose มีไฟล์แต่ daemon ยังไม่รัน)</p></div>
-          <div class="card mini"><span class="tag next">M4 หลักฐานเดินครบวง</span><p>import ไฟล์จริงอย่างน้อยหนึ่งชุด ซ้ำได้ ไม่สร้าง raw ซ้ำ</p></div>
-          <div class="card mini"><span class="tag later">M5 คนเลือกค่าได้</span><p>คิว review + canonical ขัดแย้ง 40 vs 50 MW</p></div>
+          <div class="card mini"><span class="tag now">M4 หลักฐานเดินครบวง</span><p>import ไฟล์ demo ได้ ซ้ำไม่สร้าง raw ใหม่ แต่มี fetch event; ไฟล์เปลี่ยนได้ snapshot ใหม่</p></div>
+          <div class="card mini"><span class="tag next">M5 คนเลือกค่าได้</span><p>คิว review + canonical ขัดแย้ง 40 vs 50 MW</p></div>
           <div class="card mini"><span class="tag later">M6 หน้าโครงการใช้ได้</span><p>ค้นหา รายละเอียด ที่มา capacity แยก metric/scope</p></div>
           <div class="card mini"><span class="tag later">M7 Connector แรก</span><p>หลัง manual ผ่านแล้ว เลือกหนึ่งแหล่งที่สิทธิและ mapping นิ่งที่สุด</p></div>
         </div>
@@ -418,7 +420,7 @@ Hard rules:
             <tr><td>Review UI</td><td>HTML + HTMX server-rendered</td><td>ยังไม่เริ่ม</td></tr>
             <tr><td>Local env</td><td>Docker Compose ไฟล์มี</td><td>docker CLI มี, daemon ไม่รัน — ใช้ Postgres user-space แทน</td></tr>
             <tr><td>GitHub</td><td>repo ด้านบน</td><td>clone + push ที่ /opt/data/workspace/energy-project-intelligence</td></tr>
-            <tr><td>Tests</td><td>pytest กับ Postgres จริง</td><td>6 passed (constraint, PostGIS, role, object store)</td></tr>
+            <tr><td>Tests</td><td>pytest กับ Postgres จริง</td><td>10 passed รวม ingest idempotency และ CLI</td></tr>
           </tbody>
         </table>
         <p>ไม่ใช้ SQLite แทนของจริงในส่วนที่พึ่ง PostGIS, constraint หรือสิทธิฐานข้อมูล ไม่เพิ่ม Redis/Celery ใน MVP</p>

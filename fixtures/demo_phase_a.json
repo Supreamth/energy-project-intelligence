@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.2",
+  "source_code": "demo_manual",
+  "external_key": "demo-project-001",
+  "extractor_version": "manual-0.2.0",
+  "fetched_at": "2026-09-06T09:00:00Z",
+  "payload": {
+    "uri": "inline",
+    "sha256": "pending",
+    "content_type": "application/json"
+  },
+  "assertions": [
+    {
+      "extraction_key": "phase-a-it-load",
+      "subject_external_key": "demo-project-001:phase-a",
+      "predicate": "capacity.dc_it_load.phase.planned",
+      "value": {
+        "value": 40,
+        "unit": "MW",
+        "scope": "phase",
+        "capacity_status": "planned"
+      },
+      "excerpt": "Phase A planned IT load 40 MW",
+      "locator": {"json_path": "$.phase_a.it_load"},
+      "confidence": 0.99,
+      "review_status": "pending"
+    }
+  ]
+}

@@ -1,31 +1,16 @@
 {
   "project": "energy-project-intelligence",
-  "title": "Thailand Energy & Digital Infrastructure Intelligence",
-  "updated_at": "2026-09-06T05:50:00Z",
-  "status": "foundation_ready",
+  "updated_at": "2026-09-06T06:20:00Z",
+  "status": "manual_ingestion_ready",
   "schema_version": "0.2",
   "schema_migrated": true,
-  "postgres": {
-    "engine": "PostgreSQL 18.6",
-    "postgis": "3.6",
-    "host": "127.0.0.1",
-    "port": 55432,
-    "database": "intelligence",
-    "how": "user-space conda-forge via micromamba; not Docker"
-  },
-  "next_action": "Manual ingestion end-to-end. Refresh Next prompt on every change.",
+  "postgres": {"host": "127.0.0.1", "port": 55432, "database": "intelligence"},
+  "ingest_cli": "python -m energy_intelligence import fixtures/demo_phase_a.json",
+  "tests": {"pytest": "10 passed"},
+  "next_action": "Review UI + canonical selection. Refresh Next prompt on every change.",
   "public_url": "https://enerise.sprees.net/",
-  "next_prompt_url": "https://enerise.sprees.net/#next-prompt",
   "github": {
     "url": "https://github.com/Supreamth/energy-project-intelligence",
-    "local_path": "/opt/data/workspace/energy-project-intelligence",
-    "pushed": true
-  },
-  "tests": {
-    "pytest_schema_constraints": "6 passed"
-  },
-  "blocked_on": [
-    "Docker daemon (compose/minio unused for now)",
-    "Licensed fixture documents for real-source ingestion"
-  ]
+    "local_path": "/opt/data/workspace/energy-project-intelligence"
+  }
 }

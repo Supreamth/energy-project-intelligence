@@ -20,4 +20,4 @@
 
 ## Next work
 
-Close schema v0.2 is done and migrated. Next is manual ingestion end-to-end.
+Close schema v0.2 is done and migrated. Manual ingestion CLI is done. Next is review UI + canonical selection.

@@ -8,16 +8,16 @@ Local clone: `/opt/data/workspace/energy-project-intelligence`
 
 ## Current phase
 
-Foundation is up on this machine: PostgreSQL 18.6 + PostGIS 3.6, schema v0.2 migrated, DB roles, local object store. Next: manual ingestion.
-
-Docker is not available here; `docker-compose.yml` is for a later host. Postgres runs user-space:
+Foundation is up. Manual ingestion CLI works:
 
 ```bash
 ./scripts/start_postgres.sh
 uv sync --extra dev
-uv run alembic upgrade head
+uv run python -m energy_intelligence import fixtures/demo_phase_a.json
 uv run pytest -v
 ```
+
+Same file twice: one raw row, two fetch events, evidence stays pending. Next: review UI.
 
 DB: `127.0.0.1:55432` database `intelligence`. Data dir `var/` and `.conda/` are gitignored.
 
