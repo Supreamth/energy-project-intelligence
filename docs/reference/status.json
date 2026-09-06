@@ -3,7 +3,8 @@
   "title": "Thailand Energy & Digital Infrastructure Intelligence",
   "updated_at": "2026-09-06T03:45:00Z",
   "updated_timezone": "Asia/Bangkok",
-  "status": "github_cloned_push_blocked",
+  "status": "github_connected",
+  "next_action": "Close schema v0.2 before any migration. Update https://enerise.sprees.net/ on every change.",
   "phase": "0-reference-docs",
   "local_url": "http://127.0.0.1:8091/",
   "public_url": "https://enerise.sprees.net/",
@@ -17,16 +18,15 @@
     "port": 8091,
     "command": "python3 /opt/data/docs/energy-project-intelligence/serve.py"
   },
-  "next_action": "Need GitHub token on this machine to push the local clone, then close schema v0.2. Update https://enerise.sprees.net/ on every change.",
   "github": {
     "url": "https://github.com/Supreamth/energy-project-intelligence",
     "cloned_locally": true,
     "local_path": "/opt/data/workspace/energy-project-intelligence",
     "remote": "origin",
     "default_branch": "main",
-    "head_commit": "757d213275aa487bfed13564804357a549601e91",
-    "pushed": false,
-    "note": "Local root commit 757d213. Push blocked: no GitHub credentials on this host."
+    "head_commit": "653b4e2",
+    "pushed": true,
+    "note": "origin/main pushed 2026-09-06 as user Supreamth. Token stored only in /opt/data/home/.enerise/github-token (not in git)."
   },
   "local": {
     "docs_path": "/opt/data/docs/energy-project-intelligence/index.html",
@@ -59,7 +59,6 @@
     "public API / export"
   ],
   "blocked_on": [
-    "GitHub push token on this machine",
     "Licensed fixture documents (ERC, BOI, owner disclosures)",
     "Docker daemon if Foundation is started on this host"
   ]

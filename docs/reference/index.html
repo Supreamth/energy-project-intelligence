@@ -161,10 +161,10 @@
         </div>
       </div>
       <aside class="card hero-side">
-        <div class="status-item"><strong><span class="dot yellow"></span>สถานะปัจจุบัน</strong><span>ช่วง 0 — เอกสารสดที่ enerise.sprees.net · clone ท้องถิ่นแล้ว · ยังไม่มีโค้ดระบบ/ฐานข้อมูล</span></div>
-        <div class="status-item"><strong><span class="dot yellow"></span>ขั้นถัดไป</strong><span>push commit แรกขึ้น GitHub (รอ token บนเครื่องนี้) แล้วปิด schema v0.2</span></div>
-        <div class="status-item"><strong><span class="dot red"></span>ยังไม่พร้อม</strong><span>GitHub push token, Docker daemon, Postgres/PostGIS, fixture ที่ได้รับอนุญาต</span></div>
-        <div class="status-item"><strong>Repo</strong><span><a href="https://github.com/Supreamth/energy-project-intelligence">Supreamth/energy-project-intelligence</a> · clone ที่ <code>/opt/data/workspace/energy-project-intelligence</code></span></div>
+        <div class="status-item"><strong><span class="dot green"></span>สถานะปัจจุบัน</strong><span>ช่วง 0 — เอกสารสดที่ enerise.sprees.net · GitHub main มี commit แล้ว · ยังไม่มีโค้ดระบบ/ฐานข้อมูล</span></div>
+        <div class="status-item"><strong><span class="dot yellow"></span>ขั้นถัดไป</strong><span>ปิด schema v0.2 ก่อนเขียน migration</span></div>
+        <div class="status-item"><strong><span class="dot red"></span>ยังไม่พร้อม</strong><span>Docker daemon, Postgres/PostGIS, fixture ที่ได้รับอนุญาต</span></div>
+        <div class="status-item"><strong>Repo</strong><span><a href="https://github.com/Supreamth/energy-project-intelligence">Supreamth/energy-project-intelligence</a> · clone + pushed · HEAD 653b4e2</span></div>
       </aside>
     </div>
   </header>
@@ -286,8 +286,8 @@
           <thead><tr><th>ID</th><th>งาน</th><th>สถานะ</th></tr></thead>
           <tbody>
             <tr><td>0</td><td>Reference website + HTTP + public login</td><td>เสร็จ — https://enerise.sprees.net/</td></tr>
-            <tr><td>1</td><td>Clone/เชื่อม GitHub</td><td>clone แล้ว · รอ push token</td></tr>
-            <tr><td>2</td><td>Schema v0.2</td><td>รอ หลัง GitHub</td></tr>
+            <tr><td>1</td><td>Clone/เชื่อม GitHub</td><td>เสร็จ — pushed main 653b4e2</td></tr>
+            <tr><td>2</td><td>Schema v0.2</td><td>คิวถัดไป</td></tr>
             <tr><td>3</td><td>Foundation (Postgres/PostGIS/migration/roles)</td><td>รอ Docker daemon + schema</td></tr>
             <tr><td>4</td><td>Manual ingestion</td><td>รอ fixture ที่ได้รับอนุญาต</td></tr>
             <tr><td>5</td><td>Review UI + canonical</td><td>ยังไม่เริ่ม</td></tr>
@@ -296,7 +296,6 @@
         </table>
         <h3>สิ่งที่ต้องได้จากผู้ใช้</h3>
         <ul>
-          <li>GitHub personal access token (repo) บนเครื่องนี้ เพื่อ push — clone ทำแล้ว</li>
           <li>ตัวอย่างเอกสารที่มีสิทธิใช้ (กกพ. / BOI / ประกาศเจ้าของ)</li>
           <li>ยืนยัน internal-only สำหรับ MVP</li>
         </ul>
@@ -308,7 +307,7 @@
         <h2>Milestone</h2>
         <div class="grid two">
           <div class="card mini"><span class="tag now">M0 เอกสารมือถือต่อได้</span><p>เว็บนี้ + handoff.md + status.json เป็นแหล่งความจริงของสถานะงาน</p></div>
-          <div class="card mini"><span class="tag now">M1 Repo มีชีวิต (บางส่วน)</span><p>clone บนเครื่องนี้ remote ถูกต้อง ยังรอ push commit แรก</p></div>
+          <div class="card mini"><span class="tag now">M1 Repo มีชีวิต</span><p>clone บนเครื่องนี้ remote ถูกต้อง และ push ขึ้น GitHub แล้ว</p></div>
           <div class="card mini"><span class="tag next">M2 สัญญาข้อมูลนิ่ง</span><p>schema v0.2 ปิดช่องว่าง capacity, license, review history, publication, invalidation</p></div>
           <div class="card mini"><span class="tag later">M3 ฐานหมุนได้</span><p>Postgres+PostGIS จาก migration, role แยก, object storage ส่วนตัว</p></div>
           <div class="card mini"><span class="tag later">M4 หลักฐานเดินครบวง</span><p>import ไฟล์จริงอย่างน้อยหนึ่งชุด ซ้ำได้ ไม่สร้าง raw ซ้ำ</p></div>
@@ -377,7 +376,7 @@
             <tr><td>Raw storage</td><td>S3-compatible ส่วนตัว</td><td>ยังไม่ติดตั้ง</td></tr>
             <tr><td>Review UI</td><td>HTML + HTMX server-rendered</td><td>ยังไม่เริ่ม</td></tr>
             <tr><td>Local env</td><td>Docker Compose</td><td>docker CLI มี, daemon ไม่รัน, compose ไม่มี</td></tr>
-            <tr><td>GitHub</td><td>repo ด้านบน</td><td>clone ที่ /opt/data/workspace/energy-project-intelligence · remote origin ถูก · ยังไม่มี commit บน GitHub · ไม่มี gh CLI / token</td></tr>
+            <tr><td>GitHub</td><td>repo ด้านบน</td><td>clone + push แล้วที่ /opt/data/workspace/energy-project-intelligence · origin/main 653b4e2</td></tr>
             <tr><td>Tests</td><td>pytest กับ Postgres จริง</td><td>ยังไม่มีโปรเจกต์</td></tr>
           </tbody>
         </table>
@@ -416,7 +415,7 @@
         <h3>Prompt ต่อเซสชัน</h3>
 <pre>Continue Energy Project Intelligence from /opt/data/docs/energy-project-intelligence/.
 Read handoff.md and status.json first. Do not re-litigate MVP scope.
-Current next step: push the local clone at /opt/data/workspace/energy-project-intelligence (needs GitHub token), then close schema v0.2.
+Current next step: close schema v0.2 before any migration.
 Do not implement collectors, imagery, portfolio, or public API.
 Every status change MUST update https://enerise.sprees.net/ (files in /opt/data/docs/energy-project-intelligence/) then sync the same docs into the git repo. Never commit secrets or auth.json.</pre>
         <h3>เซสชันต้นทาง</h3>
@@ -453,7 +452,7 @@ Every status change MUST update https://enerise.sprees.net/ (files in /opt/data/
         <p>ไฟล์หลักอยู่ที่ <code>/opt/data/docs/energy-project-intelligence/index.html</code></p>
         <p>origin ในเครื่อง: <code>http://127.0.0.1:8091/</code> รันด้วย <code>python3 serve.py</code> ไม่ใช้ <code>http.server</code> เปล่า เพราะต้องมี login</p>
         <p>ไฟล์ประกอบ: <code>handoff.md</code> สำหรับเอเจนต์, <code>status.json</code> สำหรับสถานะเครื่องที่ตรวจได้</p>
-        <p>Git clone ท้องถิ่น: <code>/opt/data/workspace/energy-project-intelligence</code> · เอกสารชุดเดียวกันอยู่ใน <code>docs/reference/</code> ของ repo · ยังไม่ได้ push เพราะเครื่องนี้ยังไม่มี GitHub token</p>
+        <p>GitHub: <a href="https://github.com/Supreamth/energy-project-intelligence">https://github.com/Supreamth/energy-project-intelligence</a> · clone ท้องถิ่น <code>/opt/data/workspace/energy-project-intelligence</code> · เอกสารชุดเดียวกันอยู่ใน <code>docs/reference/</code></p>
       </div>
     </section>
   </main>

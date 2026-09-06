@@ -19,4 +19,4 @@
 
 ## Next work
 
-Push this repo to GitHub (needs a token on this host), then close schema v0.2.
+Close schema v0.2 before any migration.

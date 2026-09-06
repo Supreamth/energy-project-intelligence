@@ -17,10 +17,10 @@ Source sessions:
 ## Current truth (do not assume otherwise)
 
 - Local clone exists: `/opt/data/workspace/energy-project-intelligence`
-- GitHub remote: https://github.com/Supreamth/energy-project-intelligence (public, still empty on GitHub until first push)
+- GitHub remote: https://github.com/Supreamth/energy-project-intelligence (public, main pushed)
 - Live docs: https://enerise.sprees.net/  (HTTP Basic Auth; hash in `/opt/data/home/.enerise/auth.json`)
 - No application code, no migrations, no fixtures
-- `gh` is not installed; no GitHub token/SSH on this machine — push is blocked until a token is provided
+- GitHub device login succeeded for user Supreamth; token is local-only, never in git
 - Docker CLI exists; Docker daemon is not running; `docker compose` is not available
 - PostgreSQL/PostGIS/psql/alembic are not installed
 - User asked to install on THIS machine
@@ -31,7 +31,7 @@ Source sessions:
 ## Ordered work
 
 0. Reference website + local HTTP + public login (done)
-1. Clone/connect GitHub (clone done; push blocked — no token)
+1. Clone/connect GitHub (done — origin/main pushed)
 2. Schema v0.2 decisions before migration
 3. Foundation: repo layout, Postgres+PostGIS, Alembic, roles, private object storage
 4. Manual ingestion end-to-end
@@ -77,7 +77,7 @@ PostgreSQL + PostGIS, Python + FastAPI, SQLAlchemy + Alembic, Pydantic, S3-compa
 ```
 Continue Energy Project Intelligence from /opt/data/docs/energy-project-intelligence/.
 Read handoff.md and status.json first. Do not re-litigate MVP scope.
-Current next step: provide a GitHub token (repo scope) so we can push /opt/data/workspace/energy-project-intelligence, then close schema v0.2.
+Current next step: close schema v0.2 before any migration.
 Every status change MUST update https://enerise.sprees.net/ then sync docs/reference/. Never commit secrets.
 User prefers Thai for generated articles; this project docs may stay bilingual but UI copy for the user should be Thai when talking in chat.
 ```
