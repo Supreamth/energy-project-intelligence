@@ -168,5 +168,56 @@
     "website": "https://bangkoksolarpower.com/en/reference_project",
     "notes": "GPPD แถว Bamnet Narong 22.5 MW ไม่ตรงชุดใบอนุญาต 2.52 MW ชัยภูมิ 9 โครงการ — ไม่ผูก.",
     "sites": []
+  },
+  {
+    "legal_name": "บริษัท โตโยต้า มอเตอร์ เอเชีย (ประเทศไทย) จำกัด",
+    "website": "https://www.jcm.go.jp/projects/91",
+    "notes": "JCM TH015 มี 2 จุด. ผูกเฉพาะโครงการ TDEM จ.สมุทรปราการ ที่จังหวัดตรงไซต์ที่ 1. ไม่ใช้ไซต์ฉะเชิงเทรา.",
+    "sites": [
+      {
+        "name_contains": "โตโยต้า ไดฮัทสุ",
+        "province": "สมุทรปราการ",
+        "lat": 13.59555,
+        "lon": 100.87645,
+        "location_method": "jcm_pdd",
+        "accuracy_m": 200,
+        "source_url": "https://www.jcm.go.jp/projects/91",
+        "excerpt": "JCM TH015 site 1 Samutprakarn 13°35'43.98\"N 100°52'37.22\"E"
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท ไทยเดลมาร์ จำกัด",
+    "website": "https://www.jcm.go.jp/th-jp/projects/106",
+    "notes": "JCM TH022 โรงงานอาหาร บางบ่อ สมุทรปราการ มีโครงการเดียวในฐาน.",
+    "sites": [
+      {
+        "name_contains": "ไทยเดลมาร์",
+        "province": "สมุทรปราการ",
+        "lat": 13.667311,
+        "lon": 100.906742,
+        "location_method": "jcm_pdd",
+        "accuracy_m": 200,
+        "source_url": "https://www.jcm.go.jp/th-jp/projects/106",
+        "excerpt": "JCM TH022 N 13°40'2.32\" E 100°54'24.27\""
+      }
+    ]
+  },
+  {
+    "legal_name": "บริษัท ทีเอสบี บางกอก จำกัด",
+    "website": "https://www.jcm.go.jp/projects/78/pdd_file",
+    "notes": "JCM โซลาร์ลอยน้ำนิคมกบินทร์บุรี มีโครงการเดียวในฐาน.",
+    "sites": [
+      {
+        "name_contains": "ทีเอสบี บางกอก",
+        "province": "ปราจีนบุรี",
+        "lat": 14.05975,
+        "lon": 101.8485,
+        "location_method": "jcm_pdd",
+        "accuracy_m": 200,
+        "source_url": "https://www.jcm.go.jp/projects/78/pdd_file",
+        "excerpt": "JCM floating solar Kabinburi Industrial Zone N14°03'35.1\" E101°50'54.6\""
+      }
+    ]
   }
 ]

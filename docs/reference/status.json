@@ -1,11 +1,7 @@
 {
   "project": "energy-project-intelligence",
-  "updated_at": "2026-09-06T09:15:00Z",
-  "status": "boi_csv_accepted_canonical",
-  "boi_csv": {
-    "raw_record_id": "9a6d3d11-4f1a-4c21-8ce7-01fae1b10f5f",
-    "accepted": 1166,
-    "canonical": 743,
-    "coverage_pct": 45.7
-  }
+  "updated_at": "2026-09-06T10:10:00Z",
+  "status": "more_jcm_points_unique_hosts",
+  "solar_points_pct": 1.4,
+  "new_jcm": ["TDEM Samut Prakan", "Thai Delmar", "TSB Bangkok Kabinburi"]
 }

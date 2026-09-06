@@ -6,6 +6,6 @@ Read first:
 3. https://enerise.sprees.net/coverage
 4. Git clone: /opt/data/workspace/energy-project-intelligence
 
-BOI CSV raw 9a6d3d11-4f1a-4c21-8ce7-01fae1b10f5f is accepted (1166) with canonical on 743 org-linked rows. Coverage counts BOI via licensee org. Contact addresses are not site points.
+Coordinates only from unique JCM host or GPPD unique plant names. No HQ geocode. OSM/Overpass unreachable. GEM not licensed. BOI CSV addresses are contact_not_site.
 
 Hard rules: update https://enerise.sprees.net/ and Next prompt on every change; never commit secrets/var/.conda/.venv.
