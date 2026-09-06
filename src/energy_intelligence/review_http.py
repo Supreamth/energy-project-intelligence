@@ -10,10 +10,12 @@ import os
 import uuid
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import unquote, urlparse
+from urllib.parse import parse_qs, unquote, urlparse
+import re
 
 import psycopg
 
+from energy_intelligence.product_html import render_detail, render_list
 from energy_intelligence.review import (
     accept_evidence,
     attach_demo_phase,
@@ -113,6 +115,22 @@ class Handler(SimpleHTTPRequestHandler):
         if parsed.path == "/review/api/evidence":
             self._json(200, _list_evidence())
             return
+        if parsed.path in ("/projects", "/projects/"):
+            ptype = (parse_qs(parsed.query).get("type") or [None])[0]
+            with psycopg.connect(DSN) as conn:
+                data = render_list(conn, ptype)
+            self._html(data)
+            return
+        match = re.fullmatch(r"/projects/([0-9a-fA-F-]{36})", parsed.path)
+        if match:
+            with psycopg.connect(DSN) as conn:
+                try:
+                    data = render_detail(conn, match.group(1))
+                except ValueError:
+                    self.send_error(404, "project not found")
+                    return
+            self._html(data)
+            return
         if Path(self.translate_path(unquote(self.path))).name == "__denied__":
             self.send_error(403, "Forbidden")
             return
@@ -139,6 +157,13 @@ class Handler(SimpleHTTPRequestHandler):
             self._json(500, {"error": str(exc)})
             return
         self._json(200, result)
+
+    def _html(self, data: bytes) -> None:
+        self.send_response(200)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(data)))
+        self.end_headers()
+        self.wfile.write(data)
 
     def _json(self, status: int, payload: dict | list) -> None:
         data = json.dumps(payload, default=str).encode("utf-8")

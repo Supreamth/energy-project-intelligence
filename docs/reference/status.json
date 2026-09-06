@@ -1,13 +1,16 @@
 {
   "project": "energy-project-intelligence",
-  "updated_at": "2026-09-06T06:05:00Z",
-  "status": "review_ui_ready",
+  "updated_at": "2026-09-06T06:10:00Z",
+  "status": "mvp_inner_loop_complete",
   "schema_version": "0.2",
   "schema_migrated": true,
-  "review_url": "https://enerise.sprees.net/review",
-  "tests": {"pytest": "12 passed"},
-  "next_action": "Project Intelligence product page. Refresh Next prompt on every change.",
-  "public_url": "https://enerise.sprees.net/",
+  "urls": {
+    "docs": "https://enerise.sprees.net/",
+    "review": "https://enerise.sprees.net/review",
+    "projects": "https://enerise.sprees.net/projects"
+  },
+  "tests": {"pytest": "13 passed"},
+  "next_action": "User chooses: real fixtures, first connector, or product polish. Do not auto-start collectors.",
   "github": {
     "url": "https://github.com/Supreamth/energy-project-intelligence",
     "local_path": "/opt/data/workspace/energy-project-intelligence"

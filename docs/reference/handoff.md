@@ -2,13 +2,13 @@
 
 Updated: 2026-09-06 (UTC).
 
-## Current truth
+MVP inner loop is complete.
 
-- Live docs: https://enerise.sprees.net/
-- Review queue: https://enerise.sprees.net/review
-- Git clone: `/opt/data/workspace/energy-project-intelligence`
-- Postgres 18.6 + PostGIS 3.6 at 127.0.0.1:55432
-- Origin server: `python -m energy_intelligence.review_http` on 127.0.0.1:8091 (docs + /review)
-- Next: product page (search + project detail with evidence)
+- Docs: https://enerise.sprees.net/
+- Review: https://enerise.sprees.net/review
+- Projects: https://enerise.sprees.net/projects
+- Git: /opt/data/workspace/energy-project-intelligence
+- DB: 127.0.0.1:55432 intelligence (Postgres 18.6 + PostGIS 3.6)
+- Origin: `python -m energy_intelligence.review_http` on :8091
 
-Copy Next prompt from https://enerise.sprees.net/#next-prompt
+Product pages read canonical internal values only and link to evidence.

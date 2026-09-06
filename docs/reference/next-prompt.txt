@@ -1,27 +1,18 @@
 Continue Energy Project Intelligence on this machine. Chat with the user in Thai.
 
-Read first, in this order, and treat them as source of truth:
+Read first:
 1. /opt/data/docs/energy-project-intelligence/handoff.md
 2. /opt/data/docs/energy-project-intelligence/status.json
-3. https://enerise.sprees.net/ and https://enerise.sprees.net/review
-4. Git working copy: /opt/data/workspace/energy-project-intelligence
+3. https://enerise.sprees.net/  /review  /projects
+4. Git clone: /opt/data/workspace/energy-project-intelligence
 
-Do not re-litigate MVP scope. Do not reopen schema v0.2 unless the user asks.
+MVP inner loop is complete: docs, GitHub, schema v0.2 migrated, manual ingest, review/canonical, product pages that read canonical values with evidence links.
 
-Done:
-- Docs, GitHub, schema v0.2 migrated, manual ingest CLI
-- Review queue at https://enerise.sprees.net/review
-- Pending evidence cannot become canonical
-- 40 MW and 50 MW evidence can coexist; one canonical selection
-- pytest includes review tests
+Do not reopen schema v0.2 unless asked. Do not start collectors, imagery, Solar Portfolio, public API, or LLM-approved facts unless the user asks.
 
-Next task: Project Intelligence product page.
-- Search/filter projects
-- Detail page: company, site, capacity by metric/scope, dates as ranges
-- Every displayed value links back to evidence
-- Do not start collectors, imagery, portfolio, public API, or LLM-approved facts
+Suggested next (pick with the user):
+- Import licensed real fixtures (ERC/BOI/owner) instead of demo JSON
+- First automated connector after mapping a real source
+- Product polish (map only when coordinates exist, never HQ fallback)
 
-Hard rules:
-- Update https://enerise.sprees.net/ and the Next prompt on every change, then git push
-- Never commit secrets, var/, .conda/, .venv/
-- Follow schema v0.2
+Hard rules: update https://enerise.sprees.net/ and this Next prompt on every change; never commit secrets/var/.conda/.venv.
